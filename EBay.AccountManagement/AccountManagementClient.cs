@@ -16,10 +16,12 @@
 using EBay.AccountManagement.Clients.GraphQL;
 using EBay.AccountManagement.Clients.Rest;
 using EBay.AccountManagement.Configuration;
+using EBay.AccountManagement.Extensions;
 using EBay.AccountManagement.Generated.AccountV1;
 using EBay.AccountManagement.Generated.AccountV2;
 using EBay.AccountManagement.Generated.Finances;
 using EBay.AccountManagement.Generated.GraphQL;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Kiota.Abstractions.Authentication;
 using Microsoft.Kiota.Http.HttpClientLibrary;
 
@@ -69,13 +71,38 @@ public sealed class AccountManagementClient : IDisposable
 
     /// <summary>
     /// Standalone constructor for use outside DI (tests, scripts).
-    /// Creates its own HttpClient and does not use StrawberryShake DI.
-    /// Typed GraphQL operations are unavailable; use GraphQL.ExecuteRawUnsafeAsync instead.
+    /// Creates its own HttpClient and builds a minimal internal service provider so that
+    /// typed GraphQL operations work without requiring the caller to set up DI.
     /// </summary>
     public AccountManagementClient(AccountManagementConfiguration config)
-        : this(config, BuildStandaloneHttpClient(config), null!, new AsyncLocalTokenContext())
     {
+        var tokenContext = new AsyncLocalTokenContext();
+        var httpClient = BuildStandaloneHttpClient(config);
+        _httpClient = httpClient;
         _ownsHttpClient = true;
+
+        var auth = new BaseBearerTokenAuthenticationProvider(new KiotaAuthProvider(config, tokenContext));
+
+        AccountV1 = new AccountV1Client(new AccountV1ApiClient(
+            new HttpClientRequestAdapter(auth, httpClient: httpClient)), config, tokenContext);
+        AccountV2 = new AccountV2Client(new AccountV2ApiClient(
+            new HttpClientRequestAdapter(auth, httpClient: httpClient)), config, tokenContext);
+        Finances = new FinancesClient(new FinancesApiClient(
+            new HttpClientRequestAdapter(auth, httpClient: httpClient)), config, tokenContext);
+        GraphQL = new AccountGraphQLClient(
+            BuildStandaloneGqlClient(config, tokenContext),
+            new DynamicGraphQLClient(httpClient, config, tokenContext),
+            tokenContext);
+    }
+
+    private static IAccountManagementGraphQLClient BuildStandaloneGqlClient(
+        AccountManagementConfiguration config, ITokenContext tokenContext)
+    {
+        var services = new ServiceCollection();
+        services.AddAccountManagementSdk(config);
+        // Override ITokenContext with the shared instance so BearerTokenHandler sees the same token
+        services.AddSingleton(tokenContext);
+        return services.BuildServiceProvider().GetRequiredService<IAccountManagementGraphQLClient>();
     }
 
     private static HttpClient BuildStandaloneHttpClient(AccountManagementConfiguration config)
