@@ -1,0 +1,19 @@
+{
+  "schema": "../specs/eBay_Graph.graphqls",
+  "documents": "graphql/operations/**/*.graphql",
+  "extensions": {
+    "strawberryShake": {
+      "name": "AccountManagementGraphQLClient",
+      "namespace": "EBay.AccountManagement.Generated.GraphQL",
+      "url": "http://placeholder",
+      "dependencyInjection": true,
+      "noStore": true,
+      "requestStrategy": "Default",
+      "transportProfiles": [
+        {
+          "default": "Http"
+        }
+      ]
+    }
+  }
+}

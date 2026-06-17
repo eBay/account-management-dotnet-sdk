@@ -1,0 +1,85 @@
+# macOS
+.DS_Store
+*/.DS_Store
+
+# Build outputs
+[Bb]in/
+[Oo]bj/
+out/
+publish/
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.swp
+*~
+
+# VS Code
+.vscode/
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/tasks.json
+
+# Rider
+*.DotSettings.user
+
+# Test results
+TestResults/
+[Tt]est[Rr]esult*/
+coverage*/
+*.coveragexml
+*.coverage
+
+# Logs
+*.log
+logs/
+
+# User-specific files
+*.rsuser
+
+# dotnet tool manifests (local tools are fine, but restore artifacts aren't)
+.dotnet/
+
+# Publish profiles
+**/Properties/PublishProfiles/
+
+# Compiled resources
+*_i.c
+*_p.c
+*_h.h
+*.ilk
+*.meta
+*.obj
+*.iobj
+*.pch
+*.pdb
+*.ipdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*_wpftmp.csproj
+*.vspscc
+*.vssscc
+
+# .NET runtime
+launchSettings.json
