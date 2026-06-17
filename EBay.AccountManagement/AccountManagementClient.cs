@@ -100,8 +100,7 @@ public sealed class AccountManagementClient : IDisposable
     {
         var services = new ServiceCollection();
         services.AddAccountManagementSdk(config);
-        // Override ITokenContext with the shared instance so BearerTokenHandler sees the same token
-        services.AddSingleton(tokenContext);
+        services.AddSingleton<ITokenContext>(tokenContext);
         return services.BuildServiceProvider().GetRequiredService<IAccountManagementGraphQLClient>();
     }
 
