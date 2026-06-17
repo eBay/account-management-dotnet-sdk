@@ -48,16 +48,9 @@ public sealed class AccountGraphQLClient
         => _tokenContext.RunAsync(accessToken, async () =>
         {
             EnsureTypedClientAvailable();
-            try
-            {
-                var result = await _client!.User.ExecuteAsync(ct).ConfigureAwait(false);
-                EnsureNoErrors(result);
-                return result.Data?.User;
-            }
-            catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                throw new UnauthorizedException(ex);
-            }
+            var result = await ExecuteAsync(() => _client!.User.ExecuteAsync(ct));
+            EnsureNoErrors(result);
+            return result.Data?.User;
         });
 
     // ── Watch List ────────────────────────────────────────────────────────────
@@ -67,16 +60,9 @@ public sealed class AccountGraphQLClient
         => _tokenContext.RunAsync(accessToken, async () =>
         {
             EnsureTypedClientAvailable();
-            try
-            {
-                var result = await _client!.UserWatchList.ExecuteAsync(input, ct).ConfigureAwait(false);
-                EnsureNoErrors(result);
-                return result.Data?.UserWatchList;
-            }
-            catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                throw new UnauthorizedException(ex);
-            }
+            var result = await ExecuteAsync(() => _client!.UserWatchList.ExecuteAsync(input, ct));
+            EnsureNoErrors(result);
+            return result.Data?.UserWatchList;
         });
 
     public Task<IAddToWatchList_AddToWatchList?> AddToWatchListAsync(
@@ -84,16 +70,9 @@ public sealed class AccountGraphQLClient
         => _tokenContext.RunAsync(accessToken, async () =>
         {
             EnsureTypedClientAvailable();
-            try
-            {
-                var result = await _client!.AddToWatchList.ExecuteAsync(input, ct).ConfigureAwait(false);
-                EnsureNoErrors(result);
-                return result.Data?.AddToWatchList;
-            }
-            catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                throw new UnauthorizedException(ex);
-            }
+            var result = await ExecuteAsync(() => _client!.AddToWatchList.ExecuteAsync(input, ct));
+            EnsureNoErrors(result);
+            return result.Data?.AddToWatchList;
         });
 
     public Task<IRemoveFromWatchList_RemoveFromWatchList?> RemoveFromWatchListAsync(
@@ -101,16 +80,9 @@ public sealed class AccountGraphQLClient
         => _tokenContext.RunAsync(accessToken, async () =>
         {
             EnsureTypedClientAvailable();
-            try
-            {
-                var result = await _client!.RemoveFromWatchList.ExecuteAsync(input, ct).ConfigureAwait(false);
-                EnsureNoErrors(result);
-                return result.Data?.RemoveFromWatchList;
-            }
-            catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                throw new UnauthorizedException(ex);
-            }
+            var result = await ExecuteAsync(() => _client!.RemoveFromWatchList.ExecuteAsync(input, ct));
+            EnsureNoErrors(result);
+            return result.Data?.RemoveFromWatchList;
         });
 
     public Task<IRemoveAllFromWatchList_RemoveAllFromWatchList?> RemoveAllFromWatchListAsync(
@@ -118,16 +90,9 @@ public sealed class AccountGraphQLClient
         => _tokenContext.RunAsync(accessToken, async () =>
         {
             EnsureTypedClientAvailable();
-            try
-            {
-                var result = await _client!.RemoveAllFromWatchList.ExecuteAsync(ct).ConfigureAwait(false);
-                EnsureNoErrors(result);
-                return result.Data?.RemoveAllFromWatchList;
-            }
-            catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                throw new UnauthorizedException(ex);
-            }
+            var result = await ExecuteAsync(() => _client!.RemoveAllFromWatchList.ExecuteAsync(ct));
+            EnsureNoErrors(result);
+            return result.Data?.RemoveAllFromWatchList;
         });
 
     // ── Custom Lists ──────────────────────────────────────────────────────────
@@ -137,16 +102,9 @@ public sealed class AccountGraphQLClient
         => _tokenContext.RunAsync(accessToken, async () =>
         {
             EnsureTypedClientAvailable();
-            try
-            {
-                var result = await _client!.UserCustomLists.ExecuteAsync(input, ct).ConfigureAwait(false);
-                EnsureNoErrors(result);
-                return result.Data?.UserCustomLists;
-            }
-            catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                throw new UnauthorizedException(ex);
-            }
+            var result = await ExecuteAsync(() => _client!.UserCustomLists.ExecuteAsync(input, ct));
+            EnsureNoErrors(result);
+            return result.Data?.UserCustomLists;
         });
 
     // ── User Notes ────────────────────────────────────────────────────────────
@@ -156,16 +114,9 @@ public sealed class AccountGraphQLClient
         => _tokenContext.RunAsync(accessToken, async () =>
         {
             EnsureTypedClientAvailable();
-            try
-            {
-                var result = await _client!.CreateOrReplaceUserNote.ExecuteAsync(input, ct).ConfigureAwait(false);
-                EnsureNoErrors(result);
-                return result.Data?.CreateOrReplaceUserNote;
-            }
-            catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                throw new UnauthorizedException(ex);
-            }
+            var result = await ExecuteAsync(() => _client!.CreateOrReplaceUserNote.ExecuteAsync(input, ct));
+            EnsureNoErrors(result);
+            return result.Data?.CreateOrReplaceUserNote;
         });
 
     public Task<IDeleteUserNote_DeleteUserNote?> DeleteUserNoteAsync(
@@ -173,16 +124,9 @@ public sealed class AccountGraphQLClient
         => _tokenContext.RunAsync(accessToken, async () =>
         {
             EnsureTypedClientAvailable();
-            try
-            {
-                var result = await _client!.DeleteUserNote.ExecuteAsync(input, ct).ConfigureAwait(false);
-                EnsureNoErrors(result);
-                return result.Data?.DeleteUserNote;
-            }
-            catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                throw new UnauthorizedException(ex);
-            }
+            var result = await ExecuteAsync(() => _client!.DeleteUserNote.ExecuteAsync(input, ct));
+            EnsureNoErrors(result);
+            return result.Data?.DeleteUserNote;
         });
 
     // ── Auction ───────────────────────────────────────────────────────────────
@@ -192,16 +136,9 @@ public sealed class AccountGraphQLClient
         => _tokenContext.RunAsync(accessToken, async () =>
         {
             EnsureTypedClientAvailable();
-            try
-            {
-                var result = await _client!.UserBiddingActivity.ExecuteAsync(input, ct).ConfigureAwait(false);
-                EnsureNoErrors(result);
-                return result.Data?.UserBiddingActivity;
-            }
-            catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                throw new UnauthorizedException(ex);
-            }
+            var result = await ExecuteAsync(() => _client!.UserBiddingActivity.ExecuteAsync(input, ct));
+            EnsureNoErrors(result);
+            return result.Data?.UserBiddingActivity;
         });
 
     public Task<IItemBiddingActivity_ItemBiddingActivity?> ItemBiddingActivityAsync(
@@ -213,21 +150,14 @@ public sealed class AccountGraphQLClient
         => _tokenContext.RunAsync(accessToken, async () =>
         {
             EnsureTypedClientAvailable();
-            try
-            {
-                var result = await _client!.ItemBiddingActivity.ExecuteAsync(
-                    input,
-                    activeBidHistoryRecords_PaginationInput,
-                    cancelledBidHistoryRecords_PaginationInput,
-                    retractedBidHistoryRecords_PaginationInput,
-                    ct).ConfigureAwait(false);
-                EnsureNoErrors(result);
-                return result.Data?.ItemBiddingActivity;
-            }
-            catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                throw new UnauthorizedException(ex);
-            }
+            var result = await ExecuteAsync(() => _client!.ItemBiddingActivity.ExecuteAsync(
+                input,
+                activeBidHistoryRecords_PaginationInput,
+                cancelledBidHistoryRecords_PaginationInput,
+                retractedBidHistoryRecords_PaginationInput,
+                ct));
+            EnsureNoErrors(result);
+            return result.Data?.ItemBiddingActivity;
         });
 
     // ── Dynamic escape hatch ──────────────────────────────────────────────────
@@ -245,7 +175,28 @@ public sealed class AccountGraphQLClient
         string query, object? variables = null, string? accessToken = null, CancellationToken ct = default)
         => _dynamic.ExecuteRawUnsafeAsync(query, variables, accessToken, ct);
 
-    // ── Error handling ────────────────────────────────────────────────────────
+    // ── Helpers ───────────────────────────────────────────────────────────────
+
+    private static async Task<IOperationResult<T>> ExecuteAsync<T>(Func<Task<IOperationResult<T>>> call)
+        where T : class
+    {
+        try { return await call(); }
+        catch (Exception ex) when (ex is not SdkException) { throw WrapException(ex); }
+    }
+
+    private static Exception WrapException(Exception ex) => ex switch
+    {
+        HttpRequestException { StatusCode: HttpStatusCode.Unauthorized } => new UnauthorizedException(ex),
+        HttpRequestException { StatusCode: { } code } http =>
+            new SdkException($"GraphQL request failed with HTTP {(int)code}: {http.Message}", ex),
+        HttpRequestException http =>
+            new SdkException($"GraphQL request failed (network error): {http.Message} — check that GraphQLBaseUrl is reachable.", ex),
+        TaskCanceledException =>
+            new SdkException("GraphQL request timed out — check that GraphQLBaseUrl is reachable and the network is accessible.", ex),
+        InvalidOperationException { Message: var msg } when msg.Contains("execution attempt") =>
+            new SdkException("GraphQL request returned no data; the endpoint may be unreachable or returned an unexpected response — check GraphQLBaseUrl.", ex),
+        _ => new SdkException($"GraphQL request failed: {ex.Message}", ex)
+    };
 
     private static void EnsureNoErrors<T>(IOperationResult<T> result)
         where T : class
