@@ -35,11 +35,13 @@ public static class ServiceCollectionExtensions
 
         // Wire auth into the named HTTP client that StrawberryShake uses
         services.AddTransient<BearerTokenHandler>();
+        services.AddTransient(_ => new GraphQLHttpHandler(config));
         services
             .AddHttpClient("AccountManagementGraphQLClient", client =>
                 client.BaseAddress = new Uri(config.GraphQLBaseUrl))
             .ConfigureHttpClient(c => c.Timeout = config.HttpTimeout)
-            .AddHttpMessageHandler<BearerTokenHandler>();
+            .AddHttpMessageHandler<BearerTokenHandler>()
+            .AddHttpMessageHandler(_ => new GraphQLHttpHandler(config));
 
         // Named REST client: DiagnosticLoggingHandler wired in so DI policies are honoured
         services
