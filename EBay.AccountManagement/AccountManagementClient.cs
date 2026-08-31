@@ -14,27 +14,19 @@
 
 
 using EBay.AccountManagement.Clients.GraphQL;
-using EBay.AccountManagement.Clients.Rest;
 using EBay.AccountManagement.Configuration;
 using EBay.AccountManagement.Extensions;
-using EBay.AccountManagement.Generated.AccountV1;
-using EBay.AccountManagement.Generated.AccountV2;
-using EBay.AccountManagement.Generated.Finances;
 using EBay.AccountManagement.Generated.GraphQL;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Kiota.Abstractions.Authentication;
-using Microsoft.Kiota.Http.HttpClientLibrary;
 
 namespace EBay.AccountManagement;
 
-public sealed class AccountManagementClient : IDisposable
+public partial class AccountManagementClient : IDisposable
 {
     private readonly HttpClient _httpClient;
     private readonly bool _ownsHttpClient;
 
-    public AccountV1Client AccountV1 { get; }
-    public AccountV2Client AccountV2 { get; }
-    public FinancesClient Finances { get; }
     public AccountGraphQLClient GraphQL { get; }
 
     /// <summary>
@@ -50,18 +42,7 @@ public sealed class AccountManagementClient : IDisposable
         _ownsHttpClient = false;
 
         var auth = new BaseBearerTokenAuthenticationProvider(new KiotaAuthProvider(config, tokenContext));
-
-        AccountV1 = new AccountV1Client(new AccountV1ApiClient(
-            new HttpClientRequestAdapter(auth, httpClient: httpClient)),
-            config, tokenContext);
-
-        AccountV2 = new AccountV2Client(new AccountV2ApiClient(
-            new HttpClientRequestAdapter(auth, httpClient: httpClient)),
-            config, tokenContext);
-
-        Finances = new FinancesClient(new FinancesApiClient(
-            new HttpClientRequestAdapter(auth, httpClient: httpClient)),
-            config, tokenContext);
+        InitializeRestClients(auth, httpClient, config, tokenContext);
 
         GraphQL = new AccountGraphQLClient(
             ssGqlClient,
@@ -82,13 +63,8 @@ public sealed class AccountManagementClient : IDisposable
         _ownsHttpClient = true;
 
         var auth = new BaseBearerTokenAuthenticationProvider(new KiotaAuthProvider(config, tokenContext));
+        InitializeRestClients(auth, httpClient, config, tokenContext);
 
-        AccountV1 = new AccountV1Client(new AccountV1ApiClient(
-            new HttpClientRequestAdapter(auth, httpClient: httpClient)), config, tokenContext);
-        AccountV2 = new AccountV2Client(new AccountV2ApiClient(
-            new HttpClientRequestAdapter(auth, httpClient: httpClient)), config, tokenContext);
-        Finances = new FinancesClient(new FinancesApiClient(
-            new HttpClientRequestAdapter(auth, httpClient: httpClient)), config, tokenContext);
         GraphQL = new AccountGraphQLClient(
             BuildStandaloneGqlClient(config, tokenContext),
             new DynamicGraphQLClient(httpClient, config, tokenContext),
