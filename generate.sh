@@ -55,6 +55,9 @@ dotnet kiota generate \
   -o EBay.AccountManagement/Generated/Finances \
   --ebc --co
 
+echo "Adding license headers to generated files..."
+./add-license-headers.sh ./EBay.AccountManagement/Generated
+
 # Build the project (also triggers StrawberryShake Roslyn source generator for GraphQL)
 echo ""
 echo "Building the SDK..."
