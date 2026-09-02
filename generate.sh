@@ -61,7 +61,7 @@ echo "Adding license headers to generated files..."
 # Build the project (also triggers StrawberryShake Roslyn source generator for GraphQL)
 echo ""
 echo "Building the SDK..."
-dotnet build EBay.AccountManagement/EBay.AccountManagement.csproj
+DOTNET_ROLL_FORWARD=LatestMajor dotnet build EBay.AccountManagement/EBay.AccountManagement.csproj
 
 echo ""
 echo "========================================="
