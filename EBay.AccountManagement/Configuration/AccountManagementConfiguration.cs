@@ -25,25 +25,25 @@ public sealed class AccountManagementConfiguration
     public string AccountV1BaseUrl
     {
         get => _accountV1BaseUrl;
-        set => _accountV1BaseUrl = RequireHttps(value, nameof(AccountV1BaseUrl));
+        set => _accountV1BaseUrl = RequireHttps(value);
     }
 
     public string AccountV2BaseUrl
     {
         get => _accountV2BaseUrl;
-        set => _accountV2BaseUrl = RequireHttps(value, nameof(AccountV2BaseUrl));
+        set => _accountV2BaseUrl = RequireHttps(value);
     }
 
     public string FinancesBaseUrl
     {
         get => _financesBaseUrl;
-        set => _financesBaseUrl = RequireHttps(value, nameof(FinancesBaseUrl));
+        set => _financesBaseUrl = RequireHttps(value);
     }
 
     public string GraphQLBaseUrl
     {
         get => _graphQLBaseUrl;
-        set => _graphQLBaseUrl = RequireHttps(value, nameof(GraphQLBaseUrl));
+        set => _graphQLBaseUrl = RequireHttps(value);
     }
 
     /// <summary>Fallback bearer token used when no per-call accessToken is supplied.</summary>
@@ -68,10 +68,10 @@ public sealed class AccountManagementConfiguration
 
     internal IEnumerable<string> AllowedHosts => ["api.ebay.com", "apim.ebay.com", "apiz.ebay.com"];
 
-    private static string RequireHttps(string value, string paramName)
+    private static string RequireHttps(string value)
     {
         if (!value.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
-            throw new ArgumentException("Only HTTPS endpoints are allowed.", paramName);
+            throw new ArgumentException($"URL must use HTTPS: '{value}'", nameof(value));
         return value;
     }
 }
