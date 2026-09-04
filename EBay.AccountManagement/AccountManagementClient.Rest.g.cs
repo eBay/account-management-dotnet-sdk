@@ -31,20 +31,22 @@ public partial class AccountManagementClient
 
     private void InitializeRestClients(
         IAuthenticationProvider auth,
-        HttpClient httpClient,
+        HttpClient accountV1Client,
+        HttpClient accountV2Client,
+        HttpClient financesClient,
         AccountManagementConfiguration config,
         ITokenContext tokenContext)
     {
         AccountV1 = new AccountV1Client(new AccountV1ApiClient(
-            new HttpClientRequestAdapter(auth, httpClient: httpClient)),
+            new HttpClientRequestAdapter(auth, httpClient: accountV1Client)),
             config, tokenContext);
 
         AccountV2 = new AccountV2Client(new AccountV2ApiClient(
-            new HttpClientRequestAdapter(auth, httpClient: httpClient)),
+            new HttpClientRequestAdapter(auth, httpClient: accountV2Client)),
             config, tokenContext);
 
         Finances = new FinancesClient(new FinancesApiClient(
-            new HttpClientRequestAdapter(auth, httpClient: httpClient)),
+            new HttpClientRequestAdapter(auth, httpClient: financesClient)),
             config, tokenContext);
     }
 }

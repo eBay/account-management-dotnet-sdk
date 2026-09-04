@@ -24,50 +24,58 @@ namespace EBay.AccountManagement;
 
 public partial class AccountManagementClient : IDisposable
 {
-    private readonly HttpClient _httpClient;
-    private readonly bool _ownsHttpClient;
+    internal const string AccountV1ClientName = "AccountManagementClient.AccountV1";
+    internal const string AccountV2ClientName = "AccountManagementClient.AccountV2";
+    internal const string FinancesClientName = "AccountManagementClient.Finances";
+
+    private readonly HttpClient[] _ownedClients;
 
     public AccountGraphQLClient GraphQL { get; }
 
     /// <summary>
-    /// DI-friendly constructor: StrawberryShake client injected by the container.
+    /// DI-friendly constructor: each HttpClient is a named client from IHttpClientFactory
+    /// with DiagnosticLoggingHandler and BaseAddress already configured.
     /// </summary>
     internal AccountManagementClient(
         AccountManagementConfiguration config,
-        HttpClient httpClient,
+        HttpClient accountV1Client,
+        HttpClient accountV2Client,
+        HttpClient financesClient,
         IAccountManagementGraphQLClient ssGqlClient,
         ITokenContext tokenContext)
     {
-        _httpClient = httpClient;
-        _ownsHttpClient = false;
+        _ownedClients = [];
 
         var auth = new BaseBearerTokenAuthenticationProvider(new KiotaAuthProvider(config, tokenContext));
-        InitializeRestClients(auth, httpClient, config, tokenContext);
+        InitializeRestClients(auth, accountV1Client, accountV2Client, financesClient, config, tokenContext);
 
         GraphQL = new AccountGraphQLClient(
             ssGqlClient,
-            new DynamicGraphQLClient(httpClient, config, tokenContext),
+            new DynamicGraphQLClient(accountV1Client, config, tokenContext),
             tokenContext);
     }
 
     /// <summary>
     /// Standalone constructor for use outside DI (tests, scripts).
-    /// Creates its own HttpClient and builds a minimal internal service provider so that
-    /// typed GraphQL operations work without requiring the caller to set up DI.
+    /// Creates its own HttpClients with DiagnosticLoggingHandler and builds a minimal
+    /// internal service provider so that typed GraphQL operations work without requiring
+    /// the caller to set up DI.
     /// </summary>
     public AccountManagementClient(AccountManagementConfiguration config)
     {
         var tokenContext = new AsyncLocalTokenContext();
-        var httpClient = BuildStandaloneHttpClient(config);
-        _httpClient = httpClient;
-        _ownsHttpClient = true;
-
         var auth = new BaseBearerTokenAuthenticationProvider(new KiotaAuthProvider(config, tokenContext));
-        InitializeRestClients(auth, httpClient, config, tokenContext);
+
+        var accountV1Client = BuildStandaloneHttpClient(config, config.AccountV1BaseUrl);
+        var accountV2Client = BuildStandaloneHttpClient(config, config.AccountV2BaseUrl);
+        var financesClient = BuildStandaloneHttpClient(config, config.FinancesBaseUrl);
+        _ownedClients = [accountV1Client, accountV2Client, financesClient];
+
+        InitializeRestClients(auth, accountV1Client, accountV2Client, financesClient, config, tokenContext);
 
         GraphQL = new AccountGraphQLClient(
             BuildStandaloneGqlClient(config, tokenContext),
-            new DynamicGraphQLClient(httpClient, config, tokenContext),
+            new DynamicGraphQLClient(accountV1Client, config, tokenContext),
             tokenContext);
     }
 
@@ -80,18 +88,18 @@ public partial class AccountManagementClient : IDisposable
         return services.BuildServiceProvider().GetRequiredService<IAccountManagementGraphQLClient>();
     }
 
-    private static HttpClient BuildStandaloneHttpClient(AccountManagementConfiguration config)
+    private static HttpClient BuildStandaloneHttpClient(AccountManagementConfiguration config, string baseUrl)
     {
         var handler = new DiagnosticLoggingHandler(config)
         {
             InnerHandler = new SocketsHttpHandler { PooledConnectionLifetime = TimeSpan.FromMinutes(2) }
         };
-        return new HttpClient(handler) { Timeout = config.HttpTimeout };
+        return new HttpClient(handler) { BaseAddress = new Uri(baseUrl), Timeout = config.HttpTimeout };
     }
 
     public void Dispose()
     {
-        if (_ownsHttpClient)
-            _httpClient.Dispose();
+        foreach (var client in _ownedClients)
+            client.Dispose();
     }
 }

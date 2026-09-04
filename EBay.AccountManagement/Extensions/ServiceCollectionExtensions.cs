@@ -30,10 +30,8 @@ public static class ServiceCollectionExtensions
         services.AddSingleton(config);
         services.AddSingleton<ITokenContext, AsyncLocalTokenContext>();
 
-        // StrawberryShake: register generated client
         services.AddAccountManagementGraphQLClient();
 
-        // Wire auth into the named HTTP client that StrawberryShake uses
         services.AddTransient<BearerTokenHandler>();
         services.AddTransient(_ => new GraphQLHttpHandler(config));
         services
@@ -43,29 +41,37 @@ public static class ServiceCollectionExtensions
             .AddHttpMessageHandler<BearerTokenHandler>()
             .AddHttpMessageHandler(_ => new GraphQLHttpHandler(config));
 
-        // Named REST client: DiagnosticLoggingHandler wired in so DI policies are honoured
-        services
-            .AddHttpClient(nameof(AccountManagementClient))
-            .ConfigureHttpClient(c => c.Timeout = config.HttpTimeout)
-            .AddHttpMessageHandler(sp =>
-                new DiagnosticLoggingHandler(sp.GetRequiredService<AccountManagementConfiguration>()));
-
-        // Dynamic escape hatch
         services.AddScoped<DynamicGraphQLClient>(sp =>
             new DynamicGraphQLClient(
-                sp.GetRequiredService<IHttpClientFactory>().CreateClient(),
+                sp.GetRequiredService<IHttpClientFactory>().CreateClient("AccountManagementGraphQLClient"),
                 sp.GetRequiredService<AccountManagementConfiguration>(),
                 sp.GetRequiredService<ITokenContext>()));
 
-        // Register facade
+        services.AddHttpClient(AccountManagementClient.AccountV1ClientName,
+                (sp, c) => c.BaseAddress = new Uri(sp.GetRequiredService<AccountManagementConfiguration>().AccountV1BaseUrl))
+            .ConfigureHttpClient((sp, c) => c.Timeout = sp.GetRequiredService<AccountManagementConfiguration>().HttpTimeout)
+            .AddHttpMessageHandler(sp => new DiagnosticLoggingHandler(sp.GetRequiredService<AccountManagementConfiguration>()));
+        services.AddHttpClient(AccountManagementClient.AccountV2ClientName,
+                (sp, c) => c.BaseAddress = new Uri(sp.GetRequiredService<AccountManagementConfiguration>().AccountV2BaseUrl))
+            .ConfigureHttpClient((sp, c) => c.Timeout = sp.GetRequiredService<AccountManagementConfiguration>().HttpTimeout)
+            .AddHttpMessageHandler(sp => new DiagnosticLoggingHandler(sp.GetRequiredService<AccountManagementConfiguration>()));
+        services.AddHttpClient(AccountManagementClient.FinancesClientName,
+                (sp, c) => c.BaseAddress = new Uri(sp.GetRequiredService<AccountManagementConfiguration>().FinancesBaseUrl))
+            .ConfigureHttpClient((sp, c) => c.Timeout = sp.GetRequiredService<AccountManagementConfiguration>().HttpTimeout)
+            .AddHttpMessageHandler(sp => new DiagnosticLoggingHandler(sp.GetRequiredService<AccountManagementConfiguration>()));
+
         services.AddScoped<AccountManagementClient>(sp =>
-            new AccountManagementClient(
+        {
+            var factory = sp.GetRequiredService<IHttpClientFactory>();
+            return new AccountManagementClient(
                 sp.GetRequiredService<AccountManagementConfiguration>(),
-                sp.GetRequiredService<IHttpClientFactory>().CreateClient(nameof(AccountManagementClient)),
+                factory.CreateClient(AccountManagementClient.AccountV1ClientName),
+                factory.CreateClient(AccountManagementClient.AccountV2ClientName),
+                factory.CreateClient(AccountManagementClient.FinancesClientName),
                 sp.GetRequiredService<IAccountManagementGraphQLClient>(),
-                sp.GetRequiredService<ITokenContext>()));
+                sp.GetRequiredService<ITokenContext>());
+        });
 
-        // Register sub-clients for direct injection
         services.AddScoped(sp => sp.GetRequiredService<AccountManagementClient>().AccountV1);
         services.AddScoped(sp => sp.GetRequiredService<AccountManagementClient>().AccountV2);
         services.AddScoped(sp => sp.GetRequiredService<AccountManagementClient>().Finances);
