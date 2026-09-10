@@ -31,7 +31,7 @@ echo "Regenerating REST clients with Kiota..."
 echo "  - AccountV1 client..."
 dotnet kiota generate \
   -l csharp \
-  -d specs/sell_account_v1_oas3.yaml \
+  -d specs/openapi/account-v1.yaml \
   -c AccountV1ApiClient \
   -n EBay.AccountManagement.Generated.AccountV1 \
   -o EBay.AccountManagement/Generated/AccountV1 \
@@ -40,7 +40,7 @@ dotnet kiota generate \
 echo "  - AccountV2 client..."
 dotnet kiota generate \
   -l csharp \
-  -d specs/sell_account_v2_oas3.yaml \
+  -d specs/openapi/account-v2.yaml \
   -c AccountV2ApiClient \
   -n EBay.AccountManagement.Generated.AccountV2 \
   -o EBay.AccountManagement/Generated/AccountV2 \
@@ -49,16 +49,19 @@ dotnet kiota generate \
 echo "  - Finances client..."
 dotnet kiota generate \
   -l csharp \
-  -d specs/sell_finances_v1_oas3.yaml \
+  -d specs/openapi/finances.yaml \
   -c FinancesApiClient \
   -n EBay.AccountManagement.Generated.Finances \
   -o EBay.AccountManagement/Generated/Finances \
   --ebc --co
 
+echo "Adding license headers to generated files..."
+./add-license-headers.sh ./EBay.AccountManagement/Generated
+
 # Build the project (also triggers StrawberryShake Roslyn source generator for GraphQL)
 echo ""
 echo "Building the SDK..."
-dotnet build EBay.AccountManagement/EBay.AccountManagement.csproj
+DOTNET_ROLL_FORWARD=LatestMajor dotnet build EBay.AccountManagement/EBay.AccountManagement.csproj
 
 echo ""
 echo "========================================="

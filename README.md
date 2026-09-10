@@ -297,7 +297,7 @@ When OpenAPI specs or GraphQL schemas change:
 
 # Or manually:
 dotnet tool restore
-dotnet kiota generate -l csharp -d specs/sell_account_v1_oas3.yaml ...
+dotnet kiota generate -l csharp -d specs/openapi/account-v1.yaml ...
 dotnet build EBay.AccountManagement/EBay.AccountManagement.csproj
 ```
 
