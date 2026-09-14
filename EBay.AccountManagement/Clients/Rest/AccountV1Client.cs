@@ -383,8 +383,8 @@ public sealed class AccountV1Client
         }, ct));
 
     /// <summary>
-    /// This method opts the seller in to an eBay seller program. Refer to the <see href="/api-docs/sell/account/overview.html#opt-in">Account API overview</see> for information about available eBay seller programs.
-    /// <b>Note:</b> It can take up to 24-hours for eBay to process your request to opt-in to a Seller Program. Use the <see href="/api-docs/sell/account/resources/program/methods/getOptedInPrograms">getOptedInPrograms</see> call to check the status of your request after the processing period has passed.
+    /// This method opts the seller in to an eBay seller program. Refer to the <see href="/develop/api/sell/account_api_v1#sell-account_api_v1-program-optintoprogram.programtypeenum">ProgramTypeEnum</see> for information about available eBay seller programs.
+    /// <b>Note:</b> It can take up to 24-hours for eBay to process your request to opt-in to a Seller Program. Use the <see href="/develop/api/sell/account_api_v1#sell-account_api_v1-program-getoptedinprograms">getOptedInPrograms</see> call to check the status of your request after the processing period has passed.
     /// </summary>
     public Task OptInToProgramAsync(
         Program body,
@@ -551,7 +551,7 @@ public sealed class AccountV1Client
     /// - <c>jurisdictionId</c>
     /// - <c>salesTaxPercentage</c>
     /// - <c>shippingAndHandlingTaxed</c>
-    /// Valid jurisdiction IDs are retrieved using <b><see href="/api-docs/sell/metadata/resources/country/methods/getSalesTaxJurisdictions">getSalesTaxJurisdictions</see></b> in the Metadata API.
+    /// Valid jurisdiction IDs are retrieved using <b><see href="/develop/api/sell/metadata_api#sell-metadata_api-country-getsalestaxjurisdictions">getSalesTaxJurisdictions</see></b> in the Metadata API.
     /// For details about using this call, refer to <see href="/api-docs/sell/static/seller-accounts/tax-tables.html">Establishing sales-tax tables</see>.
     /// Important! </b>"&gt;<b>Important!</b> In the US, eBay now calculates, collects, and remits sales tax to the proper taxing authorities in all 50 states and Washington, DC. Sellers can no longer specify sales-tax rates for these jurisdictions using a tax table.
     /// However, sellers may continue to use a sales-tax table to set rates for the following US territories:
@@ -606,7 +606,7 @@ public sealed class AccountV1Client
     /// A tax table entry for a jurisdiction is comprised of two fields: one for the jurisdiction's sales-tax rate and another that's a boolean value indicating whether or not shipping and handling are taxed in the jurisdiction.
     /// You can set up <i>sales-tax tables</i> for countries that support different <i>tax jurisdictions</i>.
     /// <b>Note:</b> Sales-tax tables are only available for the US (EBAY_US) and Canada (EBAY_CA) marketplaces.
-    /// Retrieve valid jurisdiction IDs using <b><see href="/api-docs/sell/metadata/resources/country/methods/getSalesTaxJurisdictions">getSalesTaxJurisdictions</see></b> in the Metadata API.
+    /// Retrieve valid jurisdiction IDs using <b><see href="/develop/api/sell/metadata_api#sell-metadata_api-country-getsalestaxjurisdictions">getSalesTaxJurisdictions</see></b> in the Metadata API.
     /// For details about using this call, refer to <see href="/api-docs/sell/static/seller-accounts/tax-tables.html">Establishing sales-tax tables</see>.
     /// Important! </b>"&gt;<b>Important!</b> In the US, eBay now calculates, collects, and remits sales tax to the proper taxing authorities in all 50 states and Washington, DC. Sellers can no longer specify sales-tax rates for these jurisdictions using a tax table.
     /// However, sellers may continue to use a sales-tax table to set rates for the following US territories:

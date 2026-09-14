@@ -29,7 +29,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The unique identifier of an order cancellation. This field is only applicable and returned if the charge is related to an order  cancellation.</summary>
+        /// <summary>The unique identifier of an order cancellation. This field is only applicable and returned if the charge is related to an order cancellation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CancellationId { get; set; }
@@ -45,7 +45,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public string CaseId { get; set; }
 #endif
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>This container shows the net amount of the charge, which is the total amount of the charge minus the total amount of fees credited towards this refund as per eBay policy. It is possible for there to be multiple charges from multiple orders with one transfer. The net aggregate amount for all charges found in the &lt;b&gt;charges&lt;/b&gt; array can be found in the &lt;b&gt;transferDetail.totalChargeNetAmount&lt;/b&gt; container.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? ChargeNetAmount { get; set; }

@@ -21,15 +21,14 @@ using System.IO;
 using System;
 namespace EBay.AccountManagement.Generated.AccountV1.Models
 {
-    /// <summary>
-    /// A complex type that indicates a parameter that caused an error and the value of the parameter which caused the error.
-    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+    #pragma warning disable CS1591
     public partial class ErrorParameter : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Name of the parameter that caused the error.</summary>
+        /// <summary>The object of the error.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -37,7 +36,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>The value of the parameter that caused the error.</summary>
+        /// <summary>The value of the object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Value { get; set; }

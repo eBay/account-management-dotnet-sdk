@@ -26,25 +26,25 @@ using System;
 namespace EBay.AccountManagement.Generated.Finances.Transfer.Item
 {
     /// <summary>
-    /// Builds and executes requests for operations under \transfer\{transfer_Id}
+    /// Builds and executes requests for operations under \transfer\{transfer_-id}
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class WithTransfer_ItemRequestBuilder : BaseRequestBuilder
+    public partial class Transfer_ItemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>
-        /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.Finances.Transfer.Item.WithTransfer_ItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.Finances.Transfer.Item.Transfer_ItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithTransfer_ItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/transfer/{transfer_Id}", pathParameters)
+        public Transfer_ItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/transfer/{transfer_%2Did}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.Finances.Transfer.Item.WithTransfer_ItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.Finances.Transfer.Item.Transfer_ItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithTransfer_ItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/transfer/{transfer_Id}", rawUrl)
+        public Transfer_ItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/transfer/{transfer_%2Did}", rawUrl)
         {
         }
         /// <summary>
@@ -87,11 +87,11 @@ namespace EBay.AccountManagement.Generated.Finances.Transfer.Item
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
-        /// <returns>A <see cref="global::EBay.AccountManagement.Generated.Finances.Transfer.Item.WithTransfer_ItemRequestBuilder"/></returns>
+        /// <returns>A <see cref="global::EBay.AccountManagement.Generated.Finances.Transfer.Item.Transfer_ItemRequestBuilder"/></returns>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public global::EBay.AccountManagement.Generated.Finances.Transfer.Item.WithTransfer_ItemRequestBuilder WithUrl(string rawUrl)
+        public global::EBay.AccountManagement.Generated.Finances.Transfer.Item.Transfer_ItemRequestBuilder WithUrl(string rawUrl)
         {
-            return new global::EBay.AccountManagement.Generated.Finances.Transfer.Item.WithTransfer_ItemRequestBuilder(rawUrl, RequestAdapter);
+            return new global::EBay.AccountManagement.Generated.Finances.Transfer.Item.Transfer_ItemRequestBuilder(rawUrl, RequestAdapter);
         }
     }
 }

@@ -53,6 +53,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Kyc
         /// <returns>A <see cref="global::EBay.AccountManagement.Generated.AccountV1.Models.KycResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.AccountManagement.Generated.AccountV1.Models.KycResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -63,7 +65,12 @@ namespace EBay.AccountManagement.Generated.AccountV1.Kyc
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Models.KycResponse>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Models.KycResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Models.KycResponse>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Models.KycResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; This method was originally created to see which onboarding requirements were still pending for sellers being onboarded for eBay managed payments, but now that all seller accounts are onboarded globally, this method should now just return an empty payload with a &lt;code&gt;204 No Content&lt;/code&gt; HTTP status code. &lt;/span&gt;

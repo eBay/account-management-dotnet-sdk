@@ -27,7 +27,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Rate : IAdditionalDataHolder, IParsable
     {
-        /// <summary>A complex type that describes the value of a monetary amount as represented by a global currency.</summary>
+        /// <summary>An additional shipping cost added to the base shipping rate (i.e., &lt;b&gt;shippingCost&lt;/b&gt;).&lt;br/&gt;&lt;br/&gt;This amount applies only to the following &lt;b&gt;rateTableBasis&lt;/b&gt; options:&lt;ul&gt;&lt;li&gt;&lt;b&gt;WEIGHT&lt;/b&gt;: This is a cost per unit weight and is calculated using the weight of the item(s) being shipped.&lt;/li&gt;&lt;li&gt;&lt;b&gt;SURCHARGE&lt;/b&gt;: This is a flat amount that is added to the base shipping rate.&lt;/li&gt;&lt;/ul&gt;This field is returned only when it is applicable to the specified rate ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.Amount? AdditionalCost { get; set; }
@@ -45,15 +45,9 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
 #else
         public string RateId { get; set; }
 #endif
-        /// <summary>Indicates the level of shipping service to which the shipping rate information applies.&lt;br/&gt;&lt;br/&gt;Available shipping categories are:&lt;ul&gt;&lt;li&gt;&lt;b&gt;ONE_DAY&lt;/b&gt;: &lt;i&gt;This option is not supported when &lt;b&gt;shippingOptionType&lt;/b&gt; is INTERNATIONAL.&lt;/i&gt; &lt;/li&gt;&lt;li&gt;&lt;b&gt;EXPEDITED&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;STANDARD&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;ECONOMY&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;EXPRESS&lt;/b&gt;: &lt;i&gt;This option is supported only when &lt;b&gt;MarketplaceId&lt;/b&gt; is &lt;code&gt;EBAY_DE&lt;/code&gt; (Germany)&lt;/i&gt;&lt;/li&gt;&lt;/ul&gt; For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:ShippingCategoryEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ShippingCategory { get; set; }
-#nullable restore
-#else
-        public string ShippingCategory { get; set; }
-#endif
-        /// <summary>A complex type that describes the value of a monetary amount as represented by a global currency.</summary>
+        /// <summary>Indicates the level of shipping service to which the shipping rate information applies.&lt;br/&gt;&lt;br/&gt;Available shipping categories are:&lt;ul&gt;&lt;li&gt;&lt;b&gt;ONE_DAY&lt;/b&gt;: &lt;i&gt;This option is not supported when &lt;b&gt;shippingOptionType&lt;/b&gt; is INTERNATIONAL.&lt;/i&gt; &lt;/li&gt;&lt;li&gt;&lt;b&gt;EXPEDITED&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;STANDARD&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;ECONOMY&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;EXPRESS&lt;/b&gt;: &lt;i&gt;This option is supported only when &lt;b&gt;MarketplaceId&lt;/b&gt; is &lt;code&gt;EBAY_DE&lt;/code&gt; (Germany)&lt;/i&gt;&lt;/li&gt;&lt;/ul&gt;</summary>
+        public global::EBay.AccountManagement.Generated.AccountV2.Models.ShippingCategoryEnum? ShippingCategory { get; set; }
+        /// <summary>Specifies the base shipping rate for an item.&lt;br/&gt;&lt;br/&gt;This amount applies only to the following &lt;b&gt;rateTableBasis&lt;/b&gt; options:&lt;ul&gt;&lt;li&gt;&lt;b&gt;ITEM&lt;/b&gt;: This is a flat rate shipping cost per item being shipped.&lt;/li&gt;&lt;li&gt;&lt;b&gt;WEIGHT&lt;/b&gt;: This is a cost per unit weight and is calculated using the weight of the item(s) being shipped.&lt;/li&gt;&lt;/ul&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.Amount? ShippingCost { get; set; }
@@ -104,7 +98,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
             {
                 { "additionalCost", n => { AdditionalCost = n.GetObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.Amount>(global::EBay.AccountManagement.Generated.AccountV2.Models.Amount.CreateFromDiscriminatorValue); } },
                 { "rateId", n => { RateId = n.GetStringValue(); } },
-                { "shippingCategory", n => { ShippingCategory = n.GetStringValue(); } },
+                { "shippingCategory", n => { ShippingCategory = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.ShippingCategoryEnum>(); } },
                 { "shippingCost", n => { ShippingCost = n.GetObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.Amount>(global::EBay.AccountManagement.Generated.AccountV2.Models.Amount.CreateFromDiscriminatorValue); } },
                 { "shippingRegionNames", n => { ShippingRegionNames = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "shippingServiceCode", n => { ShippingServiceCode = n.GetStringValue(); } },
@@ -119,7 +113,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.Amount>("additionalCost", AdditionalCost);
             writer.WriteStringValue("rateId", RateId);
-            writer.WriteStringValue("shippingCategory", ShippingCategory);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.ShippingCategoryEnum>("shippingCategory", ShippingCategory);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.Amount>("shippingCost", ShippingCost);
             writer.WriteCollectionOfPrimitiveValues<string>("shippingRegionNames", ShippingRegionNames);
             writer.WriteStringValue("shippingServiceCode", ShippingServiceCode);

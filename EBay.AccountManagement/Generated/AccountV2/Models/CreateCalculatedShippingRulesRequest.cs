@@ -29,7 +29,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type defines the structure for calculated handling fee discounts applicable when combining multiple orders.</summary>
+        /// <summary>This container defines the calculated handling fee rules applied to combined orders, specifying how handling costs are determined or discounted &lt;br&gt;&lt;br&gt;based on combined-shipping parameters.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.CalculatedHandlingRuleType? CalculatedHandlingRule { get; set; }
@@ -37,7 +37,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
 #else
         public global::EBay.AccountManagement.Generated.AccountV2.Models.CalculatedHandlingRuleType CalculatedHandlingRule { get; set; }
 #endif
-        /// <summary>This type describes calculated discount rules determining total shipping cost reductions for combined items.</summary>
+        /// <summary>This container defines the calculated shipping rule applied to combined orders, detailing how shipping discounts or costs are computed &lt;br&gt;&lt;br&gt;based on item count, total weight, or order value.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.CalculatedShippingRuleType? CalculatedShippingRule { get; set; }
@@ -45,14 +45,8 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
 #else
         public global::EBay.AccountManagement.Generated.AccountV2.Models.CalculatedShippingRuleType CalculatedShippingRule { get; set; }
 #endif
-        /// <summary>This container specifies the time window during which multiple unpaid orders can be combined into a single payment or invoice, represented by using one of the values in CombinedPaymentPeriodEnum type. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:CombinedPaymentPeriodEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? CombinedDuration { get; set; }
-#nullable restore
-#else
-        public string CombinedDuration { get; set; }
-#endif
+        /// <summary>This enumerated value specifies the time window during which multiple unpaid orders can be combined into a single payment or invoice, represented by using one of the values in &lt;a href=&quot;/develop/api/sell/account_api_v2#sell-account_api_v2-combined_shipping_rules-getcombinedshippingrules.getcombinedshippingrulesresponse.combinedduration&quot; target=&quot;_blank&quot;&gt;CombinedPaymentPeriodEnum&lt;/a&gt;.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedPaymentPeriodEnum? CombinedDuration { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.AccountV2.Models.CreateCalculatedShippingRulesRequest"/> and sets the default values.
         /// </summary>
@@ -80,7 +74,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
             {
                 { "calculatedHandlingRule", n => { CalculatedHandlingRule = n.GetObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CalculatedHandlingRuleType>(global::EBay.AccountManagement.Generated.AccountV2.Models.CalculatedHandlingRuleType.CreateFromDiscriminatorValue); } },
                 { "calculatedShippingRule", n => { CalculatedShippingRule = n.GetObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CalculatedShippingRuleType>(global::EBay.AccountManagement.Generated.AccountV2.Models.CalculatedShippingRuleType.CreateFromDiscriminatorValue); } },
-                { "combinedDuration", n => { CombinedDuration = n.GetStringValue(); } },
+                { "combinedDuration", n => { CombinedDuration = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedPaymentPeriodEnum>(); } },
             };
         }
         /// <summary>
@@ -92,7 +86,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CalculatedHandlingRuleType>("calculatedHandlingRule", CalculatedHandlingRule);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CalculatedShippingRuleType>("calculatedShippingRule", CalculatedShippingRule);
-            writer.WriteStringValue("combinedDuration", CombinedDuration);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedPaymentPeriodEnum>("combinedDuration", CombinedDuration);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

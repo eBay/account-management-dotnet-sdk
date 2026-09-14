@@ -29,7 +29,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This field indicates the dispatch cut-off time in Zulu format (&lt;code&gt;HH:mm:ss.SSSZ&lt;/code&gt;) - 24-hour format with milliseconds and Z timezone indicator. &lt;/br&gt; &lt;b&gt;Note&lt;/b&gt;: Despite the Z that is returned in the timestamp, the cut-off time is actually based on the default timezone of the eBay marketplace for the seller. &lt;/br&gt; &lt;b&gt;Note&lt;/b&gt;: If an eBay listing supports same-day shipping, and an order is paid for before the cut-off time, the seller is expected to ship the order out that same business day.</summary>
+        /// <summary>This field indicates the dispatch cut-off time in Zulu format (&lt;code&gt;HH:mm:ss.SSSZ&lt;/code&gt;) - 24-hour format with milliseconds and Z timezone indicator.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; Despite the Z that is returned in the timestamp, the cut-off time is actually based on the default timezone of the eBay marketplace for the seller.&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; If an eBay listing supports same-day shipping, and an order is paid for before the cut-off time, the seller is expected to ship the order out that same business day.&lt;/span&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CutoffTime { get; set; }

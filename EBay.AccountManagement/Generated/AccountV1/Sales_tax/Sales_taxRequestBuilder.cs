@@ -66,6 +66,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Sales_tax
         /// <returns>A <see cref="global::EBay.AccountManagement.Generated.AccountV1.Models.SalesTaxes"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.AccountManagement.Generated.AccountV1.Models.SalesTaxes?> GetAsync(Action<RequestConfiguration<global::EBay.AccountManagement.Generated.AccountV1.Sales_tax.Sales_taxRequestBuilder.Sales_taxRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -76,7 +78,12 @@ namespace EBay.AccountManagement.Generated.AccountV1.Sales_tax
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Models.SalesTaxes>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Models.SalesTaxes.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Models.SalesTaxes>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Models.SalesTaxes.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Use this call to retrieve all sales tax table entries that the seller has defined for a specific country. All four response fields will be returned for each tax jurisdiction that matches the search criteria. If no sales tax rates are defined for the specified, a &lt;code&gt;204 No Content&lt;/code&gt; status code is returned with no response payload.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; Sales-tax tables are only available for the US (EBAY_US) and Canada (EBAY_CA) marketplaces.&lt;/span&gt;&lt;br&gt;&lt;div class=&quot;msgbox_important&quot;&gt;&lt;p class=&quot;msgbox_importantInDiv&quot; data-mc-autonum=&quot;&amp;lt;b&amp;gt;&amp;lt;span style=&amp;quot;color: #dd1e31;&amp;quot; class=&amp;quot;mcFormatColor&amp;quot;&amp;gt;Important! &amp;lt;/span&amp;gt;&amp;lt;/b&amp;gt;&quot;&gt;&lt;span class=&quot;autonumber&quot;&gt;&lt;span&gt;&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important!&lt;/span&gt;&lt;/b&gt;&lt;/span&gt;&lt;/span&gt; In the US, eBay now calculates, collects, and remits sales tax to the proper taxing authorities in all 50 states and Washington, DC. Sellers can no longer specify sales-tax rates for these jurisdictions using a tax table.&lt;br&gt;&lt;br&gt;However, sellers may continue to use a sales-tax table to set rates for the following US territories:&lt;ul&gt;&lt;li&gt;American Samoa (AS)&lt;/li&gt;&lt;li&gt;Guam (GU)&lt;/li&gt;&lt;li&gt;Northern Mariana Islands (MP)&lt;/li&gt;&lt;li&gt;Palau (PW)&lt;/li&gt;&lt;li&gt;US Virgin Islands (VI)&lt;/li&gt;&lt;/ul&gt;For additional information, refer to &lt;a href=&quot;https://www.ebay.com/help/selling/fees-credits-invoices/taxes-import-charges?id=4121 &quot; target=&quot;_blank&quot;&gt;Taxes and import charges&lt;/a&gt;.&lt;/p&gt;&lt;/div&gt;

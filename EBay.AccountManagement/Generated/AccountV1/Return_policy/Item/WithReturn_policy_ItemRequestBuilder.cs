@@ -52,6 +52,10 @@ namespace EBay.AccountManagement.Generated.AccountV1.Return_policy.Item
         /// </summary>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 404 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 409 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -62,7 +66,14 @@ namespace EBay.AccountManagement.Generated.AccountV1.Return_policy.Item
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "404", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "409", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+            };
+            await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This method retrieves the complete details of the return policy specified by the &lt;b&gt;returnPolicyId&lt;/b&gt; path parameter.
@@ -70,6 +81,9 @@ namespace EBay.AccountManagement.Generated.AccountV1.Return_policy.Item
         /// <returns>A <see cref="global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnPolicy"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 404 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnPolicy?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -80,7 +94,13 @@ namespace EBay.AccountManagement.Generated.AccountV1.Return_policy.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnPolicy>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnPolicy.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "404", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnPolicy>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnPolicy.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This method updates an existing return policy. Specify the policy you want to update using the &lt;b&gt;return_policy_id&lt;/b&gt; path parameter. Supply a complete policy payload with the updates you want to make; this call overwrites the existing policy with the new details specified in the payload.
@@ -89,6 +109,9 @@ namespace EBay.AccountManagement.Generated.AccountV1.Return_policy.Item
         /// <param name="body">This root container defines a seller&apos;s return business policy for a specific marketplace and category group. This type is used when creating or updating a return business policy.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 404 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.AccountManagement.Generated.AccountV1.Models.SetReturnPolicyResponse?> PutAsync(global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnPolicyRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -100,7 +123,13 @@ namespace EBay.AccountManagement.Generated.AccountV1.Return_policy.Item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Models.SetReturnPolicyResponse>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Models.SetReturnPolicyResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "404", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Models.SetReturnPolicyResponse>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Models.SetReturnPolicyResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This method deletes a return policy. Supply the ID of the policy you want to delete in the &lt;b&gt;returnPolicyId&lt;/b&gt; path parameter.
@@ -118,6 +147,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Return_policy.Item
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>

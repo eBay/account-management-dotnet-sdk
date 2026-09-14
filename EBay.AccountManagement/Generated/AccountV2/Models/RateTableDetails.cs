@@ -29,14 +29,8 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Identifies the eBay marketplace to which the shipping rate table applies. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/ba:MarketplaceIdEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? MarketplaceId { get; set; }
-#nullable restore
-#else
-        public string MarketplaceId { get; set; }
-#endif
+        /// <summary>Identifies the eBay marketplace to which the shipping rate table applies.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV2.Models.MarketplaceIdEnum? MarketplaceId { get; set; }
         /// <summary>The seller-defined name for the shipping rate table. Names must be unique for each table assigned to the same seller, shippingOptionType, and eBay marketplace.&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Max length:&lt;/b&gt; 50</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -53,14 +47,8 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
 #else
         public List<global::EBay.AccountManagement.Generated.AccountV2.Models.Rate> Rates { get; set; }
 #endif
-        /// <summary>The rate calculation type provides three methods of calculating the shipping cost based on the seller&apos;s selection/input:&lt;ul&gt;&lt;li&gt;&lt;b&gt;ITEM&lt;/b&gt;: Specifies the flat rate shipping cost that buyers in the specified shipping region will pay. When this option is selected, information specified in the rate table overrides all shipping options/costs that are specified at the listing level. Buyers in the specified regions will only see the services provided in the rate table. Buyers in other regions that are not specified in the rate table will see the shipping services associated with the listing.&lt;/li&gt;&lt;li&gt;&lt;b&gt;WEIGHT&lt;/b&gt;: Seller can provide minimum shipping cost and an additional shipping cost per pound. The additional cost will be calculated based on the weight the seller provide at the time of listing. Buyers will see the total shipping cost and won’t see these calculations.  Buyers in the specified regions will only see the services provided in the rate table. Buyers in other regions that were not specified in the rate table, will see the shipping services associated with the listing.&lt;/li&gt;&lt;li&gt;&lt;b&gt;SURCHARGE&lt;/b&gt;: Lists surcharges for buyers within specified regions, or indicates a flat amount added to the shipping cost specified within an item&apos;s listing. Buyers will see only the total shipping cost as well as shipping services associated with the item&apos;s listing. If a SURCHARGE is specified in the rate table for certain regions, buyers in those regions will see the (shipping cost + SURCHARGE) total.&lt;/li&gt;&lt;/ul&gt; For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:ShippingRateCalculationEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? RateTableBasis { get; set; }
-#nullable restore
-#else
-        public string RateTableBasis { get; set; }
-#endif
+        /// <summary>The rate calculation type provides three methods of calculating the shipping cost based on the seller&apos;s selection/input:&lt;ul&gt;&lt;li&gt;&lt;b&gt;ITEM&lt;/b&gt;: Specifies the flat rate shipping cost that buyers in the specified shipping region will pay. When this option is selected, information specified in the rate table overrides all shipping options/costs that are specified at the listing level. Buyers in the specified regions will only see the services provided in the rate table. Buyers in other regions that are not specified in the rate table will see the shipping services associated with the listing.&lt;/li&gt;&lt;li&gt;&lt;b&gt;WEIGHT&lt;/b&gt;: Seller can provide minimum shipping cost and an additional shipping cost per pound. The additional cost will be calculated based on the weight the seller provide at the time of listing. Buyers will see the total shipping cost and won’t see these calculations.  Buyers in the specified regions will only see the services provided in the rate table. Buyers in other regions that were not specified in the rate table, will see the shipping services associated with the listing.&lt;/li&gt;&lt;li&gt;&lt;b&gt;SURCHARGE&lt;/b&gt;: Lists surcharges for buyers within specified regions, or indicates a flat amount added to the shipping cost specified within an item&apos;s listing. Buyers will see only the total shipping cost as well as shipping services associated with the item&apos;s listing. If a SURCHARGE is specified in the rate table for certain regions, buyers in those regions will see the (shipping cost + SURCHARGE) total.&lt;/li&gt;&lt;/ul&gt;</summary>
+        public global::EBay.AccountManagement.Generated.AccountV2.Models.ShippingRateCalculationEnum? RateTableBasis { get; set; }
         /// <summary>A unique, system-generated ID assigned to the shipping rate table when it is initially created.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -69,14 +57,8 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
 #else
         public string RateTableId { get; set; }
 #endif
-        /// <summary>The region serviced by the shipping rate table. Valid values are:&lt;ul&gt;&lt;li&gt;&lt;b&gt;DOMESTIC&lt;/b&gt;: Indicates that the shipping rate table applies to shipping destinations within the country in which an item has been listed (i.e., the &lt;i&gt;source&lt;/i&gt; country).&lt;/li&gt;&lt;li&gt;&lt;b&gt;INTERNATIONAL&lt;/b&gt;: Indicates that the shipping rate table applies to shipping destinations outside of the country in which an item has been listed.&lt;/li&gt;&lt;/ul&gt; For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:ShippingOptionTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ShippingOptionType { get; set; }
-#nullable restore
-#else
-        public string ShippingOptionType { get; set; }
-#endif
+        /// <summary>The region serviced by the shipping rate table. Valid values are:&lt;ul&gt;&lt;li&gt;&lt;b&gt;DOMESTIC&lt;/b&gt;: Indicates that the shipping rate table applies to shipping destinations within the country in which an item has been listed (i.e., the &lt;i&gt;source&lt;/i&gt; country).&lt;/li&gt;&lt;li&gt;&lt;b&gt;INTERNATIONAL&lt;/b&gt;: Indicates that the shipping rate table applies to shipping destinations outside of the country in which an item has been listed.&lt;/li&gt;&lt;/ul&gt;</summary>
+        public global::EBay.AccountManagement.Generated.AccountV2.Models.ShippingOptionTypeEnum? ShippingOptionType { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.AccountV2.Models.RateTableDetails"/> and sets the default values.
         /// </summary>
@@ -102,12 +84,12 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "marketplaceId", n => { MarketplaceId = n.GetStringValue(); } },
+                { "marketplaceId", n => { MarketplaceId = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.MarketplaceIdEnum>(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "rateTableBasis", n => { RateTableBasis = n.GetStringValue(); } },
+                { "rateTableBasis", n => { RateTableBasis = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.ShippingRateCalculationEnum>(); } },
                 { "rateTableId", n => { RateTableId = n.GetStringValue(); } },
                 { "rates", n => { Rates = n.GetCollectionOfObjectValues<global::EBay.AccountManagement.Generated.AccountV2.Models.Rate>(global::EBay.AccountManagement.Generated.AccountV2.Models.Rate.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "shippingOptionType", n => { ShippingOptionType = n.GetStringValue(); } },
+                { "shippingOptionType", n => { ShippingOptionType = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.ShippingOptionTypeEnum>(); } },
             };
         }
         /// <summary>
@@ -117,12 +99,12 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("marketplaceId", MarketplaceId);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.MarketplaceIdEnum>("marketplaceId", MarketplaceId);
             writer.WriteStringValue("name", Name);
             writer.WriteCollectionOfObjectValues<global::EBay.AccountManagement.Generated.AccountV2.Models.Rate>("rates", Rates);
-            writer.WriteStringValue("rateTableBasis", RateTableBasis);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.ShippingRateCalculationEnum>("rateTableBasis", RateTableBasis);
             writer.WriteStringValue("rateTableId", RateTableId);
-            writer.WriteStringValue("shippingOptionType", ShippingOptionType);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.ShippingOptionTypeEnum>("shippingOptionType", ShippingOptionType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

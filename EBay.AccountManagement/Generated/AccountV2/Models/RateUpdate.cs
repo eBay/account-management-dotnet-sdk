@@ -27,7 +27,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class RateUpdate : IAdditionalDataHolder, IParsable
     {
-        /// <summary>A complex type that describes the value of a monetary amount as represented by a global currency.</summary>
+        /// <summary>An additional shipping cost added to the base shipping rate (i.e., &lt;b&gt;shippingCost&lt;/b&gt;).&lt;br/&gt;&lt;br/&gt;This amount applies only to the following &lt;b&gt;rateTableBasis&lt;/b&gt; options:&lt;ul&gt;&lt;li&gt;&lt;b&gt;WEIGHT&lt;/b&gt;: This is a cost per unit weight and is calculated using the weight of the item(s) being shipped.&lt;/li&gt;&lt;li&gt;&lt;b&gt;SURCHARGE&lt;/b&gt;: This is a flat amount that is added to the base shipping rate.&lt;/li&gt;&lt;/ul&gt;This field is returned only when it is applicable to the specified rate ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.Amount? AdditionalCost { get; set; }
@@ -45,7 +45,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
 #else
         public string RateId { get; set; }
 #endif
-        /// <summary>A complex type that describes the value of a monetary amount as represented by a global currency.</summary>
+        /// <summary>This is the base shipping rate for an item.&lt;br/&gt;&lt;br/&gt;This amount applies only to the following &lt;b&gt;rateTableBasis&lt;/b&gt; options:&lt;ul&gt;&lt;li&gt;&lt;b&gt;ITEM&lt;/b&gt;: This is a flat rate shipping cost per item being shipped.&lt;/li&gt;&lt;li&gt;&lt;b&gt;WEIGHT&lt;/b&gt;: This is a cost per unit weight and is calculated using the weight of the item(s) being shipped.&lt;/li&gt;&lt;/ul&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.Amount? ShippingCost { get; set; }

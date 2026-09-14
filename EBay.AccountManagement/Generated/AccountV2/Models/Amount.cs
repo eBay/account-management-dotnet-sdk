@@ -29,14 +29,8 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The base currency applied to the &lt;b&gt;value&lt;/b&gt; field to establish a monetary amount.&lt;br/&gt;&lt;br/&gt;The currency is represented as a 3-letter ISO 4217 currency code. For example, the code for the Canadian Dollar is &lt;code&gt;CAD&lt;/code&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/ba:CurrencyCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Currency { get; set; }
-#nullable restore
-#else
-        public string Currency { get; set; }
-#endif
+        /// <summary>The base currency applied to the &lt;b&gt;value&lt;/b&gt; field to establish a monetary amount.&lt;br/&gt;&lt;br/&gt;The currency is represented as a 3-letter ISO 4217 currency code. For example, the code for the Canadian Dollar is &lt;code&gt;CAD&lt;/code&gt;.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV2.Models.CurrencyCodeEnum? Currency { get; set; }
         /// <summary>The monetary amount in the specified &lt;b&gt;currency&lt;/b&gt;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -70,7 +64,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "currency", n => { Currency = n.GetStringValue(); } },
+                { "currency", n => { Currency = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CurrencyCodeEnum>(); } },
                 { "value", n => { Value = n.GetStringValue(); } },
             };
         }
@@ -81,7 +75,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("currency", Currency);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CurrencyCodeEnum>("currency", Currency);
             writer.WriteStringValue("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }

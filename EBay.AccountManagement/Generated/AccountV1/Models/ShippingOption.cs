@@ -29,14 +29,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This field defines whether the shipping cost model is &lt;code&gt;FLAT_RATE&lt;/code&gt; (the same rate for all buyers, or buyers within a region if shipping rate tables are used) or &lt;code&gt;CALCULATED&lt;/code&gt; (the shipping rate varies by the ship-to location and size and weight of the package). &lt;br&gt;&lt;br&gt;This field is conditionally required if any shipping service options are specified (domestic and/or international). For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:ShippingCostTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? CostType { get; set; }
-#nullable restore
-#else
-        public string CostType { get; set; }
-#endif
+        /// <summary>This enumerated type defines the shipping cost models. | - **CALCULATED**: This value indicates that calculated shipping is used by the seller. With calculated shipping, the shipping cost varies according to the shipping location and the size and weight of the package. - **FLAT_RATE**: This value indicates that flat-rate shipping is used by the seller. With flat-rate shipping, the shipping cost will be the same for all buyers, or buyers within a specified region if the seller uses shipping rate tables. - **NOT_SPECIFIED**: This value indicates that the shipping cost type has not been specified.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV1.Models.ShippingCostTypeEnum? CostType { get; set; }
         /// <summary>A complex type that describes the value of a monetary amount as represented by a global currency. When passing in an amount in a request payload, both &lt;b&gt;currency&lt;/b&gt; and &lt;b&gt;value&lt;/b&gt; fields are required, and both fields are also always returned for an amount in a response field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -47,14 +41,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #endif
         /// <summary>This field has been deprecated. &lt;br&gt;&lt;br&gt;Shipping insurance is offered only via a shipping carrier&apos;s shipping services and is no longer available via eBay shipping policies.</summary>
         public bool? InsuranceOffered { get; set; }
-        /// <summary>This field is used to indicate if the corresponding shipping service options (under &lt;b&gt;shippingServices&lt;/b&gt; array) are domestic or international shipping service options. This field is conditionally required if any shipping service options are specified (domestic and/or international). For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:ShippingOptionTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? OptionType { get; set; }
-#nullable restore
-#else
-        public string OptionType { get; set; }
-#endif
+        /// <summary>This enumerated type defines whether the corresponding shipping service options are domestic or international shipping service options. a region that is either domestic (within the country from where the item is listed or shipped) or international (a country outside the country from where the item is listed or shipped). | - **DOMESTIC**: This value indicates that the corresponding shipping service options are domestic shipping service options. - **INTERNATIONAL**: This value indicates that the corresponding shipping service options are international shipping service options.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV1.Models.ShippingOptionTypeEnum? OptionType { get; set; }
         /// <summary>A complex type that describes the value of a monetary amount as represented by a global currency. When passing in an amount in a request payload, both &lt;b&gt;currency&lt;/b&gt; and &lt;b&gt;value&lt;/b&gt; fields are required, and both fields are also always returned for an amount in a response field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -63,7 +51,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #else
         public global::EBay.AccountManagement.Generated.AccountV1.Models.Amount PackageHandlingCost { get; set; }
 #endif
-        /// <summary>This field is used if the seller wants to associate a domestic or international shipping rate table to the fulfillment business policy. The &lt;a href=&quot;/api-docs/sell/account/resources/rate_table/methods/getRateTables&quot;&gt;getRateTables&lt;/a&gt; method can be used to retrieve shipping rate table IDs.&lt;br&gt;&lt;br&gt;With domestic and international shipping rate tables, the seller can set different shipping costs based on shipping regions and shipping speed/level of service (one-day, expedited, standard, economy). There are also options to add additional per-weight and handling charges.&lt;br&gt;&lt;br&gt;Sellers need to be careful that shipping rate tables match the corresponding shipping service options. In other words, a domestic shipping rate table must not be specified in the same container where international shipping service options are being specified, and vice versa, and the shipping speed/level of service of the provided shipping service options should match the shipping speed/level of service options that are defined in the shipping rate tables. &lt;br&gt;&lt;br&gt;For example, if the corresponding shipping rate table defines costs for one-day shipping services, there should be at least one one-day shipping service option specified under the &lt;b&gt;shippingServices&lt;/b&gt; array.&lt;br&gt;&lt;br&gt;This field is returned if set.</summary>
+        /// <summary>This field is used if the seller wants to associate a domestic or international shipping rate table to the fulfillment business policy. The &lt;a href=&quot;/develop/api/sell/account_api_v1#sell-account_api_v1-rate_table-getratetables&quot;&gt;getRateTables&lt;/a&gt; method can be used to retrieve shipping rate table IDs.&lt;br&gt;&lt;br&gt;With domestic and international shipping rate tables, the seller can set different shipping costs based on shipping regions and shipping speed/level of service (one-day, expedited, standard, economy). There are also options to add additional per-weight and handling charges.&lt;br&gt;&lt;br&gt;Sellers need to be careful that shipping rate tables match the corresponding shipping service options. In other words, a domestic shipping rate table must not be specified in the same container where international shipping service options are being specified, and vice versa, and the shipping speed/level of service of the provided shipping service options should match the shipping speed/level of service options that are defined in the shipping rate tables. &lt;br&gt;&lt;br&gt;For example, if the corresponding shipping rate table defines costs for one-day shipping services, there should be at least one one-day shipping service option specified under the &lt;b&gt;shippingServices&lt;/b&gt; array.&lt;br&gt;&lt;br&gt;This field is returned if set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? RateTableId { get; set; }
@@ -114,10 +102,10 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "costType", n => { CostType = n.GetStringValue(); } },
+                { "costType", n => { CostType = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.ShippingCostTypeEnum>(); } },
                 { "insuranceFee", n => { InsuranceFee = n.GetObjectValue<global::EBay.AccountManagement.Generated.AccountV1.Models.Amount>(global::EBay.AccountManagement.Generated.AccountV1.Models.Amount.CreateFromDiscriminatorValue); } },
                 { "insuranceOffered", n => { InsuranceOffered = n.GetBoolValue(); } },
-                { "optionType", n => { OptionType = n.GetStringValue(); } },
+                { "optionType", n => { OptionType = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.ShippingOptionTypeEnum>(); } },
                 { "packageHandlingCost", n => { PackageHandlingCost = n.GetObjectValue<global::EBay.AccountManagement.Generated.AccountV1.Models.Amount>(global::EBay.AccountManagement.Generated.AccountV1.Models.Amount.CreateFromDiscriminatorValue); } },
                 { "rateTableId", n => { RateTableId = n.GetStringValue(); } },
                 { "shippingDiscountProfileId", n => { ShippingDiscountProfileId = n.GetStringValue(); } },
@@ -132,10 +120,10 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("costType", CostType);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.ShippingCostTypeEnum>("costType", CostType);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.AccountV1.Models.Amount>("insuranceFee", InsuranceFee);
             writer.WriteBoolValue("insuranceOffered", InsuranceOffered);
-            writer.WriteStringValue("optionType", OptionType);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.ShippingOptionTypeEnum>("optionType", OptionType);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.AccountV1.Models.Amount>("packageHandlingCost", PackageHandlingCost);
             writer.WriteStringValue("rateTableId", RateTableId);
             writer.WriteStringValue("shippingDiscountProfileId", ShippingDiscountProfileId);

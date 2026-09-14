@@ -29,7 +29,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>The monetary amount charged for the fee.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? Amount { get; set; }
@@ -37,7 +37,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount Amount { get; set; }
 #endif
-        /// <summary>This type defines the jurisdiction information associated with a fee, identifying the geographic or regulatory region under which the fee is applied.</summary>
+        /// <summary>This type defines the jurisdiction associated with a fee. It identifies the geographic or regulatory context under which a specific fee is applied to an order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.FeeJurisdiction? FeeJurisdiction { get; set; }
@@ -53,14 +53,8 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public string FeeMemo { get; set; }
 #endif
-        /// <summary>The enumeration value returned here indicates the type of fee that was deducted from the seller payout. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/api:FeeTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? FeeType { get; set; }
-#nullable restore
-#else
-        public string FeeType { get; set; }
-#endif
+        /// <summary>The enumeration value returned here indicates the type of fee that was deducted from the seller payout.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.FeeTypeEnum? FeeType { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.Finances.Models.Fee"/> and sets the default values.
         /// </summary>
@@ -89,7 +83,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
                 { "amount", n => { Amount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
                 { "feeJurisdiction", n => { FeeJurisdiction = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.FeeJurisdiction>(global::EBay.AccountManagement.Generated.Finances.Models.FeeJurisdiction.CreateFromDiscriminatorValue); } },
                 { "feeMemo", n => { FeeMemo = n.GetStringValue(); } },
-                { "feeType", n => { FeeType = n.GetStringValue(); } },
+                { "feeType", n => { FeeType = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.FeeTypeEnum>(); } },
             };
         }
         /// <summary>
@@ -102,7 +96,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("amount", Amount);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.FeeJurisdiction>("feeJurisdiction", FeeJurisdiction);
             writer.WriteStringValue("feeMemo", FeeMemo);
-            writer.WriteStringValue("feeType", FeeType);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.FeeTypeEnum>("feeType", FeeType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

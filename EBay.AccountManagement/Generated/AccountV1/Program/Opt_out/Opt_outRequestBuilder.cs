@@ -54,6 +54,10 @@ namespace EBay.AccountManagement.Generated.AccountV1.Program.Opt_out
         /// <param name="body">The seller program to opt in to when part of an &lt;b&gt;optInToProgram&lt;/b&gt; request, or out of when part of an  &lt;b&gt;optOutOfProgram&lt;/b&gt; request.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 404 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 409 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.AccountManagement.Generated.AccountV1.Program.Opt_out.Opt_outPostResponse?> PostAsync(global::EBay.AccountManagement.Generated.AccountV1.Models.Program body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -65,7 +69,14 @@ namespace EBay.AccountManagement.Generated.AccountV1.Program.Opt_out
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Program.Opt_out.Opt_outPostResponse>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Program.Opt_out.Opt_outPostResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "404", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "409", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Program.Opt_out.Opt_outPostResponse>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Program.Opt_out.Opt_outPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This method opts the seller out of a seller program in which they are currently opted in to. A seller can retrieve a list of the seller programs they are opted-in to using the &lt;b&gt;getOptedInPrograms&lt;/b&gt; method.

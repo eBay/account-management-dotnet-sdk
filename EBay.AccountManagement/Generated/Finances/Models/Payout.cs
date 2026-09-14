@@ -29,7 +29,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>This is the total amount of the seller payout. The container shows the dollar amount of the payout and the currency used. The value of the payout is always shown, even if the payout has failed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? Amount { get; set; }
@@ -69,7 +69,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public string PayoutId { get; set; }
 #endif
-        /// <summary>This type is used to provide details about one or two of the seller&apos;s accounts that are enabled to receive payouts.</summary>
+        /// <summary>This container provides details about the seller&apos;s account that received (or is scheduled to receive) the payout. This container is still returned even if the payout failed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.PayoutInstrument? PayoutInstrument { get; set; }
@@ -85,7 +85,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public string PayoutMemo { get; set; }
 #endif
-        /// <summary>This field contains the unique identifier for the Payout Reference. In split-payout cases, this is the unique identifier reference (not true payout). This field is only returned and will show the associated true(actual) payout id(s) when sellers in Mainland China enable split payouts between a Payoneer account and/or a bank account. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note: &lt;/b&gt;Split-payout functionality will &lt;b&gt;only&lt;/b&gt; be available to mainland China sellers.&lt;/span&gt;</summary>
+        /// <summary>This field contains the unique identifier for the Payout Reference. In split-payout cases, this is the unique identifier reference (not true payout). This field is only returned and will show the associated true(actual) payout ID(s) when sellers in Mainland China enable split payouts between a Payoneer account and/or a bank account. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note: &lt;/b&gt;Split-payout functionality will &lt;b&gt;only&lt;/b&gt; be available to mainland China sellers.&lt;/span&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PayoutReference { get; set; }
@@ -93,14 +93,8 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public string PayoutReference { get; set; }
 #endif
-        /// <summary>This enumeration value indicates the current status of the seller payout. For a successful payout, the value returned will be &lt;code&gt;SUCCEEDED&lt;/code&gt;. See the &lt;strong&gt;PayoutStatusEnum&lt;/strong&gt; type for more details on each payout status value. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/pay:PayoutStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? PayoutStatus { get; set; }
-#nullable restore
-#else
-        public string PayoutStatus { get; set; }
-#endif
+        /// <summary>This enumeration value indicates the current status of the seller payout. For a successful payout, the value returned will be &lt;code&gt;SUCCEEDED&lt;/code&gt;. See the &lt;strong&gt;PayoutStatusEnum&lt;/strong&gt; type for more details on each payout status value.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.PayoutStatusEnum? PayoutStatus { get; set; }
         /// <summary>This field provides more details about the current status of payout. The description returned here will correspond with enumeration value returned in the &lt;strong&gt;payoutStatus&lt;/strong&gt; field. The following shows what description text might appear based on the different &lt;strong&gt;payoutStatus&lt;/strong&gt; values:&lt;ul&gt;&lt;li&gt;&lt;code&gt;INITIATED&lt;/code&gt;: &lt;em&gt;Preparing to send&lt;/em&gt;&lt;/li&gt;&lt;li&gt;&lt;code&gt;SUCCEEDED&lt;/code&gt;: &lt;em&gt;Funds sent&lt;/em&gt;&lt;/li&gt;&lt;li&gt;&lt;code&gt;REVERSED&lt;/code&gt;: &lt;em&gt;Waiting to retry : Money rejected by seller&apos;s bank&lt;/em&gt;&lt;/li&gt;&lt;li&gt;&lt;code&gt;RETRYABLE_FAILED&lt;/code&gt;: &lt;em&gt;Waiting to retry&lt;/em&gt;&lt;/li&gt;&lt;li&gt;&lt;code&gt;TERMINAL_FAILED&lt;/code&gt;: &lt;em&gt;Payout failed&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -109,7 +103,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public string PayoutStatusDescription { get; set; }
 #endif
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>This container indicates the sum of a seller&apos;s net payout amount plus the &lt;code&gt;EXPRESS_PAYOUT_FEE&lt;/code&gt; charged by eBay. The is expressed as a numeric value and the currency used.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? TotalAmount { get; set; }
@@ -117,7 +111,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount TotalAmount { get; set; }
 #endif
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>This container indicates the amount of the &lt;code&gt;EXPRESS_PAYOUT_FEE&lt;/code&gt; charged by eBay when a seller requests payout to a debit card. The fee is expressed as a numeric value and the currency used.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? TotalFee { get; set; }
@@ -134,7 +128,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
         public List<global::EBay.AccountManagement.Generated.Finances.Models.Fee> TotalFeeDetails { get; set; }
 #endif
         /// <summary>This integer value indicates the number of monetary transactions (all orders, refunds, and credits, etc.) that have occurred with the corresponding payout. Its value should always be at least &lt;code&gt;1&lt;/code&gt;, since there is at least one order per seller payout.&lt;br/&gt;&lt;br/&gt;For split payouts, each of the two sibling payouts would be considered its own transaction. Because of this, if a seller had a payout for one order, but split the order between two accounts, the value would be &lt;code&gt;2&lt;/code&gt; instead of &lt;code&gt;1&lt;/code&gt;.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note: &lt;/b&gt;Split-payout functionality is &lt;b&gt;only&lt;/b&gt; applicable to mainland China sellers. &lt;/span&gt;</summary>
-        public int? TransactionCount { get; set; }
+        public long? TransactionCount { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.Finances.Models.Payout"/> and sets the default values.
         /// </summary>
@@ -168,12 +162,12 @@ namespace EBay.AccountManagement.Generated.Finances.Models
                 { "payoutInstrument", n => { PayoutInstrument = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.PayoutInstrument>(global::EBay.AccountManagement.Generated.Finances.Models.PayoutInstrument.CreateFromDiscriminatorValue); } },
                 { "payoutMemo", n => { PayoutMemo = n.GetStringValue(); } },
                 { "payoutReference", n => { PayoutReference = n.GetStringValue(); } },
-                { "payoutStatus", n => { PayoutStatus = n.GetStringValue(); } },
+                { "payoutStatus", n => { PayoutStatus = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.PayoutStatusEnum>(); } },
                 { "payoutStatusDescription", n => { PayoutStatusDescription = n.GetStringValue(); } },
                 { "totalAmount", n => { TotalAmount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
                 { "totalFee", n => { TotalFee = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
                 { "totalFeeDetails", n => { TotalFeeDetails = n.GetCollectionOfObjectValues<global::EBay.AccountManagement.Generated.Finances.Models.Fee>(global::EBay.AccountManagement.Generated.Finances.Models.Fee.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "transactionCount", n => { TransactionCount = n.GetIntValue(); } },
+                { "transactionCount", n => { TransactionCount = n.GetLongValue(); } },
             };
         }
         /// <summary>
@@ -191,12 +185,12 @@ namespace EBay.AccountManagement.Generated.Finances.Models
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.PayoutInstrument>("payoutInstrument", PayoutInstrument);
             writer.WriteStringValue("payoutMemo", PayoutMemo);
             writer.WriteStringValue("payoutReference", PayoutReference);
-            writer.WriteStringValue("payoutStatus", PayoutStatus);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.PayoutStatusEnum>("payoutStatus", PayoutStatus);
             writer.WriteStringValue("payoutStatusDescription", PayoutStatusDescription);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("totalAmount", TotalAmount);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("totalFee", TotalFee);
             writer.WriteCollectionOfObjectValues<global::EBay.AccountManagement.Generated.Finances.Models.Fee>("totalFeeDetails", TotalFeeDetails);
-            writer.WriteIntValue("transactionCount", TransactionCount);
+            writer.WriteLongValue("transactionCount", TransactionCount);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -53,6 +53,9 @@ namespace EBay.AccountManagement.Generated.Finances.Seller_funds_summary
         /// <returns>A <see cref="global::EBay.AccountManagement.Generated.Finances.Models.SellerFundsSummaryResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.AccountManagement.Generated.Finances.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.Finances.Models.Error">When receiving a 403 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.Finances.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.AccountManagement.Generated.Finances.Models.SellerFundsSummaryResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -63,7 +66,13 @@ namespace EBay.AccountManagement.Generated.Finances.Seller_funds_summary
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.Finances.Models.SellerFundsSummaryResponse>(requestInfo, global::EBay.AccountManagement.Generated.Finances.Models.SellerFundsSummaryResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "401", global::EBay.AccountManagement.Generated.Finances.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::EBay.AccountManagement.Generated.Finances.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.AccountManagement.Generated.Finances.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.Finances.Models.SellerFundsSummaryResponse>(requestInfo, global::EBay.AccountManagement.Generated.Finances.Models.SellerFundsSummaryResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &lt;div class=&quot;msgbox_important&quot;&gt;&lt;p class=&quot;msgbox_importantInDiv&quot; data-mc-autonum=&quot;&amp;lt;b&amp;gt;&amp;lt;span style=&amp;quot;color: #dd1e31;&amp;quot; class=&amp;quot;mcFormatColor&amp;quot;&amp;gt;Important! &amp;lt;/span&amp;gt;&amp;lt;/b&amp;gt;&quot;&gt;&lt;span class=&quot;autonumber&quot;&gt;&lt;span&gt;&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important!&lt;/span&gt;&lt;/b&gt;&lt;/span&gt;&lt;/span&gt; Due to EU &amp;amp; UK Payments regulatory requirements, an additional security verification via Digital Signatures is required for certain API calls that are made on behalf of EU/UK sellers, including all &lt;b&gt;Finances API&lt;/b&gt; methods. Please refer to &lt;a href=&quot;/develop/guides/digital-signatures-for-apis &quot; target=&quot;_blank&quot;&gt;Digital Signatures for APIs&lt;/a&gt; to learn more on the impacted APIs and the process to create signatures to be included in the HTTP payload.&lt;/p&gt;&lt;/div&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt;  The &lt;b&gt;Finances API&lt;/b&gt; does not support &lt;a href=&quot;https://www.ebay.com/sellercenter/ebay-for-business/multi-user-account-access&quot; target=&quot;_blank&quot;&gt;Team Access&lt;/a&gt;. Financial information, such as payouts or transactions, is only returned for the user that makes the call. You cannot use any of the methods in this API to return financial information for another user.&lt;/span&gt;&lt;br&gt;This method retrieves all pending funds that have not yet been distributed through a seller payout.&lt;br&gt;&lt;br&gt;There are no input parameters for this method. The response payload includes available funds, funds being processed, funds on hold, and also an aggregate count of all three of these categories.&lt;br&gt;&lt;br&gt;If there are no funds that are pending, on hold, or being processed for the seller&apos;s account, no response payload is returned, and an http status code of &lt;code&gt;204 - No Content&lt;/code&gt; is returned instead.

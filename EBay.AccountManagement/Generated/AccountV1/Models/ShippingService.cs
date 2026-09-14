@@ -75,7 +75,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #else
         public global::EBay.AccountManagement.Generated.AccountV1.Models.RegionSet ShipToLocations { get; set; }
 #endif
-        /// <summary>The integer value set in this field controls the order of the corresponding domestic or international shipping service option in the View Item and Checkout pages. &lt;br&gt;&lt;br&gt;If the &lt;b&gt;sortOrder&lt;/b&gt; field is not supplied, the order of domestic and international shipping service options is determined by the order in which they are listed in the API call. &lt;br&gt;&lt;br&gt;&lt;b&gt;Min&lt;/b&gt;: 1. &lt;b&gt;Max&lt;/b&gt;: 4 (for domestic shipping service) or 5 (for international shipping service).</summary>
+        /// <summary>The integer value set in this field controls the order of the corresponding domestic or international shipping service option in the View Item and Checkout pages. &lt;br&gt;&lt;br&gt;If the &lt;b&gt;sortOrder&lt;/b&gt; field is not supplied, the order of domestic and international shipping service options is determined by the order in which they are listed in the API call. &lt;br&gt;&lt;br&gt;&lt;b&gt;Minimum&lt;/b&gt;: 1&lt;br&gt;&lt;b&gt;Maximum&lt;/b&gt;: 4 (for domestic shipping service) or 5 (for international shipping service).</summary>
         public int? SortOrder { get; set; }
         /// <summary>A complex type that describes the value of a monetary amount as represented by a global currency. When passing in an amount in a request payload, both &lt;b&gt;currency&lt;/b&gt; and &lt;b&gt;value&lt;/b&gt; fields are required, and both fields are also always returned for an amount in a response field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

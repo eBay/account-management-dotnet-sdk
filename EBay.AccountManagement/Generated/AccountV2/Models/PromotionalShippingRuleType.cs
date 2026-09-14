@@ -29,17 +29,11 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This field specifies the type of combined-shipping rule applied, such as flat-rate or cost-based, &lt;br&gt;&lt;br&gt;as defined in the CombinedShippingRuleTypeEnum. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:CombinedShippingRuleTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? CombinedShippingRuleType { get; set; }
-#nullable restore
-#else
-        public string CombinedShippingRuleType { get; set; }
-#endif
+        /// <summary>This field specifies the type of combined-shipping rule applied, such as flat-rate or cost-based, as defined in the &lt;a href=&quot;/develop/api/sell/account_api_v2#sell-account_api_v2-combined_shipping_rules-getcombinedshippingrules.flatshippingruletype.combinedshippingruletype&quot; target=&quot;_blank&quot;&gt;CombinedShippingRuleTypeEnum&lt;/a&gt;.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedShippingRuleTypeEnum? CombinedShippingRuleType { get; set; }
         /// <summary>This integer indicates the quantity of items that must be purchased by the buyer in order for that buyer to qualify for the promotional discount.</summary>
         public int? ItemCount { get; set; }
-        /// <summary>A complex type that describes the value of a monetary amount as represented by a global currency.</summary>
+        /// <summary>This container specifies the minimum order amount required to qualify for the associated discount or promotional rule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.Amount? OrderAmount { get; set; }
@@ -47,7 +41,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
 #else
         public global::EBay.AccountManagement.Generated.AccountV2.Models.Amount OrderAmount { get; set; }
 #endif
-        /// <summary>A complex type that describes the value of a monetary amount as represented by a global currency.</summary>
+        /// <summary>This container represents the total shipping cost or discounted shipping charge for the combined order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.Amount? ShippingCost { get; set; }
@@ -80,7 +74,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "combinedShippingRuleType", n => { CombinedShippingRuleType = n.GetStringValue(); } },
+                { "combinedShippingRuleType", n => { CombinedShippingRuleType = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedShippingRuleTypeEnum>(); } },
                 { "itemCount", n => { ItemCount = n.GetIntValue(); } },
                 { "orderAmount", n => { OrderAmount = n.GetObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.Amount>(global::EBay.AccountManagement.Generated.AccountV2.Models.Amount.CreateFromDiscriminatorValue); } },
                 { "shippingCost", n => { ShippingCost = n.GetObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.Amount>(global::EBay.AccountManagement.Generated.AccountV2.Models.Amount.CreateFromDiscriminatorValue); } },
@@ -93,7 +87,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("combinedShippingRuleType", CombinedShippingRuleType);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedShippingRuleTypeEnum>("combinedShippingRuleType", CombinedShippingRuleType);
             writer.WriteIntValue("itemCount", ItemCount);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.Amount>("orderAmount", OrderAmount);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.Amount>("shippingCost", ShippingCost);

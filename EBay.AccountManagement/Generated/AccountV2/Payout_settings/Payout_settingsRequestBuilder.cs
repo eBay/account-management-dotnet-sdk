@@ -59,6 +59,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Payout_settings
         /// <returns>A <see cref="global::EBay.AccountManagement.Generated.AccountV2.Models.PayoutSettingsResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV2.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.AccountManagement.Generated.AccountV2.Models.PayoutSettingsResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -69,7 +70,11 @@ namespace EBay.AccountManagement.Generated.AccountV2.Payout_settings
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV2.Models.PayoutSettingsResponse>(requestInfo, global::EBay.AccountManagement.Generated.AccountV2.Models.PayoutSettingsResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "500", global::EBay.AccountManagement.Generated.AccountV2.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV2.Models.PayoutSettingsResponse>(requestInfo, global::EBay.AccountManagement.Generated.AccountV2.Models.PayoutSettingsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &lt;div class=&quot;msgbox_important&quot;&gt;&lt;p class=&quot;msgbox_importantInDiv&quot; data-mc-autonum=&quot;&amp;lt;b&amp;gt;&amp;lt;span style=&amp;quot;color: #dd1e31;&amp;quot; class=&amp;quot;mcFormatColor&amp;quot;&amp;gt;Important! &amp;lt;/span&amp;gt;&amp;lt;/b&amp;gt;&quot;&gt;&lt;span class=&quot;autonumber&quot;&gt;&lt;span&gt;&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important!&lt;/span&gt;&lt;/b&gt;&lt;/span&gt;&lt;/span&gt; Split-payout functionality is &lt;b&gt;only&lt;/b&gt; available to mainland China sellers, who can split payouts between their Payoneer account and bank account. Card payouts are not currently available for sellers in mainland China.&lt;/p&gt;&lt;/div&gt;&lt;br/&gt;This method returns details on two payment instruments defined on a seller&apos;s account, including the ID, type, status, nickname, last four digits of the account number, and payout percentage for the instruments.&lt;br/&gt;&lt;br/&gt;Using the &lt;b&gt;instrumentId&lt;/b&gt; returned with this method, sellers can makes changes to the payout split of the instruments with the &lt;b&gt;updatePayoutPercentage&lt;/b&gt; method. Note that the &lt;b&gt;instrumentStatus&lt;/b&gt; of a payment instrument, also returned using this method, must be &lt;code&gt;ACTIVE&lt;/code&gt; in order to do split payouts on that payment instrument.

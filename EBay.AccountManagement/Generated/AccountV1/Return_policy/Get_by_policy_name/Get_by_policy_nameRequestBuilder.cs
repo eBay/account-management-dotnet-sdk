@@ -53,6 +53,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Return_policy.Get_by_policy
         /// <returns>A <see cref="global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnPolicy"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnPolicy?> GetAsync(Action<RequestConfiguration<global::EBay.AccountManagement.Generated.AccountV1.Return_policy.Get_by_policy_name.Get_by_policy_nameRequestBuilder.Get_by_policy_nameRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -63,7 +65,12 @@ namespace EBay.AccountManagement.Generated.AccountV1.Return_policy.Get_by_policy
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnPolicy>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnPolicy.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnPolicy>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnPolicy.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This method retrieves the details of a specific return policy. Supply both the policy &lt;code&gt;name&lt;/code&gt; and its associated &lt;code&gt;marketplace_id&lt;/code&gt; in the request query parameters.
@@ -99,7 +106,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Return_policy.Get_by_policy
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class Get_by_policy_nameRequestBuilderGetQueryParameters 
         {
-            /// <summary>This query parameter specifies the ID of the eBay marketplace of the policy you want to retrieve. For implementation help, refer to eBay API documentation at https://developer.ebay.com/api-docs/sell/account/types/ba:MarketplaceIdEnum</summary>
+            /// <summary>This query parameter specifies the ID of the eBay marketplace of the policy you want to retrieve. For implementation help, refer to eBay API documentation at https://developer.ebay.com/develop/api/sell/account_api_v1#sell-account_api_v1-payment_policy-getpaymentpolicies.marketplaceidenum</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("marketplace_id")]
@@ -109,7 +116,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Return_policy.Get_by_policy
             [QueryParameter("marketplace_id")]
             public string MarketplaceId { get; set; }
 #endif
-            /// <summary>This query parameter specifies the seller-defined name of the return policy you want to retrieve.&lt;br&gt;&lt;br&gt; This value can be retrieved for a return policy by using the &lt;a href=&quot;/api-docs/sell/account/resources/return_policy/methods/getReturnPolicies&quot; target=&quot;_blank &quot;&gt;getReturnPolicies&lt;/a&gt; method.</summary>
+            /// <summary>This query parameter specifies the seller-defined name of the return policy you want to retrieve.&lt;br&gt;&lt;br&gt; This value can be retrieved for a return policy by using the &lt;a href=&quot;/develop/api/sell/account_api_v1#sell-account_api_v1-return_policy-getreturnpolicies&quot; target=&quot;_blank &quot;&gt;getReturnPolicies&lt;/a&gt; method.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("name")]

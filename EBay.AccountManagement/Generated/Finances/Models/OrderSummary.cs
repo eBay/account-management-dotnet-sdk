@@ -29,7 +29,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>The total amount of item-level promotions or discounts offered by the seller for a sale (order).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? Discounts { get; set; }
@@ -37,7 +37,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount Discounts { get; set; }
 #endif
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>The sum of the listing price(s) for all items in the order, before applying any seller discounts.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? ItemSubtotal { get; set; }
@@ -45,7 +45,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount ItemSubtotal { get; set; }
 #endif
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>The total amount of &lt;a href=&quot;https://www.ebay.com/help/selling/fees-credits-invoices/taxes-import-charges?id=4121&quot; target=&quot;_blank&quot;&gt;tax collected by the seller&lt;/a&gt; on all sold items for the order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? SellerCollectedTaxes { get; set; }
@@ -53,7 +53,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount SellerCollectedTaxes { get; set; }
 #endif
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>The total amount collected from the buyer to cover shipping and handling for all items in the order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? ShippingAndHandlingCosts { get; set; }

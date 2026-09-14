@@ -29,7 +29,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type defines the structure for calculated handling fee discounts applicable when combining multiple orders.</summary>
+        /// <summary>This container will show one or more calculated shipping rules set up for that seller on that ebay marketplace.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; This will not be returned if a calculated handling rule is not set up for that seller on that eBay marketplace</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.CalculatedHandlingRuleType? CalculatedHandlingRule { get; set; }
@@ -37,7 +37,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
 #else
         public global::EBay.AccountManagement.Generated.AccountV2.Models.CalculatedHandlingRuleType CalculatedHandlingRule { get; set; }
 #endif
-        /// <summary>This type describes calculated discount rules determining total shipping cost reductions for combined items.</summary>
+        /// <summary>This container specifies the type of combined-shipping rule applied, such as flat-rate, weight-based, or cost-based.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.CalculatedShippingRuleType? CalculatedShippingRule { get; set; }
@@ -45,15 +45,9 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
 #else
         public global::EBay.AccountManagement.Generated.AccountV2.Models.CalculatedShippingRuleType CalculatedShippingRule { get; set; }
 #endif
-        /// <summary>This field is represented by one of the values in the CombinedPaymentPeriodEnum type. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:CombinedPaymentPeriodEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? CombinedDuration { get; set; }
-#nullable restore
-#else
-        public string CombinedDuration { get; set; }
-#endif
-        /// <summary>This type defines the flat-rate combined-shipping rule, which applies a fixed shipping cost for multiple items shipped together.</summary>
+        /// <summary>This field is represented by one of the values in the &lt;a href=&quot;/develop/api/sell/account_api_v2#sell-account_api_v2-combined_shipping_rules-getcombinedshippingrules.getcombinedshippingrulesresponse.combinedduration&quot; target=&quot;_blank&quot;&gt;CombinedPaymentPeriodEnum&lt;/a&gt;.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedPaymentPeriodEnum? CombinedDuration { get; set; }
+        /// <summary>This container will show one or more flat shipping rules set up for that seller on that ebay marketplace.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.FlatShippingRuleType? FlatShippingRule { get; set; }
@@ -61,7 +55,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
 #else
         public global::EBay.AccountManagement.Generated.AccountV2.Models.FlatShippingRuleType FlatShippingRule { get; set; }
 #endif
-        /// <summary>This type is used to represent a promotional shipping rule set up by the seller on an eBay marketplace.</summary>
+        /// <summary>This container shows the promotional shipping rule that is currently set up on the seller&apos;s account for the eBay marketplace. &lt;br&gt;&lt;br&gt;This container will not be returned if no promotional shipping rule is currently set up on the seller&apos;s account for the eBay marketplace.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.PromotionalShippingRuleType? PromotionalShippingRule { get; set; }
@@ -96,7 +90,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
             {
                 { "calculatedHandlingRule", n => { CalculatedHandlingRule = n.GetObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CalculatedHandlingRuleType>(global::EBay.AccountManagement.Generated.AccountV2.Models.CalculatedHandlingRuleType.CreateFromDiscriminatorValue); } },
                 { "calculatedShippingRule", n => { CalculatedShippingRule = n.GetObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CalculatedShippingRuleType>(global::EBay.AccountManagement.Generated.AccountV2.Models.CalculatedShippingRuleType.CreateFromDiscriminatorValue); } },
-                { "combinedDuration", n => { CombinedDuration = n.GetStringValue(); } },
+                { "combinedDuration", n => { CombinedDuration = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedPaymentPeriodEnum>(); } },
                 { "flatShippingRule", n => { FlatShippingRule = n.GetObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.FlatShippingRuleType>(global::EBay.AccountManagement.Generated.AccountV2.Models.FlatShippingRuleType.CreateFromDiscriminatorValue); } },
                 { "promotionalShippingRule", n => { PromotionalShippingRule = n.GetObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.PromotionalShippingRuleType>(global::EBay.AccountManagement.Generated.AccountV2.Models.PromotionalShippingRuleType.CreateFromDiscriminatorValue); } },
             };
@@ -110,7 +104,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CalculatedHandlingRuleType>("calculatedHandlingRule", CalculatedHandlingRule);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CalculatedShippingRuleType>("calculatedShippingRule", CalculatedShippingRule);
-            writer.WriteStringValue("combinedDuration", CombinedDuration);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedPaymentPeriodEnum>("combinedDuration", CombinedDuration);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.FlatShippingRuleType>("flatShippingRule", FlatShippingRule);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.PromotionalShippingRuleType>("promotionalShippingRule", PromotionalShippingRule);
             writer.WriteAdditionalData(AdditionalData);

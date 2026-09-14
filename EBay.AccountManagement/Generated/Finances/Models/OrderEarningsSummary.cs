@@ -29,7 +29,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>The aggregate amount of expenses for all orders included in the summary.&lt;br&gt;&lt;p&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;span style=&quot;color:#004680&quot;&gt;&lt;strong&gt;Note: &lt;/strong&gt;Expenses are always in the seller&apos;s payout currency. Conversion-related fields (such as &lt;b&gt;exchangeRate&lt;/b&gt;) in this container do not apply to the &lt;b&gt;order_earnings&lt;/b&gt; resource.&lt;/span&gt;&lt;/p&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? Expenses { get; set; }
@@ -37,7 +37,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount Expenses { get; set; }
 #endif
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>The aggregate gross amount for all orders included in the order earnings summary. This amount equals the item subtotal plus shipping and handling, and any seller-collected taxes paid by the buyer, minus any seller-offered discount.&lt;br&gt;&lt;p&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;span style=&quot;color:#004680&quot;&gt;&lt;strong&gt;Note: &lt;/strong&gt;Gross amount is always in the seller&apos;s payout currency. Conversion-related fields (such as &lt;b&gt;exchangeRate&lt;/b&gt;) in this container do not apply to the &lt;b&gt;order_earnings&lt;/b&gt; resource.&lt;/span&gt;&lt;/p&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? GrossAmount { get; set; }
@@ -46,14 +46,8 @@ namespace EBay.AccountManagement.Generated.Finances.Models
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount GrossAmount { get; set; }
 #endif
         /// <summary>The total number of orders included in the summary.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::EBay.AccountManagement.Generated.Finances.Models.OrderEarningsSummary_orderCount? OrderCount { get; set; }
-#nullable restore
-#else
-        public global::EBay.AccountManagement.Generated.Finances.Models.OrderEarningsSummary_orderCount OrderCount { get; set; }
-#endif
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        public long? OrderCount { get; set; }
+        /// <summary>The aggregate earnings amount for all orders included in the summary, which includes the amount of order earnings after deducting expenses and any refunds from the gross amount.&lt;p&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;span style=&quot;color:#004680&quot;&gt;&lt;strong&gt;Note: &lt;/strong&gt;Order earnings are always in the seller&apos;s payout currency. Conversion-related fields (such as &lt;b&gt;exchangeRate&lt;/b&gt;) in this container do not apply to the &lt;b&gt;order_earnings&lt;/b&gt; resource.&lt;/span&gt;&lt;/p&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? OrderEarnings { get; set; }
@@ -61,7 +55,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount OrderEarnings { get; set; }
 #endif
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>The aggregate amount of all refunds issued for the orders included in the summary.&lt;br&gt;&lt;p&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;span style=&quot;color:#004680&quot;&gt;&lt;strong&gt;Note: &lt;/strong&gt;Refunds include gross refunds, gross claims, and gross payment disputes.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;span style=&quot;color:#004680&quot;&gt;&lt;strong&gt;Note: &lt;/strong&gt;Refunds are always in the seller&apos;s payout currency. Conversion-related fields (such as &lt;b&gt;exchangeRate&lt;/b&gt;) in this container do not apply to the &lt;b&gt;order_earnings&lt;/b&gt; resource.&lt;/span&gt;&lt;/p&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? Refunds { get; set; }
@@ -96,7 +90,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
             {
                 { "expenses", n => { Expenses = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
                 { "grossAmount", n => { GrossAmount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
-                { "orderCount", n => { OrderCount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.OrderEarningsSummary_orderCount>(global::EBay.AccountManagement.Generated.Finances.Models.OrderEarningsSummary_orderCount.CreateFromDiscriminatorValue); } },
+                { "orderCount", n => { OrderCount = n.GetLongValue(); } },
                 { "orderEarnings", n => { OrderEarnings = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
                 { "refunds", n => { Refunds = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
             };
@@ -110,7 +104,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("expenses", Expenses);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("grossAmount", GrossAmount);
-            writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.OrderEarningsSummary_orderCount>("orderCount", OrderCount);
+            writer.WriteLongValue("orderCount", OrderCount);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("orderEarnings", OrderEarnings);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("refunds", Refunds);
             writer.WriteAdditionalData(AdditionalData);

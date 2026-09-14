@@ -29,14 +29,8 @@ namespace EBay.AccountManagement.Generated.Finances.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This field shows the three-letter currency code that represents the currency used for all of the order expenses For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/ba:CurrencyCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Currency { get; set; }
-#nullable restore
-#else
-        public string Currency { get; set; }
-#endif
+        /// <summary>This field shows the three-letter currency code that represents the currency used for all of the order expenses.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.CurrencyCodeEnum? Currency { get; set; }
         /// <summary>This array shows the amount(s) of one or more donations that are submitted to eBay charity organizations for one or more orders. &lt;br&gt;&lt;p&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;span style=&quot;color:#004680&quot;&gt;&lt;strong&gt;Note: &lt;/strong&gt;Donations are always tied to specific items. When an item is listed with a charity contribution (for example, 10%), the donation is calculated per item at the time of sale. Order earnings factor in only the items within the order that are eligible for donation.&lt;/span&gt;&lt;/p&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -53,7 +47,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public List<global::EBay.AccountManagement.Generated.Finances.Models.OrderEarningFee> MarketplaceFees { get; set; }
 #endif
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>This container shows the total amount paid by the seller for eBay shipping labels for one or more orders.&lt;br&gt;&lt;p&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;span style=&quot;color:#004680&quot;&gt;&lt;strong&gt;Note: &lt;/strong&gt;Charges and credits for shipping labels purchased with non-eBay payment methods (for example, PayPal) are excluded from the order earnings calculation.&lt;/span&gt;&lt;/p&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? ShippingLabels { get; set; }
@@ -94,7 +88,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "currency", n => { Currency = n.GetStringValue(); } },
+                { "currency", n => { Currency = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.CurrencyCodeEnum>(); } },
                 { "donations", n => { Donations = n.GetCollectionOfObjectValues<global::EBay.AccountManagement.Generated.Finances.Models.OrderEarningFee>(global::EBay.AccountManagement.Generated.Finances.Models.OrderEarningFee.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "marketplaceFees", n => { MarketplaceFees = n.GetCollectionOfObjectValues<global::EBay.AccountManagement.Generated.Finances.Models.OrderEarningFee>(global::EBay.AccountManagement.Generated.Finances.Models.OrderEarningFee.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "shippingLabels", n => { ShippingLabels = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
@@ -108,7 +102,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("currency", Currency);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.CurrencyCodeEnum>("currency", Currency);
             writer.WriteCollectionOfObjectValues<global::EBay.AccountManagement.Generated.Finances.Models.OrderEarningFee>("donations", Donations);
             writer.WriteCollectionOfObjectValues<global::EBay.AccountManagement.Generated.Finances.Models.OrderEarningFee>("marketplaceFees", MarketplaceFees);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("shippingLabels", ShippingLabels);

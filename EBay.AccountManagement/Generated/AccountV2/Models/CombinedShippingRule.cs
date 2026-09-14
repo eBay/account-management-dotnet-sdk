@@ -45,7 +45,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
 #else
         public string CombinedShippingRuleName { get; set; }
 #endif
-        /// <summary>A complex type that describes the value of a monetary amount as represented by a global currency.</summary>
+        /// <summary>This containter defines the additional monetary charge applied for each extra item when multiple items are shipped together.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.Amount? EachAdditionalAmount { get; set; }
@@ -53,7 +53,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
 #else
         public global::EBay.AccountManagement.Generated.AccountV2.Models.Amount EachAdditionalAmount { get; set; }
 #endif
-        /// <summary>A complex type that describes the value of a monetary amount as represented by a global currency.</summary>
+        /// <summary>This container defines the fixed discount amount deducted from the total shipping cost for each additional item.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.Amount? EachAdditionalAmountOffShippingCost { get; set; }
@@ -71,7 +71,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
 #else
         public string MappedCombinedShippingRuleId { get; set; }
 #endif
-        /// <summary>This type displays measurement type with value, unit, and measurement system.</summary>
+        /// <summary>This container specifies the total weight reduction applied when combining multiple items into one shipment.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.MeasureType? WeightOffTotalWeight { get; set; }

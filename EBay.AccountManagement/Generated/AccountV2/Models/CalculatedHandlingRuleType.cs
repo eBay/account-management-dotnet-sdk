@@ -29,15 +29,9 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This enumeration type specifies the type of combined-shipping rule applied to handling fees &lt;br&gt;&lt;br&gt;(for example, weight-based, flat-rate, or percentage-based calculation method). For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:CombinedShippingRuleTypeHandlingEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? CombinedShippingRuleType { get; set; }
-#nullable restore
-#else
-        public string CombinedShippingRuleType { get; set; }
-#endif
-        /// <summary>A complex type that describes the value of a monetary amount as represented by a global currency.</summary>
+        /// <summary>This enumeration value specifies the type of combined-shipping rule applied to handling fees (for example, weight-based, flat-rate, or percentage-based calculation method). </summary>
+        public global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedShippingRuleTypeHandlingEnum? CombinedShippingRuleType { get; set; }
+        /// <summary>This container specifies the additional monetary charge applied for each extra item included in a combined shipment.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.Amount? EachAdditionalAmount { get; set; }
@@ -45,7 +39,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
 #else
         public global::EBay.AccountManagement.Generated.AccountV2.Models.Amount EachAdditionalAmount { get; set; }
 #endif
-        /// <summary>A complex type that describes the value of a monetary amount as represented by a global currency.</summary>
+        /// <summary>This container represents the fixed monetary discount deducted from the total shipping cost for each additional item in a combined shipment.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.Amount? EachAdditionalAmountOffShippingCost { get; set; }
@@ -55,7 +49,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
 #endif
         /// <summary>This integer specifies the percentage discount applied to the total shipping cost for each additional item in a combined shipment.</summary>
         public double? EachAdditionalPercentOffShippingCost { get; set; }
-        /// <summary>A complex type that describes the value of a monetary amount as represented by a global currency.</summary>
+        /// <summary>This container represents the handling fee charged for processing a combined order, if applicable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.Amount? OrderHandlingAmount { get; set; }
@@ -88,7 +82,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "combinedShippingRuleType", n => { CombinedShippingRuleType = n.GetStringValue(); } },
+                { "combinedShippingRuleType", n => { CombinedShippingRuleType = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedShippingRuleTypeHandlingEnum>(); } },
                 { "eachAdditionalAmount", n => { EachAdditionalAmount = n.GetObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.Amount>(global::EBay.AccountManagement.Generated.AccountV2.Models.Amount.CreateFromDiscriminatorValue); } },
                 { "eachAdditionalAmountOffShippingCost", n => { EachAdditionalAmountOffShippingCost = n.GetObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.Amount>(global::EBay.AccountManagement.Generated.AccountV2.Models.Amount.CreateFromDiscriminatorValue); } },
                 { "eachAdditionalPercentOffShippingCost", n => { EachAdditionalPercentOffShippingCost = n.GetDoubleValue(); } },
@@ -102,7 +96,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("combinedShippingRuleType", CombinedShippingRuleType);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedShippingRuleTypeHandlingEnum>("combinedShippingRuleType", CombinedShippingRuleType);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.Amount>("eachAdditionalAmount", EachAdditionalAmount);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.Amount>("eachAdditionalAmountOffShippingCost", EachAdditionalAmountOffShippingCost);
             writer.WriteDoubleValue("eachAdditionalPercentOffShippingCost", EachAdditionalPercentOffShippingCost);

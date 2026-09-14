@@ -22,7 +22,7 @@ using System;
 namespace EBay.AccountManagement.Generated.Finances.Models
 {
     /// <summary>
-    /// BillingActivityResponse
+    /// This type is the base response type used by the &lt;b&gt;getBillingActivities&lt;/b&gt; method. 
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class BillingActivityResponse : IAdditionalDataHolder, IParsable

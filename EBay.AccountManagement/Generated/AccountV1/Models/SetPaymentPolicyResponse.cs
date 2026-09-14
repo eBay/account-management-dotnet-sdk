@@ -61,16 +61,10 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #else
         public global::EBay.AccountManagement.Generated.AccountV1.Models.TimeDuration FullPaymentDueIn { get; set; }
 #endif
-        /// <summary>The value returned in this field will reflect the value set by the seller in the &lt;b&gt;immediatePay&lt;/b&gt; request field. A value of &lt;code&gt;true&lt;/code&gt; indicates that immediate payment is required from the buyer for: &lt;ul&gt;&lt;li&gt;A fixed-price item&lt;/li&gt;&lt;li&gt;An auction item where the buyer is using the &apos;Buy it Now&apos; option&lt;/li&gt;&lt;li&gt;A deposit for a motor vehicle listing&lt;/li&gt;&lt;/ul&gt;&lt;br&gt;It is possible for the seller to set this field as &lt;code&gt;true&lt;/code&gt; in the payment business policy, but it will not apply in some scenarios. For example, immediate payment is not applicable for auction listings that have a winning bidder, for buyer purchases that involve the Best Offer feature, or for transactions that happen offline between the buyer and seller.</summary>
+        /// <summary>The value returned in this field will reflect the value set by the seller in the &lt;b&gt;immediatePay&lt;/b&gt; request field. A value of &lt;code&gt;true&lt;/code&gt; indicates that immediate payment is required from the buyer for: &lt;ul&gt;&lt;li&gt;A fixed-price item&lt;/li&gt;&lt;li&gt;An auction item where the buyer is using the &apos;Buy it Now&apos; option&lt;/li&gt;&lt;li&gt;A deposit for a motor vehicle listing&lt;/li&gt;&lt;/ul&gt;It is possible for the seller to set this field as &lt;code&gt;true&lt;/code&gt; in the payment business policy, but it will not apply in some scenarios. For example, immediate payment is not applicable for auction listings that have a winning bidder, for buyer purchases that involve the Best Offer feature, or for transactions that happen offline between the buyer and seller.</summary>
         public bool? ImmediatePay { get; set; }
-        /// <summary>The ID of the eBay marketplace to which this payment business policy applies. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/ba:MarketplaceIdEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? MarketplaceId { get; set; }
-#nullable restore
-#else
-        public string MarketplaceId { get; set; }
-#endif
+        /// <summary>This enumerated type contains a list of the standard codes that represent each of the eBay marketplaces. | - **EBAY_AT**: eBay Austria (ebay.at) - **EBAY_AU**: eBay Australia (ebay.com/au) - **EBAY_BE**: eBay Belgium (ebay.com/sch/Belgium) - **EBAY_CA**: eBay Canada (English) (ebay.ca) - **EBAY_CH**: eBay Switzerland (ebay.ch) - **EBAY_CN**: eBay China (ebay.com/sch/China) - **EBAY_CZ**: eBay Czech Republic (ebay.com/sch/Czech-Republic) - **EBAY_DE**: eBay Germany (ebay.de) - **EBAY_DK**: eBay Denmark (ebay.com/sch/Denmark) - **EBAY_ES**: eBay Spain (ebay.es) - **EBAY_FI**: eBay Finland (ebay.com/sch/Finland) - **EBAY_FR**: eBay France (ebay.fr) - **EBAY_GB**: eBay UK (ebay.co.uk) - **EBAY_GR**: eBay Greece (ebay.com/sch/Greece) - **EBAY_HK**: eBay Hong Kong (ebay.com.hk) - **EBAY_HU**: eBay Hungary (ebay.com/sch/Hungary) - **EBAY_ID**: eBay Indonesia (id.ebay.com) - **EBAY_IE**: eBay Ireland (ebay.ie) - **EBAY_IL**: eBay Israel (ebay.com/sch/Israel) - **EBAY_IN**: eBay India (ebay.in)&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; eBay India is no longer a functioning eBay marketplace.&lt;/span&gt; - **EBAY_IT**: eBay Italy (ebay.it) - **EBAY_JP**: eBay Japan (ebay.co.jp) - **EBAY_MY**: eBay Malaysia (ebay.com/my) - **EBAY_NL**: eBay Netherlands (ebay.nl) - **EBAY_NO**: eBay Norway (ebay.com/sch/Norway) - **EBAY_NZ**: eBay New Zealand (ebay.com/sch/New-Zealand) - **EBAY_PE**: eBay Peru (ebay.com/sch/Peru) - **EBAY_PH**: eBay Philippines (ebay.ph) - **EBAY_PL**: eBay Poland (ebay.pl) - **EBAY_PR**: eBay Puerto Rico (ebay.com/sch/Puerto-Rico) - **EBAY_PT**: eBay Portugal (ebay.com/sch/Portugal) - **EBAY_RU**: eBay Russia (ebay.com/sch/Russia) - **EBAY_SE**: eBay Sweden (ebay.com/sch/Sweden) - **EBAY_SG**: eBay Singapore (ebay.com/sg) - **EBAY_TH**: eBay Thailand (export.ebay.co.th) - **EBAY_TW**: eBay Taiwan (ebay.com/tw) - **EBAY_US**: eBay US (ebay.com) - **EBAY_VN**: eBay Vietnam (ebay.vn) - **EBAY_ZA**: eBay South Africa (ebay.com/sch/South-Africa) - **EBAY_HALF_US**: This enumeration value is no longer applicable as the Half.com site no longer exists. - **EBAY_MOTORS_US**: eBay Motors US (ebay.com/motors)</summary>
+        public global::EBay.AccountManagement.Generated.AccountV1.Models.MarketplaceIdEnum? MarketplaceId { get; set; }
         /// <summary>A seller-defined name for this payment business policy. Names must be unique for policies assigned to the same marketplace.&lt;br&gt;&lt;br&gt;&lt;b&gt;Max length:&lt;/b&gt; 64</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -106,10 +100,10 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
         /// <summary>An array of one or more errors or warnings that were generated during the processing of the request. If there were no issues with the request, this array will return empty.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::EBay.AccountManagement.Generated.AccountV1.Models.Error>? Warnings { get; set; }
+        public List<global::EBay.AccountManagement.Generated.AccountV1.Models.ErrorDetailV3>? Warnings { get; set; }
 #nullable restore
 #else
-        public List<global::EBay.AccountManagement.Generated.AccountV1.Models.Error> Warnings { get; set; }
+        public List<global::EBay.AccountManagement.Generated.AccountV1.Models.ErrorDetailV3> Warnings { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.AccountV1.Models.SetPaymentPolicyResponse"/> and sets the default values.
@@ -141,12 +135,12 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "fullPaymentDueIn", n => { FullPaymentDueIn = n.GetObjectValue<global::EBay.AccountManagement.Generated.AccountV1.Models.TimeDuration>(global::EBay.AccountManagement.Generated.AccountV1.Models.TimeDuration.CreateFromDiscriminatorValue); } },
                 { "immediatePay", n => { ImmediatePay = n.GetBoolValue(); } },
-                { "marketplaceId", n => { MarketplaceId = n.GetStringValue(); } },
+                { "marketplaceId", n => { MarketplaceId = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.MarketplaceIdEnum>(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "paymentInstructions", n => { PaymentInstructions = n.GetStringValue(); } },
                 { "paymentMethods", n => { PaymentMethods = n.GetCollectionOfObjectValues<global::EBay.AccountManagement.Generated.AccountV1.Models.PaymentMethod>(global::EBay.AccountManagement.Generated.AccountV1.Models.PaymentMethod.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "paymentPolicyId", n => { PaymentPolicyId = n.GetStringValue(); } },
-                { "warnings", n => { Warnings = n.GetCollectionOfObjectValues<global::EBay.AccountManagement.Generated.AccountV1.Models.Error>(global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "warnings", n => { Warnings = n.GetCollectionOfObjectValues<global::EBay.AccountManagement.Generated.AccountV1.Models.ErrorDetailV3>(global::EBay.AccountManagement.Generated.AccountV1.Models.ErrorDetailV3.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -161,12 +155,12 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
             writer.WriteStringValue("description", Description);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.AccountV1.Models.TimeDuration>("fullPaymentDueIn", FullPaymentDueIn);
             writer.WriteBoolValue("immediatePay", ImmediatePay);
-            writer.WriteStringValue("marketplaceId", MarketplaceId);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.MarketplaceIdEnum>("marketplaceId", MarketplaceId);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("paymentInstructions", PaymentInstructions);
             writer.WriteCollectionOfObjectValues<global::EBay.AccountManagement.Generated.AccountV1.Models.PaymentMethod>("paymentMethods", PaymentMethods);
             writer.WriteStringValue("paymentPolicyId", PaymentPolicyId);
-            writer.WriteCollectionOfObjectValues<global::EBay.AccountManagement.Generated.AccountV1.Models.Error>("warnings", Warnings);
+            writer.WriteCollectionOfObjectValues<global::EBay.AccountManagement.Generated.AccountV1.Models.ErrorDetailV3>("warnings", Warnings);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

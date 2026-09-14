@@ -21,14 +21,15 @@ using System.IO;
 using System;
 namespace EBay.AccountManagement.Generated.AccountV1.Models
 {
+    /// <summary>
+    /// This type is used to request a list of custom policies.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class CustomPolicyRequest : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Contains the seller specified policy and policy terms.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Always supply this field. If this field is not specified, any previous value is removed. Call the &lt;a href=&quot;/api-docs/sell/account/resources/custom_policy/methods/getCustomPolicy&quot;&gt;getCustomPolicy&lt;/a&gt; method to return the present field value for this policy.&lt;/span&gt;&lt;br&gt;&lt;b&gt;Max length:&lt;/b&gt; 15,000</summary>
+        /// <summary>Contains the seller specified policy and policy terms.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Always supply this field. If this field is not specified, any previous value is removed. Call the &lt;a href=&quot;develop/api/sell/account_api_v1#sell-account_api_v1-custom_policy-getcustompolicy&quot;&gt;getCustomPolicy&lt;/a&gt; method to return the present field value for this policy.&lt;/span&gt;&lt;br&gt;&lt;b&gt;Max length:&lt;/b&gt; 15,000</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -36,7 +37,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>Customer-facing label shown on View Item pages for items to which the policy applies. This seller-defined string is displayed as a system-generated hyperlink pointing to seller specified policy information.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Always supply this field. If this field is not specified, any previous value is removed. Call the &lt;a href=&quot;/api-docs/sell/account/resources/custom_policy/methods/getCustomPolicy&quot;&gt;getCustomPolicy&lt;/a&gt; method to return the present field value for this policy.&lt;/span&gt;&lt;br&gt;&lt;b&gt;Max length:&lt;/b&gt; 65</summary>
+        /// <summary>Customer-facing label shown on View Item pages for items to which the policy applies. This seller-defined string is displayed as a system-generated hyperlink pointing to seller specified policy information.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Always supply this field. If this field is not specified, any previous value is removed. Call the &lt;a href=&quot;develop/api/sell/account_api_v1#sell-account_api_v1-custom_policy-getcustompolicy&quot;&gt;getCustomPolicy&lt;/a&gt; method to return the present field value for this policy.&lt;/span&gt;&lt;br&gt;&lt;b&gt;Max length:&lt;/b&gt; 65</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Label { get; set; }
@@ -44,7 +45,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #else
         public string Label { get; set; }
 #endif
-        /// <summary>The seller-defined name for the custom policy. Names must be unique for policies assigned to the same seller and policy type.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This field is visible only to the seller. &lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Always supply this field. If this field is not specified, any previous value is removed. Call the &lt;a href=&quot;/api-docs/sell/account/resources/custom_policy/methods/getCustomPolicy&quot;&gt;getCustomPolicy&lt;/a&gt; method to return the present field value for this policy.&lt;/span&gt;&lt;br&gt;&lt;b&gt;Max length:&lt;/b&gt; 65</summary>
+        /// <summary>The seller-defined name for the custom policy. Names must be unique for policies assigned to the same seller and policy type.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This field is visible only to the seller.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Always supply this field. If this field is not specified, any previous value is removed. Call the &lt;a href=&quot;develop/api/sell/account_api_v1#sell-account_api_v1-custom_policy-getcustompolicy&quot;&gt;getCustomPolicy&lt;/a&gt; method to return the present field value for this policy.&lt;/span&gt;&lt;br&gt;&lt;b&gt;Max length:&lt;/b&gt; 65</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }

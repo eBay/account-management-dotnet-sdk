@@ -1,5 +1,18 @@
 # ChangeLog
 
+## 2.0.0 (09/14/2026)
+
+**Breaking changes**
+- The following operations changed signature on `AccountV2Client`:
+  - `SetUserPreferencesAsync`: `(string, UntypedNode, string?, RequestOptions?, CancellationToken)` → `(string, SetUserPreferencesRequest, string?, RequestOptions?, CancellationToken)`
+- The following operations changed signature on `FinancesClient`:
+  - `GetOrderEarningsAsync`: `(string, string?, string?, string?, string?, string?, RequestOptions?, CancellationToken)` → `(string, string[]?, int?, int?, string[]?, string?, RequestOptions?, CancellationToken)`
+  - `GetOrderEarningsSummaryAsync`: `(string, string?, string?, RequestOptions?, CancellationToken)` → `(string, string[]?, string?, RequestOptions?, CancellationToken)`
+  - `GetPayoutsAsync`: `(string, string?, string?, string?, string?, string?, RequestOptions?, CancellationToken)` → `(string, string[]?, int?, int?, string[]?, string?, RequestOptions?, CancellationToken)`
+  - `GetPayoutSummaryAsync`: `(string, string?, string?, RequestOptions?, CancellationToken)` → `(string, string[]?, string?, RequestOptions?, CancellationToken)`
+  - `GetTransactionsAsync`: `(string, string?, string?, string?, string?, string?, RequestOptions?, CancellationToken)` → `(string, string[]?, int?, int?, string[]?, string?, RequestOptions?, CancellationToken)`
+  - `GetTransactionSummaryAsync`: `(string, string?, string?, RequestOptions?, CancellationToken)` → `(string, string[], string?, RequestOptions?, CancellationToken)`
+
 ## 1.0.0 (09/14/2026)
 
 **Breaking changes**

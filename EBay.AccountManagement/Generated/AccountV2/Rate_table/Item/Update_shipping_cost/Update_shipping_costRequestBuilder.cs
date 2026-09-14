@@ -50,9 +50,13 @@ namespace EBay.AccountManagement.Generated.AccountV2.Rate_table.Item.Update_ship
         /// <summary>
         /// This method allows sellers to update &lt;b&gt;shippingCost&lt;/b&gt; and/or &lt;b&gt;additionalCost&lt;/b&gt; information for an existing shipping rate table identified by the &lt;b&gt;rate_table_id&lt;/b&gt; path parameter.&lt;br&gt;&lt;br&gt;A successful call returns an HTTP status code of &lt;b&gt;204 No Content&lt;/b&gt;.
         /// </summary>
-        /// <param name="body">This type is used by the request payload of the &lt;b&gt;updateShippingCost&lt;/b&gt; method to pass updated shipping cost information for a rate table identified by &lt;b&gt;rateTableId&lt;/b&gt;.</param>
+        /// <param name="body">Request to update the shipping costs for the identified shipping rate table.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV2.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV2.Models.Error">When receiving a 404 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV2.Models.Error">When receiving a 409 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV2.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task PostAsync(global::EBay.AccountManagement.Generated.AccountV2.Models.RateTableUpdate body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -64,13 +68,20 @@ namespace EBay.AccountManagement.Generated.AccountV2.Rate_table.Item.Update_ship
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.AccountManagement.Generated.AccountV2.Models.Error.CreateFromDiscriminatorValue },
+                { "404", global::EBay.AccountManagement.Generated.AccountV2.Models.Error.CreateFromDiscriminatorValue },
+                { "409", global::EBay.AccountManagement.Generated.AccountV2.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.AccountManagement.Generated.AccountV2.Models.Error.CreateFromDiscriminatorValue },
+            };
+            await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This method allows sellers to update &lt;b&gt;shippingCost&lt;/b&gt; and/or &lt;b&gt;additionalCost&lt;/b&gt; information for an existing shipping rate table identified by the &lt;b&gt;rate_table_id&lt;/b&gt; path parameter.&lt;br&gt;&lt;br&gt;A successful call returns an HTTP status code of &lt;b&gt;204 No Content&lt;/b&gt;.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">This type is used by the request payload of the &lt;b&gt;updateShippingCost&lt;/b&gt; method to pass updated shipping cost information for a rate table identified by &lt;b&gt;rateTableId&lt;/b&gt;.</param>
+        /// <param name="body">Request to update the shipping costs for the identified shipping rate table.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -84,6 +95,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Rate_table.Item.Update_ship
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }

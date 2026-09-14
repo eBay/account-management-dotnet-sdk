@@ -29,7 +29,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>The seller payout balance amount that will be applied toward the charges outlined in the &lt;b&gt;charges&lt;/b&gt; array.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? AdjustmentAmount { get; set; }
@@ -37,14 +37,8 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount AdjustmentAmount { get; set; }
 #endif
-        /// <summary>The enumeration value returned here indicates if the charge is a &lt;code&gt;DEBIT&lt;/code&gt; or a &lt;code&gt;CREDIT&lt;/code&gt; to the seller. Generally, all transfer transaction types are going to be &lt;code&gt;DEBIT&lt;/code&gt;, since the money is being tranferred from the seller to eBay. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/pay:BookingEntryEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? AdjustmentType { get; set; }
-#nullable restore
-#else
-        public string AdjustmentType { get; set; }
-#endif
+        /// <summary>The enumeration value returned here indicates if the charge is a &lt;code&gt;DEBIT&lt;/code&gt; or a &lt;code&gt;CREDIT&lt;/code&gt; to the seller. Generally, all transfer transaction types are going to be &lt;code&gt;DEBIT&lt;/code&gt;, since the money is being transferred from the seller to eBay.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum? AdjustmentType { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.Finances.Models.BalanceAdjustment"/> and sets the default values.
         /// </summary>
@@ -71,7 +65,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "adjustmentAmount", n => { AdjustmentAmount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
-                { "adjustmentType", n => { AdjustmentType = n.GetStringValue(); } },
+                { "adjustmentType", n => { AdjustmentType = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>(); } },
             };
         }
         /// <summary>
@@ -82,7 +76,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("adjustmentAmount", AdjustmentAmount);
-            writer.WriteStringValue("adjustmentType", AdjustmentType);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>("adjustmentType", AdjustmentType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

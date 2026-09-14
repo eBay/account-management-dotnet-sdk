@@ -30,15 +30,15 @@ namespace EBay.AccountManagement.Generated.Finances.Transfer
     public partial class TransferRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the EBay.AccountManagement.Generated.Finances.transfer.item collection</summary>
-        /// <param name="position">This path parameter is used to specify the unique identifier of the &lt;code&gt;TRANSFER&lt;/code&gt; transaction type you wish to retrieve.&lt;br&gt;&lt;br&gt;Use the &lt;a href=&quot;/api-docs/sell/finances/resources/transaction/methods/getTransactions&quot; target=&quot;_blank &quot;&gt;getTransactions&lt;/a&gt; method to retrieve this value by setting the &lt;b&gt;transactionType&lt;/b&gt; filter to &lt;code&gt;TRANSFER&lt;/code&gt;. The &lt;b&gt;transfer_id&lt;/b&gt; value will then be returned in the &lt;b&gt;transaction_id&lt;/b&gt; field of the response.</param>
-        /// <returns>A <see cref="global::EBay.AccountManagement.Generated.Finances.Transfer.Item.WithTransfer_ItemRequestBuilder"/></returns>
-        public global::EBay.AccountManagement.Generated.Finances.Transfer.Item.WithTransfer_ItemRequestBuilder this[string position]
+        /// <param name="position">This path parameter is used to specify the unique identifier of the &lt;code&gt;TRANSFER&lt;/code&gt; transaction type you wish to retrieve.&lt;br&gt;&lt;br&gt;Use the &lt;a href=&quot;/develop/api/sell/finances_api#sell-finances_api-transaction-gettransactions&quot;&gt;getTransactions&lt;/a&gt; method to retrieve this value by setting the &lt;b&gt;transactionType&lt;/b&gt; filter to &lt;code&gt;TRANSFER&lt;/code&gt;. The &lt;b&gt;transfer_id&lt;/b&gt; value will then be returned in the &lt;b&gt;transaction_id&lt;/b&gt; field of the response.</param>
+        /// <returns>A <see cref="global::EBay.AccountManagement.Generated.Finances.Transfer.Item.Transfer_ItemRequestBuilder"/></returns>
+        public global::EBay.AccountManagement.Generated.Finances.Transfer.Item.Transfer_ItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("transfer_Id", position);
-                return new global::EBay.AccountManagement.Generated.Finances.Transfer.Item.WithTransfer_ItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("transfer_%2Did", position);
+                return new global::EBay.AccountManagement.Generated.Finances.Transfer.Item.Transfer_ItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>

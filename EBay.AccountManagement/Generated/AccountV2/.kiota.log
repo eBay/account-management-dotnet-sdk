@@ -1,1 +1,0 @@
-Warning: KiotaBuilder OpenAPI warning: #/paths/~1user_preferences/patch/requestBody/content/application~1json/schema/$ref - The schema reference '#/components/schemas/SetUserPreferencesRequest' does not point to an existing schema.

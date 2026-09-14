@@ -37,7 +37,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public List<global::EBay.AccountManagement.Generated.Finances.Models.Fee> Donations { get; set; }
 #endif
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>This amount is the order&apos;s total amount and equals what the buyer has paid. This value includes &lt;b&gt;transactions.amount&lt;/b&gt;, &lt;b&gt;totalFeeAmount&lt;/b&gt;, &lt;b&gt;eBayCollectedTaxAmount&lt;/b&gt;, and shipping charges (if any).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? FeeBasisAmount { get; set; }

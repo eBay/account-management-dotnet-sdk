@@ -39,7 +39,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Return_policy
             get => new global::EBay.AccountManagement.Generated.AccountV1.Return_policy.Get_by_policy_name.Get_by_policy_nameRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the EBay.AccountManagement.Generated.AccountV1.return_policy.item collection</summary>
-        /// <param name="position">This path parameter specifies the unique identifier of the return policy you want to retrieve. &lt;br&gt;&lt;br&gt; This ID can be retrieved for a return policy by using the &lt;a href=&quot;/api-docs/sell/account/resources/return_policy/methods/getReturnPolicies&quot; target=&quot;_blank &quot;&gt;getReturnPolicies&lt;/a&gt; method.</param>
+        /// <param name="position">This path parameter specifies the unique identifier of the return policy you want to retrieve. &lt;br&gt;&lt;br&gt; This ID can be retrieved for a return policy by using the &lt;a href=&quot;/develop/api/sell/account_api_v1#sell-account_api_v1-return_policy-getreturnpolicies&quot; target=&quot;_blank &quot;&gt;getReturnPolicies&lt;/a&gt; method.</param>
         /// <returns>A <see cref="global::EBay.AccountManagement.Generated.AccountV1.Return_policy.Item.WithReturn_policy_ItemRequestBuilder"/></returns>
         public global::EBay.AccountManagement.Generated.AccountV1.Return_policy.Item.WithReturn_policy_ItemRequestBuilder this[string position]
         {
@@ -55,7 +55,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Return_policy
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public Return_policyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/return_policy?marketplace_id={marketplace_id}", pathParameters)
+        public Return_policyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/return_policy", pathParameters)
         {
         }
         /// <summary>
@@ -63,7 +63,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Return_policy
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public Return_policyRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/return_policy?marketplace_id={marketplace_id}", rawUrl)
+        public Return_policyRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/return_policy", rawUrl)
         {
         }
         /// <summary>
@@ -72,6 +72,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Return_policy
         /// <returns>A <see cref="global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnPolicyResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnPolicyResponse?> GetAsync(Action<RequestConfiguration<global::EBay.AccountManagement.Generated.AccountV1.Return_policy.Return_policyRequestBuilder.Return_policyRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -82,7 +84,12 @@ namespace EBay.AccountManagement.Generated.AccountV1.Return_policy
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnPolicyResponse>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnPolicyResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnPolicyResponse>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnPolicyResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This method creates a new return policy where the policy encapsulates seller&apos;s terms for returning items.  &lt;br&gt;&lt;br&gt;Each policy targets a specific marketplace, and you can create multiple policies for each marketplace. Return policies are not applicable to motor-vehicle listings.&lt;br&gt;&lt;br&gt;A successful request returns the &lt;b&gt;getReturnPolicy&lt;/b&gt; URI to the new policy in the &lt;b&gt;Location&lt;/b&gt; response header and the ID for the new policy is returned in the response payload.  &lt;p class=&quot;tablenote&quot;&gt;&lt;b&gt;Tip:&lt;/b&gt; For details on creating and using the business policies supported by the Account API, see &lt;a href=&quot;/api-docs/sell/static/seller-accounts/business-policies.html&quot;&gt;eBay business policies&lt;/a&gt;.&lt;/p&gt;
@@ -91,6 +98,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Return_policy
         /// <param name="body">This root container defines a seller&apos;s return business policy for a specific marketplace and category group. This type is used when creating or updating a return business policy.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.AccountManagement.Generated.AccountV1.Models.SetReturnPolicyResponse?> PostAsync(global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnPolicyRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -102,7 +111,12 @@ namespace EBay.AccountManagement.Generated.AccountV1.Return_policy
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Models.SetReturnPolicyResponse>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Models.SetReturnPolicyResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Models.SetReturnPolicyResponse>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Models.SetReturnPolicyResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This method retrieves all the return policies configured for the marketplace you specify using the &lt;code&gt;marketplace_id&lt;/code&gt; query parameter.
@@ -118,7 +132,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Return_policy
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::EBay.AccountManagement.Generated.AccountV1.Return_policy.Return_policyRequestBuilder.Return_policyRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/return_policy?marketplace_id={marketplace_id}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -139,7 +153,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Return_policy
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/return_policy", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
@@ -160,7 +174,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Return_policy
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class Return_policyRequestBuilderGetQueryParameters 
         {
-            /// <summary>This query parameter specifies the ID of the eBay marketplace of the policies you want to retrieve. For implementation help, refer to eBay API documentation at https://developer.ebay.com/api-docs/sell/account/types/ba:MarketplaceIdEnum</summary>
+            /// <summary>This query parameter specifies the ID of the eBay marketplace of the policies you want to retrieve. For implementation help, refer to eBay API documentation at https://developer.ebay.com/develop/api/sell/account_api_v1#sell-account_api_v1-payment_policy-getpaymentpolicies.marketplaceidenum</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("marketplace_id")]

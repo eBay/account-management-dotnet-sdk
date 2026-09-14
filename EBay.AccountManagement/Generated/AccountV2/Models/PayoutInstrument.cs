@@ -45,14 +45,8 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
 #else
         public string InstrumentId { get; set; }
 #endif
-        /// <summary>The status of a payout instrument. Valid payout instrument statuses include:&lt;br/&gt;&lt;ul&gt;&lt;li&gt;&lt;code&gt;PENDING:&lt;/code&gt; This status indicates that the account must be verified before it can be used.&lt;/li&gt;&lt;li&gt;&lt;code&gt;ACTIVE:&lt;/code&gt;This status indicates that payouts are enabled on this account.&lt;/li&gt;&lt;li&gt;&lt;code&gt;VERIFICATION_FAILED:&lt;/code&gt; This status indicates that verification has failed for this account and payouts are disabled.&lt;/li&gt;&lt;li&gt;&lt;code&gt;INACTIVE:&lt;/code&gt; This status indicates that this account has become inactive and payouts are disabled.&lt;/li&gt;&lt;/ul&gt;&lt;br/&gt;See &lt;b&gt;InstrumentStatusEnum&lt;/b&gt; for more details on each instrument status value.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; Payment accounts can only receive payouts if the status of a payout instrument is &lt;code&gt;ACTIVE&lt;/code&gt;.&lt;/span&gt; For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/sel:InstrumentStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? InstrumentStatus { get; set; }
-#nullable restore
-#else
-        public string InstrumentStatus { get; set; }
-#endif
+        /// <summary>The status of a payout instrument. Valid payout instrument statuses include:&lt;br/&gt;&lt;ul&gt;&lt;li&gt;&lt;code&gt;PENDING:&lt;/code&gt; This status indicates that the account must be verified before it can be used.&lt;/li&gt;&lt;li&gt;&lt;code&gt;ACTIVE:&lt;/code&gt;This status indicates that payouts are enabled on this account.&lt;/li&gt;&lt;li&gt;&lt;code&gt;VERIFICATION_FAILED:&lt;/code&gt; This status indicates that verification has failed for this account and payouts are disabled.&lt;/li&gt;&lt;li&gt;&lt;code&gt;INACTIVE:&lt;/code&gt; This status indicates that this account has become inactive and payouts are disabled.&lt;/li&gt;&lt;/ul&gt;&lt;br/&gt;See &lt;b&gt;InstrumentStatusEnum&lt;/b&gt; for more details on each instrument status value.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; Payment accounts can only receive payouts if the status of a payout instrument is &lt;code&gt;ACTIVE&lt;/code&gt;.&lt;/span&gt;</summary>
+        public global::EBay.AccountManagement.Generated.AccountV2.Models.InstrumentStatusEnum? InstrumentStatus { get; set; }
         /// <summary>The type of account that received payouts. The value returned in this field may be:&lt;br/&gt;&lt;ul&gt;&lt;li&gt;&lt;code&gt;BANK&lt;/code&gt;: Indicates that the payout was made to a seller&apos;s bank account.&lt;/li&gt;&lt;li&gt;&lt;code&gt;CARD&lt;/code&gt; (&lt;b&gt;Not Currently Available&lt;/b&gt;): Indicates that the payout went to a seller&apos;s debit card.&lt;/li&gt;&lt;li&gt;The name of a digital wallet provider or payment processor (e.g., &lt;code&gt;PAYONEER&lt;/code&gt;)&lt;/li&gt;&lt;/ul&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; Only Payoneer is currently supported for sellers in mainland China. Card payouts are not currently available for sellers in mainland China.&lt;/span&gt; </summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -104,7 +98,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
             {
                 { "accountLastFourDigits", n => { AccountLastFourDigits = n.GetStringValue(); } },
                 { "instrumentId", n => { InstrumentId = n.GetStringValue(); } },
-                { "instrumentStatus", n => { InstrumentStatus = n.GetStringValue(); } },
+                { "instrumentStatus", n => { InstrumentStatus = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.InstrumentStatusEnum>(); } },
                 { "instrumentType", n => { InstrumentType = n.GetStringValue(); } },
                 { "nickname", n => { Nickname = n.GetStringValue(); } },
                 { "payoutPercentage", n => { PayoutPercentage = n.GetStringValue(); } },
@@ -119,7 +113,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("accountLastFourDigits", AccountLastFourDigits);
             writer.WriteStringValue("instrumentId", InstrumentId);
-            writer.WriteStringValue("instrumentStatus", InstrumentStatus);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.InstrumentStatusEnum>("instrumentStatus", InstrumentStatus);
             writer.WriteStringValue("instrumentType", InstrumentType);
             writer.WriteStringValue("nickname", Nickname);
             writer.WriteStringValue("payoutPercentage", PayoutPercentage);

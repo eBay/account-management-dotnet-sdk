@@ -22,14 +22,14 @@ using System;
 namespace EBay.AccountManagement.Generated.Finances.Models
 {
     /// <summary>
-    /// This type is the base response type of the &lt;strong&gt;getTransactionSummary&lt;/strong&gt; method, and based on the filters that are used in the &lt;strong&gt;getTransactionSummary&lt;/strong&gt; call URI, the response may include  total count and amount of the seller&apos;s sales and credits, total count and amount of buyer refunds, and total count and amount of seller payment holds.
+    /// This type is the base response type of the &lt;strong&gt;getTransactionSummary&lt;/strong&gt; method, and based on the filters that are used in the &lt;strong&gt;getTransactionSummary&lt;/strong&gt; call URI, the response may include total count and amount of the seller&apos;s sales and credits, total count and amount of buyer refunds, and total count and amount of seller payment holds.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class TransactionSummaryResponse : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>Total adjustment amount for given payee within a specified period.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? AdjustmentAmount { get; set; }
@@ -37,17 +37,11 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount AdjustmentAmount { get; set; }
 #endif
-        /// <summary>The credit debit sign indicator for adjustment. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/pay:BookingEntryEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? AdjustmentBookingEntry { get; set; }
-#nullable restore
-#else
-        public string AdjustmentBookingEntry { get; set; }
-#endif
+        /// <summary>The credit debit sign indicator for adjustment.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum? AdjustmentBookingEntry { get; set; }
         /// <summary>Total adjustment count for given payee within a specified period.</summary>
-        public int? AdjustmentCount { get; set; }
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        public long? AdjustmentCount { get; set; }
+        /// <summary>The total balance transfer amount for given payee within the specified period.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? BalanceTransferAmount { get; set; }
@@ -55,17 +49,11 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount BalanceTransferAmount { get; set; }
 #endif
-        /// <summary>The credit debit sign indicator for the balance transfer. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/pay:BookingEntryEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? BalanceTransferBookingEntry { get; set; }
-#nullable restore
-#else
-        public string BalanceTransferBookingEntry { get; set; }
-#endif
+        /// <summary>The credit debit sign indicator for the balance transfer.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum? BalanceTransferBookingEntry { get; set; }
         /// <summary>The total balance transfer count for given payee within the specified period.</summary>
-        public int? BalanceTransferCount { get; set; }
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        public long? BalanceTransferCount { get; set; }
+        /// <summary>This amount is the total dollar value of all the seller&apos;s sales and/or credits that match the input criteria.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? CreditAmount { get; set; }
@@ -73,17 +61,11 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount CreditAmount { get; set; }
 #endif
-        /// <summary>The enumeration value indicates whether the dollar amount in the &lt;strong&gt;creditAmount&lt;/strong&gt; field is a charge (debit) to the seller or a credit. Typically, the enumeration value returned here will be &lt;code&gt;CREDIT&lt;/code&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/pay:BookingEntryEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? CreditBookingEntry { get; set; }
-#nullable restore
-#else
-        public string CreditBookingEntry { get; set; }
-#endif
-        /// <summary>This integer value indicates the total number of the seller&apos;s sales and/or credits that match the input criteria. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Unless the &lt;b&gt;transactionType&lt;/b&gt; filter is used in the request to retrieve a specific type of monetary transaction (sale, buyer refund, or seller credit), the &lt;b&gt;creditCount&lt;/b&gt; and &lt;b&gt;creditAmount&lt;/b&gt; fields account for both order sales and seller credits (the count and value is not distinguished between the two monetary transaction types).&lt;/span&gt;&lt;br&gt;&lt;br&gt;This field is generally returned, even if &lt;code&gt;0&lt;/code&gt;, but it will not be returned if a &lt;strong&gt;transactionType&lt;/strong&gt; filter is used, and its value is set to either &lt;code&gt;REFUND&lt;/code&gt;, &lt;code&gt;DISPUTE&lt;/code&gt;, or &lt;code&gt;SHIPPING_LABEL&lt;/code&gt;.</summary>
-        public int? CreditCount { get; set; }
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>The enumeration value indicates whether the dollar amount in the &lt;strong&gt;creditAmount&lt;/strong&gt; field is a charge (debit) to the seller or a credit.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum? CreditBookingEntry { get; set; }
+        /// <summary>This integer value indicates the total number of the seller&apos;s sales and/or credits that match the input criteria.</summary>
+        public long? CreditCount { get; set; }
+        /// <summary>This amount is the total dollar value associated with any existing payment disputes.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? DisputeAmount { get; set; }
@@ -91,17 +73,11 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount DisputeAmount { get; set; }
 #endif
-        /// <summary>The enumeration value indicates whether the dollar amount in the &lt;strong&gt;disputeAmount&lt;/strong&gt; field is a charge (debit) to the seller or a credit. Typically, the enumeration value returned here will be &lt;code&gt;DEBIT&lt;/code&gt;, but its possible that &lt;code&gt;CREDIT&lt;/code&gt; could be returned if the seller contested one or more payment disputes and won the dispute. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/pay:BookingEntryEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? DisputeBookingEntry { get; set; }
-#nullable restore
-#else
-        public string DisputeBookingEntry { get; set; }
-#endif
-        /// <summary>This integer value indicates the total number of payment disputes that have been initiated by one or more buyers. Only the orders that match the input criteria are considered. The Payment Disputes methods in the Fulfillment API can be used by the seller to retrieve more information about any payment disputes. &lt;br&gt;&lt;br&gt;This field is generally returned, even if &lt;code&gt;0&lt;/code&gt;, but it will not be returned if a &lt;strong&gt;transactionType&lt;/strong&gt; filter is used, and its value is set to any value other than &lt;code&gt;DISPUTE&lt;/code&gt;.</summary>
-        public int? DisputeCount { get; set; }
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>The enumeration value indicates whether the dollar amount in the &lt;strong&gt;disputeAmount&lt;/strong&gt; field is a charge (debit) to the seller or a credit.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum? DisputeBookingEntry { get; set; }
+        /// <summary>This integer value indicates the total number of payment disputes.</summary>
+        public long? DisputeCount { get; set; }
+        /// <summary>The sum of all &lt;code&gt;LOAN_REPAYMENT&lt;/code&gt; transactions (i.e., debit and credit,) that match the input criteria.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? LoanRepaymentAmount { get; set; }
@@ -109,17 +85,11 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount LoanRepaymentAmount { get; set; }
 #endif
-        /// <summary>The enumeration value indicates whether the &lt;code&gt;loanRepaymentAmount&lt;/code&gt; is a &lt;code&gt;DEBIT&lt;/code&gt; against, or a &lt;code&gt;CREDIT&lt;/code&gt; to, the sellers&apos;s account.&lt;br&gt;&lt;br&gt;For most &lt;code&gt;loanRepaymentAmount&lt;/code&gt; transactions, &lt;code&gt;loanRepaymentBookingEntry&lt;/code&gt; will be &lt;b&gt;DEBIT&lt;/b&gt;. However, if a loan repayment transaction is reversed, that transaction will be shown as a &lt;b&gt;CREDIT&lt;/b&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/pay:BookingEntryEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? LoanRepaymentBookingEntry { get; set; }
-#nullable restore
-#else
-        public string LoanRepaymentBookingEntry { get; set; }
-#endif
-        /// <summary>This integer value indicates the total number of &lt;code&gt;LOAN_REPAYMENT&lt;/code&gt; transactions (i.e., &lt;code&gt;DEBIT&lt;/code&gt; and &lt;code&gt;CREDIT&lt;/code&gt;,) that match the input criteria.&lt;br&gt;&lt;br&gt;This field is generally returned even if it equals &lt;b&gt;0&lt;/b&gt;. However it will not be returned if a &lt;code&gt;transactionType&lt;/code&gt; filter is used and its value has been set to any enumeration value other than &lt;code&gt;LOAN_REPAYMENT&lt;/code&gt;.</summary>
-        public int? LoanRepaymentCount { get; set; }
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>The enumeration value indicates whether the &lt;code&gt;loanRepaymentAmount&lt;/code&gt; is a &lt;code&gt;DEBIT&lt;/code&gt; against, or a &lt;code&gt;CREDIT&lt;/code&gt; to, the sellers&apos;s account.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum? LoanRepaymentBookingEntry { get; set; }
+        /// <summary>This integer value indicates the total number of &lt;code&gt;LOAN_REPAYMENT&lt;/code&gt; transactions.</summary>
+        public long? LoanRepaymentCount { get; set; }
+        /// <summary>The total non-sale charge amount for given payee within a specified period.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? NonSaleChargeAmount { get; set; }
@@ -127,17 +97,11 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount NonSaleChargeAmount { get; set; }
 #endif
-        /// <summary>The credit/debit sign indicator for the non-sale charge. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/pay:BookingEntryEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? NonSaleChargeBookingEntry { get; set; }
-#nullable restore
-#else
-        public string NonSaleChargeBookingEntry { get; set; }
-#endif
+        /// <summary>The credit/debit sign indicator for the non-sale charge.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum? NonSaleChargeBookingEntry { get; set; }
         /// <summary>The total non-sale charge count for given payee within a specified period.</summary>
-        public int? NonSaleChargeCount { get; set; }
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        public long? NonSaleChargeCount { get; set; }
+        /// <summary>This amount is the total dollar value of order sales where the associated funds are on hold.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? OnHoldAmount { get; set; }
@@ -145,17 +109,11 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount OnHoldAmount { get; set; }
 #endif
-        /// <summary>The enumeration value indicates whether the dollar amount in the &lt;strong&gt;onHoldAmount&lt;/strong&gt; field is a charge (debit) to the seller or a credit. Typically, the enumeration value returned here will be &lt;code&gt;CREDIT&lt;/code&gt;, since on-hold funds should eventually be released as part of a payout to the seller once the hold is cleared. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/pay:BookingEntryEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? OnHoldBookingEntry { get; set; }
-#nullable restore
-#else
-        public string OnHoldBookingEntry { get; set; }
-#endif
-        /// <summary>This integer value indicates the total number of order sales where the associated funds are on hold. Only the orders that match the input criteria are considered.&lt;br&gt;&lt;br&gt;This field is generally returned, even if &lt;code&gt;0&lt;/code&gt;, but it will not be returned if a &lt;strong&gt;transactionStatus&lt;/strong&gt; filter is used, and its value is set to any value other than &lt;code&gt;FUNDS_ON_HOLD&lt;/code&gt;.</summary>
-        public int? OnHoldCount { get; set; }
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>The enumeration value indicates whether the dollar amount in the &lt;strong&gt;onHoldAmount&lt;/strong&gt; field is a charge (debit) to the seller or a credit.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum? OnHoldBookingEntry { get; set; }
+        /// <summary>This integer value indicates the total number of order sales where the associated funds are on hold.</summary>
+        public long? OnHoldCount { get; set; }
+        /// <summary>&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; The &lt;code&gt;PURCHASE&lt;/code&gt; transaction type is currently only applicable in the US marketplace.&lt;/span&gt;&lt;br&gt;This amount is the total dollar value of all the purchases that have been initiated by a seller using spendable funds.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? PurchaseAmount { get; set; }
@@ -163,17 +121,11 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount PurchaseAmount { get; set; }
 #endif
-        /// <summary>&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; The &lt;code&gt;PURCHASE&lt;/code&gt; transaction type is currently only applicable in the US marketplace.&lt;/span&gt;&lt;br&gt;This enumeration value indicates whether the dollar amount in the &lt;b&gt;purchase&lt;/b&gt; field is a charge (debit) to the seller or a credit. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/pay:BookingEntryEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? PurchaseBookingEntry { get; set; }
-#nullable restore
-#else
-        public string PurchaseBookingEntry { get; set; }
-#endif
-        /// <summary>&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; The &lt;code&gt;PURCHASE&lt;/code&gt; transaction type is currently only applicable in the US marketplace.&lt;/span&gt;&lt;br&gt;This integer value indicates the total number of purchases that have been initiated by a seller using spendable funds that match the input criteria.&lt;br&gt;&lt;br&gt;This field is generally returned, even if it equals &lt;code&gt;0&lt;/code&gt;. However, it will not be returned if a &lt;code&gt;transactionType&lt;/code&gt; filter is used and its value has been set to any enumeration value other than &lt;code&gt;PURCHASE&lt;/code&gt;.</summary>
-        public int? PurchaseCount { get; set; }
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>This enumeration value indicates whether the dollar amount in the &lt;b&gt;purchase&lt;/b&gt; field is a charge (debit) to the seller or a credit.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum? PurchaseBookingEntry { get; set; }
+        /// <summary>This integer value indicates the total number of purchases initiated by a seller using spendable funds.</summary>
+        public long? PurchaseCount { get; set; }
+        /// <summary>This amount is the total dollar value of buyer refunds that match the input criteria.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? RefundAmount { get; set; }
@@ -181,17 +133,11 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount RefundAmount { get; set; }
 #endif
-        /// <summary>The enumeration value indicates whether the dollar amount in the &lt;strong&gt;refundAmount&lt;/strong&gt; field is a charge (debit) to the seller or a credit. Typically, the enumeration value returned here will be &lt;code&gt;DEBIT&lt;/code&gt; since this a refund from the seller to the buyer. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/pay:BookingEntryEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? RefundBookingEntry { get; set; }
-#nullable restore
-#else
-        public string RefundBookingEntry { get; set; }
-#endif
-        /// <summary>This integer value indicates the total number of buyer refunds that match the input criteria. &lt;br&gt;&lt;br&gt;This field is generally returned, even if &lt;code&gt;0&lt;/code&gt;, but it will not be returned if a &lt;strong&gt;transactionType&lt;/strong&gt; filter is used, and its value is set to any value other than &lt;code&gt;REFUND&lt;/code&gt;.</summary>
-        public int? RefundCount { get; set; }
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>The enumeration value indicates whether the dollar amount in the &lt;strong&gt;refundAmount&lt;/strong&gt; field is a charge (debit) to the seller or a credit.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum? RefundBookingEntry { get; set; }
+        /// <summary>This integer value indicates the total number of buyer refunds that match the input criteria.</summary>
+        public long? RefundCount { get; set; }
+        /// <summary>This is the total dollar value of the eBay shipping labels purchased by the seller.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? ShippingLabelAmount { get; set; }
@@ -199,17 +145,11 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount ShippingLabelAmount { get; set; }
 #endif
-        /// <summary>The enumeration value indicates whether the dollar amount in the &lt;strong&gt;shippingLabelAmount&lt;/strong&gt; field is a charge (debit) to the seller or a credit. Typically, the enumeration value returned here will be &lt;code&gt;DEBIT&lt;/code&gt;, as eBay will charge the seller when eBay shipping labels are purchased, but it can be &lt;code&gt;CREDIT&lt;/code&gt; if the seller was refunded for a shipping label or was possibly overcharged for a shipping label. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; eBay SHIPPING_LABEL transactions paid through PayPal are not currently supported by the Finances API, so those transactions will not be reflected in this field.&lt;/span&gt; For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/pay:BookingEntryEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ShippingLabelBookingEntry { get; set; }
-#nullable restore
-#else
-        public string ShippingLabelBookingEntry { get; set; }
-#endif
-        /// <summary>This is the total number of eBay shipping labels purchased by the seller. The count returned here may depend on the specified input criteria.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; eBay SHIPPING_LABEL transactions paid through PayPal are not currently supported by the Finances API, so those transactions will not be reflected in the count returned in this container.&lt;/span&gt;</summary>
-        public int? ShippingLabelCount { get; set; }
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>The enumeration value indicates whether the dollar amount in the &lt;strong&gt;shippingLabelAmount&lt;/strong&gt; field is a charge (debit) to the seller or a credit.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum? ShippingLabelBookingEntry { get; set; }
+        /// <summary>This is the total number of eBay shipping labels purchased by the seller.</summary>
+        public long? ShippingLabelCount { get; set; }
+        /// <summary>This amount is the total dollar value of buyer refund transfers that match the input criteria.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? TransferAmount { get; set; }
@@ -217,17 +157,11 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount TransferAmount { get; set; }
 #endif
-        /// <summary>The enumeration value indicates whether the dollar amount in the &lt;strong&gt;transferAmount&lt;/strong&gt; field is a charge (debit) to the seller or a credit. Typically, the enumeration value returned here will be &lt;code&gt;DEBIT&lt;/code&gt; since this a seller reimbursement to eBay for buyer refunds. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/pay:BookingEntryEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? TransferBookingEntry { get; set; }
-#nullable restore
-#else
-        public string TransferBookingEntry { get; set; }
-#endif
-        /// <summary>This integer value indicates the total number of buyer refund transfers that match the input criteria. &lt;br&gt;&lt;br&gt;This field is generally returned, even if &lt;code&gt;0&lt;/code&gt;, but it will not be returned if a &lt;strong&gt;transactionType&lt;/strong&gt; filter is used, and its value is set to any value other than &lt;code&gt;TRANSFER&lt;/code&gt;.</summary>
-        public int? TransferCount { get; set; }
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>The enumeration value indicates whether the dollar amount in the &lt;strong&gt;transferAmount&lt;/strong&gt; field is a charge (debit) to the seller or a credit.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum? TransferBookingEntry { get; set; }
+        /// <summary>This integer value indicates the total number of buyer refund transfers that match the input criteria.</summary>
+        public long? TransferCount { get; set; }
+        /// <summary>This amount is the total dollar value of on-demand payouts (withdrawals) that match the input criteria.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? WithdrawalAmount { get; set; }
@@ -235,16 +169,10 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount WithdrawalAmount { get; set; }
 #endif
-        /// <summary>The enumeration value indicates whether the dollar amount in the &lt;strong&gt;withdrawalAmount&lt;/strong&gt; field is a charge (debit) to the seller or a credit. Typically, the enumeration value returned here will be &lt;code&gt;DEBIT&lt;/code&gt; since this transaction involves a debit to the seller&apos;s available payout funds. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/pay:BookingEntryEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? WithdrawalBookingEntry { get; set; }
-#nullable restore
-#else
-        public string WithdrawalBookingEntry { get; set; }
-#endif
-        /// <summary>This integer value indicates the total number of on-demand payouts (withdrawals) that match the input criteria. &lt;br&gt;&lt;br&gt;This field is generally returned, even if &lt;code&gt;0&lt;/code&gt;, but it will not be returned if a &lt;strong&gt;transactionType&lt;/strong&gt; filter is used, and its value is set to any value other than &lt;code&gt;WITHDRAWAL&lt;/code&gt;.</summary>
-        public int? WithdrawalCount { get; set; }
+        /// <summary>The enumeration value indicates whether the dollar amount in the &lt;strong&gt;withdrawalAmount&lt;/strong&gt; field is a charge (debit) to the seller or a credit.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum? WithdrawalBookingEntry { get; set; }
+        /// <summary>This integer value indicates the total number of on-demand payouts (withdrawals) that match the input criteria.</summary>
+        public long? WithdrawalCount { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.Finances.Models.TransactionSummaryResponse"/> and sets the default values.
         /// </summary>
@@ -271,41 +199,41 @@ namespace EBay.AccountManagement.Generated.Finances.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "adjustmentAmount", n => { AdjustmentAmount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
-                { "adjustmentBookingEntry", n => { AdjustmentBookingEntry = n.GetStringValue(); } },
-                { "adjustmentCount", n => { AdjustmentCount = n.GetIntValue(); } },
+                { "adjustmentBookingEntry", n => { AdjustmentBookingEntry = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>(); } },
+                { "adjustmentCount", n => { AdjustmentCount = n.GetLongValue(); } },
                 { "balanceTransferAmount", n => { BalanceTransferAmount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
-                { "balanceTransferBookingEntry", n => { BalanceTransferBookingEntry = n.GetStringValue(); } },
-                { "balanceTransferCount", n => { BalanceTransferCount = n.GetIntValue(); } },
+                { "balanceTransferBookingEntry", n => { BalanceTransferBookingEntry = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>(); } },
+                { "balanceTransferCount", n => { BalanceTransferCount = n.GetLongValue(); } },
                 { "creditAmount", n => { CreditAmount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
-                { "creditBookingEntry", n => { CreditBookingEntry = n.GetStringValue(); } },
-                { "creditCount", n => { CreditCount = n.GetIntValue(); } },
+                { "creditBookingEntry", n => { CreditBookingEntry = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>(); } },
+                { "creditCount", n => { CreditCount = n.GetLongValue(); } },
                 { "disputeAmount", n => { DisputeAmount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
-                { "disputeBookingEntry", n => { DisputeBookingEntry = n.GetStringValue(); } },
-                { "disputeCount", n => { DisputeCount = n.GetIntValue(); } },
+                { "disputeBookingEntry", n => { DisputeBookingEntry = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>(); } },
+                { "disputeCount", n => { DisputeCount = n.GetLongValue(); } },
                 { "loanRepaymentAmount", n => { LoanRepaymentAmount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
-                { "loanRepaymentBookingEntry", n => { LoanRepaymentBookingEntry = n.GetStringValue(); } },
-                { "loanRepaymentCount", n => { LoanRepaymentCount = n.GetIntValue(); } },
+                { "loanRepaymentBookingEntry", n => { LoanRepaymentBookingEntry = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>(); } },
+                { "loanRepaymentCount", n => { LoanRepaymentCount = n.GetLongValue(); } },
                 { "nonSaleChargeAmount", n => { NonSaleChargeAmount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
-                { "nonSaleChargeBookingEntry", n => { NonSaleChargeBookingEntry = n.GetStringValue(); } },
-                { "nonSaleChargeCount", n => { NonSaleChargeCount = n.GetIntValue(); } },
+                { "nonSaleChargeBookingEntry", n => { NonSaleChargeBookingEntry = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>(); } },
+                { "nonSaleChargeCount", n => { NonSaleChargeCount = n.GetLongValue(); } },
                 { "onHoldAmount", n => { OnHoldAmount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
-                { "onHoldBookingEntry", n => { OnHoldBookingEntry = n.GetStringValue(); } },
-                { "onHoldCount", n => { OnHoldCount = n.GetIntValue(); } },
+                { "onHoldBookingEntry", n => { OnHoldBookingEntry = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>(); } },
+                { "onHoldCount", n => { OnHoldCount = n.GetLongValue(); } },
                 { "purchaseAmount", n => { PurchaseAmount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
-                { "purchaseBookingEntry", n => { PurchaseBookingEntry = n.GetStringValue(); } },
-                { "purchaseCount", n => { PurchaseCount = n.GetIntValue(); } },
+                { "purchaseBookingEntry", n => { PurchaseBookingEntry = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>(); } },
+                { "purchaseCount", n => { PurchaseCount = n.GetLongValue(); } },
                 { "refundAmount", n => { RefundAmount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
-                { "refundBookingEntry", n => { RefundBookingEntry = n.GetStringValue(); } },
-                { "refundCount", n => { RefundCount = n.GetIntValue(); } },
+                { "refundBookingEntry", n => { RefundBookingEntry = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>(); } },
+                { "refundCount", n => { RefundCount = n.GetLongValue(); } },
                 { "shippingLabelAmount", n => { ShippingLabelAmount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
-                { "shippingLabelBookingEntry", n => { ShippingLabelBookingEntry = n.GetStringValue(); } },
-                { "shippingLabelCount", n => { ShippingLabelCount = n.GetIntValue(); } },
+                { "shippingLabelBookingEntry", n => { ShippingLabelBookingEntry = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>(); } },
+                { "shippingLabelCount", n => { ShippingLabelCount = n.GetLongValue(); } },
                 { "transferAmount", n => { TransferAmount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
-                { "transferBookingEntry", n => { TransferBookingEntry = n.GetStringValue(); } },
-                { "transferCount", n => { TransferCount = n.GetIntValue(); } },
+                { "transferBookingEntry", n => { TransferBookingEntry = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>(); } },
+                { "transferCount", n => { TransferCount = n.GetLongValue(); } },
                 { "withdrawalAmount", n => { WithdrawalAmount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
-                { "withdrawalBookingEntry", n => { WithdrawalBookingEntry = n.GetStringValue(); } },
-                { "withdrawalCount", n => { WithdrawalCount = n.GetIntValue(); } },
+                { "withdrawalBookingEntry", n => { WithdrawalBookingEntry = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>(); } },
+                { "withdrawalCount", n => { WithdrawalCount = n.GetLongValue(); } },
             };
         }
         /// <summary>
@@ -316,41 +244,41 @@ namespace EBay.AccountManagement.Generated.Finances.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("adjustmentAmount", AdjustmentAmount);
-            writer.WriteStringValue("adjustmentBookingEntry", AdjustmentBookingEntry);
-            writer.WriteIntValue("adjustmentCount", AdjustmentCount);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>("adjustmentBookingEntry", AdjustmentBookingEntry);
+            writer.WriteLongValue("adjustmentCount", AdjustmentCount);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("balanceTransferAmount", BalanceTransferAmount);
-            writer.WriteStringValue("balanceTransferBookingEntry", BalanceTransferBookingEntry);
-            writer.WriteIntValue("balanceTransferCount", BalanceTransferCount);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>("balanceTransferBookingEntry", BalanceTransferBookingEntry);
+            writer.WriteLongValue("balanceTransferCount", BalanceTransferCount);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("creditAmount", CreditAmount);
-            writer.WriteStringValue("creditBookingEntry", CreditBookingEntry);
-            writer.WriteIntValue("creditCount", CreditCount);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>("creditBookingEntry", CreditBookingEntry);
+            writer.WriteLongValue("creditCount", CreditCount);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("disputeAmount", DisputeAmount);
-            writer.WriteStringValue("disputeBookingEntry", DisputeBookingEntry);
-            writer.WriteIntValue("disputeCount", DisputeCount);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>("disputeBookingEntry", DisputeBookingEntry);
+            writer.WriteLongValue("disputeCount", DisputeCount);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("loanRepaymentAmount", LoanRepaymentAmount);
-            writer.WriteStringValue("loanRepaymentBookingEntry", LoanRepaymentBookingEntry);
-            writer.WriteIntValue("loanRepaymentCount", LoanRepaymentCount);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>("loanRepaymentBookingEntry", LoanRepaymentBookingEntry);
+            writer.WriteLongValue("loanRepaymentCount", LoanRepaymentCount);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("nonSaleChargeAmount", NonSaleChargeAmount);
-            writer.WriteStringValue("nonSaleChargeBookingEntry", NonSaleChargeBookingEntry);
-            writer.WriteIntValue("nonSaleChargeCount", NonSaleChargeCount);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>("nonSaleChargeBookingEntry", NonSaleChargeBookingEntry);
+            writer.WriteLongValue("nonSaleChargeCount", NonSaleChargeCount);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("onHoldAmount", OnHoldAmount);
-            writer.WriteStringValue("onHoldBookingEntry", OnHoldBookingEntry);
-            writer.WriteIntValue("onHoldCount", OnHoldCount);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>("onHoldBookingEntry", OnHoldBookingEntry);
+            writer.WriteLongValue("onHoldCount", OnHoldCount);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("purchaseAmount", PurchaseAmount);
-            writer.WriteStringValue("purchaseBookingEntry", PurchaseBookingEntry);
-            writer.WriteIntValue("purchaseCount", PurchaseCount);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>("purchaseBookingEntry", PurchaseBookingEntry);
+            writer.WriteLongValue("purchaseCount", PurchaseCount);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("refundAmount", RefundAmount);
-            writer.WriteStringValue("refundBookingEntry", RefundBookingEntry);
-            writer.WriteIntValue("refundCount", RefundCount);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>("refundBookingEntry", RefundBookingEntry);
+            writer.WriteLongValue("refundCount", RefundCount);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("shippingLabelAmount", ShippingLabelAmount);
-            writer.WriteStringValue("shippingLabelBookingEntry", ShippingLabelBookingEntry);
-            writer.WriteIntValue("shippingLabelCount", ShippingLabelCount);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>("shippingLabelBookingEntry", ShippingLabelBookingEntry);
+            writer.WriteLongValue("shippingLabelCount", ShippingLabelCount);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("transferAmount", TransferAmount);
-            writer.WriteStringValue("transferBookingEntry", TransferBookingEntry);
-            writer.WriteIntValue("transferCount", TransferCount);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>("transferBookingEntry", TransferBookingEntry);
+            writer.WriteLongValue("transferCount", TransferCount);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("withdrawalAmount", WithdrawalAmount);
-            writer.WriteStringValue("withdrawalBookingEntry", WithdrawalBookingEntry);
-            writer.WriteIntValue("withdrawalCount", WithdrawalCount);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>("withdrawalBookingEntry", WithdrawalBookingEntry);
+            writer.WriteLongValue("withdrawalCount", WithdrawalCount);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

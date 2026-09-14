@@ -29,7 +29,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>This container shows the total value (and currency type used) of the seller payouts that match the input criteria. This field is not returned if there are no payouts that match the input criteria.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? Amount { get; set; }
@@ -38,9 +38,9 @@ namespace EBay.AccountManagement.Generated.Finances.Models
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount Amount { get; set; }
 #endif
         /// <summary>This integer value indicates the total count of payouts to the seller that match the input criteria. This field is always returned, even if there are no payouts that match the input criteria (its value will show &lt;code&gt;0&lt;/code&gt;).</summary>
-        public int? PayoutCount { get; set; }
+        public long? PayoutCount { get; set; }
         /// <summary>This integer value indicates the total count of monetary transactions (order payments, buyer refunds, and seller credits) associated with the payouts that match the input criteria. This field is always returned, even if there are no payouts that match the input criteria (its value will show &lt;code&gt;0&lt;/code&gt;). If there is at least one payout that matches the input criteria, the value in this field will be at least &lt;code&gt;1&lt;/code&gt;.</summary>
-        public int? TransactionCount { get; set; }
+        public long? TransactionCount { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.Finances.Models.PayoutSummaryResponse"/> and sets the default values.
         /// </summary>
@@ -67,8 +67,8 @@ namespace EBay.AccountManagement.Generated.Finances.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "amount", n => { Amount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
-                { "payoutCount", n => { PayoutCount = n.GetIntValue(); } },
-                { "transactionCount", n => { TransactionCount = n.GetIntValue(); } },
+                { "payoutCount", n => { PayoutCount = n.GetLongValue(); } },
+                { "transactionCount", n => { TransactionCount = n.GetLongValue(); } },
             };
         }
         /// <summary>
@@ -79,8 +79,8 @@ namespace EBay.AccountManagement.Generated.Finances.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("amount", Amount);
-            writer.WriteIntValue("payoutCount", PayoutCount);
-            writer.WriteIntValue("transactionCount", TransactionCount);
+            writer.WriteLongValue("payoutCount", PayoutCount);
+            writer.WriteLongValue("transactionCount", TransactionCount);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

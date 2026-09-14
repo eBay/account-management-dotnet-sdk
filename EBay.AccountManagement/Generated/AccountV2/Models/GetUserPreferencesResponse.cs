@@ -29,7 +29,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This container is used to change the combined payment option. Sellers have the option to combine multiple line items from the same buyer into a combined invoice that can be paid for with one payment. See CombinedPaymentOptionEnum for a description of each value.</summary>
+        /// <summary>This container returns the combined payment preferences when the &lt;code&gt;COMBINED_PAYMENT&lt;/code&gt; value is included through the &lt;b&gt;fieldgroups&lt;/b&gt; query parameter or when &lt;b&gt;fieldgroups&lt;/b&gt;=&lt;code&gt;ALL&lt;/code&gt;. It indicates if the seller allows multiple line items from the same buyer to be combined.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedPaymentPreferencesType? CombinedPaymentPreferences { get; set; }
@@ -37,7 +37,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
 #else
         public global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedPaymentPreferencesType CombinedPaymentPreferences { get; set; }
 #endif
-        /// <summary>This container is used to change the order cut-off time for same-day shipping.</summary>
+        /// <summary>This container is returned when the &lt;code&gt;DISPATCH_CUTOFF_TIME&lt;/code&gt; value is included through the &lt;b&gt;fieldgroups&lt;/b&gt; query parameter or when &lt;b&gt;fieldgroups&lt;/b&gt;=&lt;code&gt;ALL&lt;/code&gt;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.DispatchCutoffTimePreferencesType? DispatchCutoffTimePreference { get; set; }
@@ -47,7 +47,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
 #endif
         /// <summary>This boolean field indicates whether or not the seller’s account is configured to automatically send an email to buyers with the shipment tracking number for an order.</summary>
         public bool? EmailShipmentTrackingNumberPreference { get; set; }
-        /// <summary>This container shows the seller&apos;s preferences for the end-of-auction email sent to the winning bidder.</summary>
+        /// <summary>This container allows sellers to customize the email sent to buyers immediately after an auction listing is won.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.EndOfAuctionEmailPreferencesType? EndOfAuctionEmailPreferences { get; set; }
@@ -57,7 +57,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
 #endif
         /// <summary>This boolean field indicates whether or not the seller’s new listings on the eBay marketplace will automatically use the Global Shipping Program for international shipping. This field is returned when the &lt;code&gt;GLOBAL_SHIPPING_PROGRAM&lt;/code&gt; value is included through the &lt;b&gt;fieldgroups&lt;/b&gt; query parameter or when &lt;b&gt;fieldgroups&lt;/b&gt;=&lt;code&gt;ALL&lt;/code&gt;. &lt;/br&gt; &lt;b&gt;Note&lt;/b&gt;: The Global Shipping Program is only available for the eBay UK marketplace, and the seller must be opted into the program.</summary>
         public bool? GlobalShippingProgramListingPreference { get; set; }
-        /// <summary>This container represents the seller&apos;s preferences for the list of items that are awaiting payment.</summary>
+        /// <summary>This container shows the seller’s preferences for automatically handling unpaid line items.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.GetItemsAwaitingPaymentPreferencesType? ItemsAwaitingPaymentPreferences { get; set; }
@@ -77,7 +77,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
         public bool? PurchaseReminderEmailPreferences { get; set; }
         /// <summary>This boolean field indicates whether or not the buyer is required to provide a shipping phone number during checkout.</summary>
         public bool? RequiredShipPhoneNumberPreference { get; set; }
-        /// <summary>This container represents the list of locations that the seller wants to exclude from shipping.</summary>
+        /// <summary>This container shows the list of locations that the seller does not ship to. This list of shipping locations can only be updated in My eBay through Shipping Preferences and not with the &lt;code&gt;setUserPreferences&lt;/code&gt; method.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.SellerExcludeShipToLocationPreferencesType? SellerExcludeShipToLocationPreferences { get; set; }
@@ -85,7 +85,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
 #else
         public global::EBay.AccountManagement.Generated.AccountV2.Models.SellerExcludeShipToLocationPreferencesType SellerExcludeShipToLocationPreferences { get; set; }
 #endif
-        /// <summary>This container indicates whether or not the seller is opted into Business Policies. If a seller is opted into Business Policies, they must use Payment,Return, and Shipping business policies instead of individual payment, return, and shipping fields.</summary>
+        /// <summary>This container is returned when the &lt;code&gt;SELLER_PROFILE&lt;/code&gt; value is included through the &lt;b&gt;fieldgroups&lt;/b&gt; query parameter or when &lt;b&gt;fieldgroups&lt;/b&gt;=&lt;code&gt;ALL&lt;/code&gt;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.SellerProfilePreferencesType? SellerProfilePreferences { get; set; }
@@ -93,7 +93,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
 #else
         public global::EBay.AccountManagement.Generated.AccountV2.Models.SellerProfilePreferencesType SellerProfilePreferences { get; set; }
 #endif
-        /// <summary>This field is included if the seller wishes to add or modify the shipping carrier rate type that is available to the seller. This field is only returned if set. &lt;/br&gt;&lt;b&gt;Note&lt;/b&gt;: This container is only applicable to the eBay US marketplace.</summary>
+        /// <summary>This container indicates the FedEx, UPS, and US Post Office shipping rate types that are available to the seller. This container is returned when the &lt;code&gt;SHIPPING_CARRIER_RATE&lt;/code&gt; value is included through the &lt;b&gt;fieldgroups&lt;/b&gt; query parameter or when &lt;b&gt;fieldgroups&lt;/b&gt;=&lt;code&gt;ALL&lt;/code&gt;. &lt;/br&gt;&lt;b&gt;Note&lt;/b&gt;: This container is only applicable to the eBay US marketplace.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.ShippingCarrierRatePreferencesType? ShippingCarrierRatePreferences { get; set; }

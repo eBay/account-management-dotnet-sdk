@@ -29,14 +29,8 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This field specifies the duration within which multiple unpaid orders may be combined into a single invoice. &lt;br&gt;&lt;br&gt;One of the values in the CombinedPaymentPeriodEnum type must be used in this field. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:CombinedPaymentPeriodEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? CombinedDuration { get; set; }
-#nullable restore
-#else
-        public string CombinedDuration { get; set; }
-#endif
+        /// <summary>This field specifies the duration within which multiple unpaid orders may be combined into a single invoice. &lt;br&gt;&lt;br&gt;One of the values in &lt;a href=&quot;/develop/api/sell/account_api_v2#sell-account_api_v2-combined_shipping_rules-getcombinedshippingrules.getcombinedshippingrulesresponse.combinedduration&quot; target=&quot;_blank&quot;&gt;CombinedPaymentPeriodEnum&lt;/a&gt; must be used in this field.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedPaymentPeriodEnum? CombinedDuration { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.AccountV2.Models.UpdateCombinedPaymentsRequest"/> and sets the default values.
         /// </summary>
@@ -62,7 +56,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "combinedDuration", n => { CombinedDuration = n.GetStringValue(); } },
+                { "combinedDuration", n => { CombinedDuration = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedPaymentPeriodEnum>(); } },
             };
         }
         /// <summary>
@@ -72,7 +66,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("combinedDuration", CombinedDuration);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedPaymentPeriodEnum>("combinedDuration", CombinedDuration);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -37,14 +37,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #else
         public string Alert { get; set; }
 #endif
-        /// <summary>The enumeration value returned in this field categorizes the type of details needed for the KYC check. More information about the check is shown in the &lt;b&gt;detailMessage&lt;/b&gt; and other applicable, corresponding fields. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/kyc:DetailsType&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? DataRequired { get; set; }
-#nullable restore
-#else
-        public string DataRequired { get; set; }
-#endif
+        /// <summary>This enumerated type lists the types of details that may be needed for a KYC check. | - **COMPANY_DETAILS**: This enumeration value indicates that the seller is required to provide information about their company. More information about the check is shown in the &lt;strong&gt;detailMessage&lt;/strong&gt; and other applicable, corresponding fields. - **INDIVIDUAL_DETAILS**: This enumeration value indicates that the seller is required to provide personal information. More information about the check is shown in the &lt;strong&gt;detailMessage&lt;/strong&gt; and other applicable, corresponding fields. - **BANK_DETAILS**: This enumeration value indicates that the seller is required to provide information about their bank. More information about the check is shown in the &lt;strong&gt;detailMessage&lt;/strong&gt; and other applicable, corresponding fields.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV1.Models.DetailsType? DataRequired { get; set; }
         /// <summary>This field gives a detailed message about what is required from the seller. An example might be, &apos;&lt;code&gt;Please upload a bank document by 2020-08-01 to get your account back in good standing.&lt;/code&gt;&apos;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -95,7 +89,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "alert", n => { Alert = n.GetStringValue(); } },
-                { "dataRequired", n => { DataRequired = n.GetStringValue(); } },
+                { "dataRequired", n => { DataRequired = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.DetailsType>(); } },
                 { "detailMessage", n => { DetailMessage = n.GetStringValue(); } },
                 { "dueDate", n => { DueDate = n.GetStringValue(); } },
                 { "remedyUrl", n => { RemedyUrl = n.GetStringValue(); } },
@@ -109,7 +103,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("alert", Alert);
-            writer.WriteStringValue("dataRequired", DataRequired);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.DetailsType>("dataRequired", DataRequired);
             writer.WriteStringValue("detailMessage", DetailMessage);
             writer.WriteStringValue("dueDate", DueDate);
             writer.WriteStringValue("remedyUrl", RemedyUrl);
