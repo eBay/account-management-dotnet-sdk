@@ -143,18 +143,18 @@ public sealed class AccountGraphQLClient
 
     public Task<IItemBiddingActivity_ItemBiddingActivity?> ItemBiddingActivityAsync(
         ItemBiddingActivityInput input,
-        PageInfoInput? activeBidHistoryRecords_PaginationInput = null,
-        PageInfoInput? cancelledBidHistoryRecords_PaginationInput = null,
-        PageInfoInput? retractedBidHistoryRecords_PaginationInput = null,
+        PageInfoInput? activeBidHistoryRecordsPaginationInput = null,
+        PageInfoInput? cancelledBidHistoryRecordsPaginationInput = null,
+        PageInfoInput? retractedBidHistoryRecordsPaginationInput = null,
         string? accessToken = null, CancellationToken ct = default)
         => _tokenContext.RunAsync(accessToken, async () =>
         {
             EnsureTypedClientAvailable();
             var result = await ExecuteAsync(() => _client!.ItemBiddingActivity.ExecuteAsync(
                 input,
-                activeBidHistoryRecords_PaginationInput,
-                cancelledBidHistoryRecords_PaginationInput,
-                retractedBidHistoryRecords_PaginationInput,
+                activeBidHistoryRecordsPaginationInput,
+                cancelledBidHistoryRecordsPaginationInput,
+                retractedBidHistoryRecordsPaginationInput,
                 ct));
             EnsureNoErrors(result);
             return result.Data?.ItemBiddingActivity;
@@ -184,7 +184,7 @@ public sealed class AccountGraphQLClient
         catch (Exception ex) when (ex is not SdkException) { throw WrapException(ex); }
     }
 
-    private static Exception WrapException(Exception ex) => ex switch
+    private static SdkException WrapException(Exception ex) => ex switch
     {
         HttpRequestException { StatusCode: HttpStatusCode.Unauthorized } => new UnauthorizedException(ex),
         HttpRequestException { StatusCode: { } code } http =>
