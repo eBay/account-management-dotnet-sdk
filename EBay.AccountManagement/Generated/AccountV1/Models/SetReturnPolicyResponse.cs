@@ -55,14 +55,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #else
         public global::EBay.AccountManagement.Generated.AccountV1.Models.InternationalReturnOverrideType InternationalOverride { get; set; }
 #endif
-        /// <summary>The ID of the eBay marketplace to which this return business policy applies. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/ba:MarketplaceIdEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? MarketplaceId { get; set; }
-#nullable restore
-#else
-        public string MarketplaceId { get; set; }
-#endif
+        /// <summary>This enumerated type contains a list of the standard codes that represent each of the eBay marketplaces. | - **EBAY_AT**: eBay Austria (ebay.at) - **EBAY_AU**: eBay Australia (ebay.com/au) - **EBAY_BE**: eBay Belgium (ebay.com/sch/Belgium) - **EBAY_CA**: eBay Canada (English) (ebay.ca) - **EBAY_CH**: eBay Switzerland (ebay.ch) - **EBAY_CN**: eBay China (ebay.com/sch/China) - **EBAY_CZ**: eBay Czech Republic (ebay.com/sch/Czech-Republic) - **EBAY_DE**: eBay Germany (ebay.de) - **EBAY_DK**: eBay Denmark (ebay.com/sch/Denmark) - **EBAY_ES**: eBay Spain (ebay.es) - **EBAY_FI**: eBay Finland (ebay.com/sch/Finland) - **EBAY_FR**: eBay France (ebay.fr) - **EBAY_GB**: eBay UK (ebay.co.uk) - **EBAY_GR**: eBay Greece (ebay.com/sch/Greece) - **EBAY_HK**: eBay Hong Kong (ebay.com.hk) - **EBAY_HU**: eBay Hungary (ebay.com/sch/Hungary) - **EBAY_ID**: eBay Indonesia (id.ebay.com) - **EBAY_IE**: eBay Ireland (ebay.ie) - **EBAY_IL**: eBay Israel (ebay.com/sch/Israel) - **EBAY_IN**: eBay India (ebay.in)&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; eBay India is no longer a functioning eBay marketplace.&lt;/span&gt; - **EBAY_IT**: eBay Italy (ebay.it) - **EBAY_JP**: eBay Japan (ebay.co.jp) - **EBAY_MY**: eBay Malaysia (ebay.com/my) - **EBAY_NL**: eBay Netherlands (ebay.nl) - **EBAY_NO**: eBay Norway (ebay.com/sch/Norway) - **EBAY_NZ**: eBay New Zealand (ebay.com/sch/New-Zealand) - **EBAY_PE**: eBay Peru (ebay.com/sch/Peru) - **EBAY_PH**: eBay Philippines (ebay.ph) - **EBAY_PL**: eBay Poland (ebay.pl) - **EBAY_PR**: eBay Puerto Rico (ebay.com/sch/Puerto-Rico) - **EBAY_PT**: eBay Portugal (ebay.com/sch/Portugal) - **EBAY_RU**: eBay Russia (ebay.com/sch/Russia) - **EBAY_SE**: eBay Sweden (ebay.com/sch/Sweden) - **EBAY_SG**: eBay Singapore (ebay.com/sg) - **EBAY_TH**: eBay Thailand (export.ebay.co.th) - **EBAY_TW**: eBay Taiwan (ebay.com/tw) - **EBAY_US**: eBay US (ebay.com) - **EBAY_VN**: eBay Vietnam (ebay.vn) - **EBAY_ZA**: eBay South Africa (ebay.com/sch/South-Africa) - **EBAY_HALF_US**: This enumeration value is no longer applicable as the Half.com site no longer exists. - **EBAY_MOTORS_US**: eBay Motors US (ebay.com/motors)</summary>
+        public global::EBay.AccountManagement.Generated.AccountV1.Models.MarketplaceIdEnum? MarketplaceId { get; set; }
         /// <summary>A seller-defined name for this return business policy. Names must be unique for policies assigned to the same marketplace.&lt;br&gt;&lt;br&gt;&lt;b&gt;Max length:&lt;/b&gt; 64</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -71,14 +65,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>If a seller indicates that they will accept buyer returns, this value will be &lt;code&gt;MONEY_BACK&lt;/code&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:RefundMethodEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? RefundMethod { get; set; }
-#nullable restore
-#else
-        public string RefundMethod { get; set; }
-#endif
+        /// <summary>This enumerated type defines the supported refund types for buyer returns. | - **MERCHANDISE_CREDIT**: &lt;strong&gt;Do not use/No longer supported.&lt;/strong&gt; - **MONEY_BACK**: This enumeration value indicates that the buyer will get their money back (refund) for a returned item.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV1.Models.RefundMethodEnum? RefundMethod { get; set; }
         /// <summary>&lt;p class=&quot;tablenote&quot;&gt;&lt;span  style=&quot;color: #dd1e31;&quot;&gt;&lt;b&gt;Important!&lt;/b&gt;&lt;/span&gt; This field is deprecated, since eBay no longer allows sellers to charge a restocking fee for buyer remorse returns.&lt;/p&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -87,7 +75,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #else
         public string RestockingFeePercentage { get; set; }
 #endif
-        /// <summary>This text-based field provides more details on seller-specified return instructions. &lt;br&gt;&lt;p class=&quot;tablenote&quot;&gt;&lt;span  style=&quot;color: #dd1e31;&quot;&gt;&lt;b&gt;Important!&lt;/b&gt;&lt;/span&gt; This field is no longer supported on many eBay marketplaces. To see if a marketplace and eBay category does support this field, call &lt;a href=&quot;/api-docs/sell/metadata/resources/marketplace/methods/getReturnPolicies&quot;&gt;getReturnPolicies&lt;/a&gt; method of the &lt;b&gt;Metadata API&lt;/b&gt;. Then you will look for the &lt;b&gt;policyDescriptionEnabled&lt;/b&gt; field with a value of &lt;code&gt;true&lt;/code&gt; for the eBay category.&lt;/span&gt;&lt;/p&gt;&lt;br&gt;&lt;b&gt;Max length&lt;/b&gt;: 5000 (8000 for DE)</summary>
+        /// <summary>This text-based field provides more details on seller-specified return instructions. &lt;br&gt;&lt;p class=&quot;tablenote&quot;&gt;&lt;span  style=&quot;color: #dd1e31;&quot;&gt;&lt;b&gt;Important!&lt;/b&gt;&lt;/span&gt; This field is no longer supported on many eBay marketplaces. To see if a marketplace and eBay category does support this field, call &lt;a href=&quot;/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getreturnpolicies&quot;&gt;getReturnPolicies&lt;/a&gt; method of the &lt;b&gt;Metadata API&lt;/b&gt;. Then you will look for the &lt;b&gt;policyDescriptionEnabled&lt;/b&gt; field with a value of &lt;code&gt;true&lt;/code&gt; for the eBay category.&lt;/span&gt;&lt;/p&gt;&lt;br&gt;&lt;b&gt;Max length&lt;/b&gt;: 5000 (8000 for DE)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ReturnInstructions { get; set; }
@@ -95,14 +83,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #else
         public string ReturnInstructions { get; set; }
 #endif
-        /// <summary>This field will be returned if the seller is willing and able to offer a replacement item as an alternative to &apos;Money Back&apos;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:ReturnMethodEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ReturnMethod { get; set; }
-#nullable restore
-#else
-        public string ReturnMethod { get; set; }
-#endif
+        /// <summary>This enumerated type lists the return options (other than &apos;money back&apos;) that a seller may offer to the buyer for a return request. | - **EXCHANGE**: &lt;strong&gt;Do not use/No longer supported.&lt;/strong&gt; - **REPLACEMENT**: This value indicates that the seller offers a replacement (identical) item as an alternative to &apos;money back&apos; when the buyer is returning an item.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnMethodEnum? ReturnMethod { get; set; }
         /// <summary>A type used to specify a period of time using a specified time-measurement unit. Payment, return, and fulfillment business policies all use this type to specify time windows.&lt;br&gt;&lt;br&gt;Whenever a container that uses this type is used in a request, both of these fields are required. Similarly, whenever a container that uses this type is returned in a response, both of these fields are always returned.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -121,21 +103,15 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #endif
         /// <summary>If set to &lt;code&gt;true&lt;/code&gt;, the seller accepts returns. If set to &lt;code&gt;false&lt;/code&gt;, this field indicates that the seller does not accept returns.</summary>
         public bool? ReturnsAccepted { get; set; }
-        /// <summary>This field indicates who is responsible for paying for the shipping charges for returned items. The field can be set to either &lt;code&gt;BUYER&lt;/code&gt; or &lt;code&gt;SELLER&lt;/code&gt;.  &lt;p&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;span style=&quot;color:#004680&quot;&gt;&lt;strong&gt;Note: &lt;/strong&gt;Eligible Parts &amp; Accessories (P&amp;A) listings require sellers to offer buyers free returns with a minimum return period of 30 days. See &lt;a href=&quot;/api-docs/user-guides/static/trading-user-guide/ebay-motors-parts-accessories-easy-returns.html&quot;  target=&quot;_blank&quot;&gt;Support for easy returns in Parts and Accessories&lt;/a&gt; for details.&lt;/span&gt;&lt;/p&gt; &lt;br&gt;Note that the seller is always responsible for return shipping costs for SNAD-related issues.  &lt;br&gt;&lt;br&gt;This container will be returned unless the business policy states that the seller does not accept returns. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:ReturnShippingCostPayerEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ReturnShippingCostPayer { get; set; }
-#nullable restore
-#else
-        public string ReturnShippingCostPayer { get; set; }
-#endif
+        /// <summary>This enumerated type defines who is responsible for the return shipping cost. Note that the seller is always responsible for the return shipping cost of SNAD-related returns. | - **BUYER**: Return shipping cost paid by BUYER. - **SELLER**: Return shipping cost paid by SELLER.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnShippingCostPayerEnum? ReturnShippingCostPayer { get; set; }
         /// <summary>An array of one or more errors or warnings that were generated during the processing of the request. If there were no issues with the request, this array will return empty.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::EBay.AccountManagement.Generated.AccountV1.Models.Error>? Warnings { get; set; }
+        public List<global::EBay.AccountManagement.Generated.AccountV1.Models.ErrorDetailV3>? Warnings { get; set; }
 #nullable restore
 #else
-        public List<global::EBay.AccountManagement.Generated.AccountV1.Models.Error> Warnings { get; set; }
+        public List<global::EBay.AccountManagement.Generated.AccountV1.Models.ErrorDetailV3> Warnings { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.AccountV1.Models.SetReturnPolicyResponse"/> and sets the default values.
@@ -166,17 +142,17 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "extendedHolidayReturnsOffered", n => { ExtendedHolidayReturnsOffered = n.GetBoolValue(); } },
                 { "internationalOverride", n => { InternationalOverride = n.GetObjectValue<global::EBay.AccountManagement.Generated.AccountV1.Models.InternationalReturnOverrideType>(global::EBay.AccountManagement.Generated.AccountV1.Models.InternationalReturnOverrideType.CreateFromDiscriminatorValue); } },
-                { "marketplaceId", n => { MarketplaceId = n.GetStringValue(); } },
+                { "marketplaceId", n => { MarketplaceId = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.MarketplaceIdEnum>(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "refundMethod", n => { RefundMethod = n.GetStringValue(); } },
+                { "refundMethod", n => { RefundMethod = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.RefundMethodEnum>(); } },
                 { "restockingFeePercentage", n => { RestockingFeePercentage = n.GetStringValue(); } },
                 { "returnInstructions", n => { ReturnInstructions = n.GetStringValue(); } },
-                { "returnMethod", n => { ReturnMethod = n.GetStringValue(); } },
+                { "returnMethod", n => { ReturnMethod = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnMethodEnum>(); } },
                 { "returnPeriod", n => { ReturnPeriod = n.GetObjectValue<global::EBay.AccountManagement.Generated.AccountV1.Models.TimeDuration>(global::EBay.AccountManagement.Generated.AccountV1.Models.TimeDuration.CreateFromDiscriminatorValue); } },
                 { "returnPolicyId", n => { ReturnPolicyId = n.GetStringValue(); } },
-                { "returnShippingCostPayer", n => { ReturnShippingCostPayer = n.GetStringValue(); } },
+                { "returnShippingCostPayer", n => { ReturnShippingCostPayer = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnShippingCostPayerEnum>(); } },
                 { "returnsAccepted", n => { ReturnsAccepted = n.GetBoolValue(); } },
-                { "warnings", n => { Warnings = n.GetCollectionOfObjectValues<global::EBay.AccountManagement.Generated.AccountV1.Models.Error>(global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "warnings", n => { Warnings = n.GetCollectionOfObjectValues<global::EBay.AccountManagement.Generated.AccountV1.Models.ErrorDetailV3>(global::EBay.AccountManagement.Generated.AccountV1.Models.ErrorDetailV3.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -190,17 +166,17 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
             writer.WriteStringValue("description", Description);
             writer.WriteBoolValue("extendedHolidayReturnsOffered", ExtendedHolidayReturnsOffered);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.AccountV1.Models.InternationalReturnOverrideType>("internationalOverride", InternationalOverride);
-            writer.WriteStringValue("marketplaceId", MarketplaceId);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.MarketplaceIdEnum>("marketplaceId", MarketplaceId);
             writer.WriteStringValue("name", Name);
-            writer.WriteStringValue("refundMethod", RefundMethod);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.RefundMethodEnum>("refundMethod", RefundMethod);
             writer.WriteStringValue("restockingFeePercentage", RestockingFeePercentage);
             writer.WriteStringValue("returnInstructions", ReturnInstructions);
-            writer.WriteStringValue("returnMethod", ReturnMethod);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnMethodEnum>("returnMethod", ReturnMethod);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.AccountV1.Models.TimeDuration>("returnPeriod", ReturnPeriod);
             writer.WriteStringValue("returnPolicyId", ReturnPolicyId);
             writer.WriteBoolValue("returnsAccepted", ReturnsAccepted);
-            writer.WriteStringValue("returnShippingCostPayer", ReturnShippingCostPayer);
-            writer.WriteCollectionOfObjectValues<global::EBay.AccountManagement.Generated.AccountV1.Models.Error>("warnings", Warnings);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnShippingCostPayerEnum>("returnShippingCostPayer", ReturnShippingCostPayer);
+            writer.WriteCollectionOfObjectValues<global::EBay.AccountManagement.Generated.AccountV1.Models.ErrorDetailV3>("warnings", Warnings);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

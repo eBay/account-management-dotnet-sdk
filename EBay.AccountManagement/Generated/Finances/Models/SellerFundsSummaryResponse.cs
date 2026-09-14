@@ -29,7 +29,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>This field represents the total amount of order funds that are available for a payout, but processing for a seller payout has not yet begun. If a seller wants to get more details on sales transactions that have yet to be processed, the seller can use the &lt;strong&gt;getTransactions&lt;/strong&gt; method, and use the &lt;strong&gt;transactionStatus&lt;/strong&gt; filter with its value set to &lt;code&gt;FUNDS_AVAILABLE_FOR_PAYOUT&lt;/code&gt;.&lt;br&gt;&lt;br&gt;This container will return 0.0 with the appropriate payout currency if there are no funds available to be processed for a payout.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? AvailableFunds { get; set; }
@@ -37,7 +37,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount AvailableFunds { get; set; }
 #endif
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>This field represents the total amount of order funds on hold. Seller payment holds can occur for different reasons. If a seller wants to get more details on sales transactions where funds are currently on hold, the seller can use the &lt;strong&gt;getTransactions&lt;/strong&gt; method, and use the &lt;strong&gt;transactionStatus&lt;/strong&gt; filter with its value set to &lt;code&gt;FUNDS_ON_HOLD&lt;/code&gt;.&lt;br&gt;&lt;br&gt;This container will return 0.0 with the appropriate payout currency if there are no seller payment holds that will eventually be processed for a payout.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? FundsOnHold { get; set; }
@@ -45,7 +45,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount FundsOnHold { get; set; }
 #endif
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>This field represents the total amount of order funds being prepared and processed for a seller payout. If a seller wants to get more details on sales transactions that are being processed, the seller can use the &lt;strong&gt;getTransactions&lt;/strong&gt; method, and use the &lt;strong&gt;transactionStatus&lt;/strong&gt; filter with its value set to &lt;code&gt;FUNDS_PROCESSING&lt;/code&gt;.&lt;br&gt;&lt;br&gt;This container will return 0.0 with the appropriate payout currency if there are no funds available to be processed for a payout.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? ProcessingFunds { get; set; }
@@ -53,7 +53,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount ProcessingFunds { get; set; }
 #endif
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>This field represents the total amount of order funds still due to be distributed to the seller through a seller payout. This field should equal the sum of the amounts returned in the following fields:&lt;br&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;processingFunds&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;availableFunds&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;fundsOnHold&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;br&gt;If no payout funds are due to the seller, a &lt;code&gt;204 - No Content&lt;/code&gt;  status code will be returned along with an empty payload.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? TotalFunds { get; set; }

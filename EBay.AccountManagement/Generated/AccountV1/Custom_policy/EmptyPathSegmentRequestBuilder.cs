@@ -53,6 +53,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Custom_policy
         /// <returns>A <see cref="global::EBay.AccountManagement.Generated.AccountV1.Models.CustomPolicyResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.AccountManagement.Generated.AccountV1.Models.CustomPolicyResponse?> GetAsync(Action<RequestConfiguration<global::EBay.AccountManagement.Generated.AccountV1.Custom_policy.EmptyPathSegmentRequestBuilder.EmptyPathSegmentRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -63,7 +65,12 @@ namespace EBay.AccountManagement.Generated.AccountV1.Custom_policy
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Models.CustomPolicyResponse>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Models.CustomPolicyResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Models.CustomPolicyResponse>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Models.CustomPolicyResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This method creates a new custom policy that specifies the seller&apos;s terms for complying with local governmental regulations. Each Custom Policy targets a &lt;b&gt;policyType&lt;/b&gt;. Multiple policies may be created as using the following custom policy types:&lt;ul&gt;&lt;li&gt;PRODUCT_COMPLIANCE: Product Compliance policies disclose product information as required for regulatory compliance. &lt;br/&gt;&lt;br/&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; A maximum of 60 Product Compliance policies per seller may be created.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;TAKE_BACK: Takeback policies describe the seller&apos;s legal obligation to take back a previously purchased item when the buyer purchases a new one. &lt;br/&gt;&lt;br/&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; A maximum of 18 Takeback policies per seller may be created.&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;A successful create policy call returns an HTTP status code of &lt;b&gt;201 Created&lt;/b&gt; with the system-generated policy ID included in the Location response header.
@@ -72,6 +79,9 @@ namespace EBay.AccountManagement.Generated.AccountV1.Custom_policy
         /// <param name="body">This type is used by the request payload of the createCustomPolicy method to define a new custom policy for a specific marketplace.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 409 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.AccountManagement.Generated.AccountV1.Custom_policy.PostResponse?> PostAsync(global::EBay.AccountManagement.Generated.AccountV1.Models.CustomPolicyCreateRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -83,7 +93,13 @@ namespace EBay.AccountManagement.Generated.AccountV1.Custom_policy
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Custom_policy.PostResponse>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Custom_policy.PostResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "409", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Custom_policy.PostResponse>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Custom_policy.PostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This method retrieves the list of custom policies defined for a seller&apos;s account. To limit the returned custom policies, specify the &lt;b&gt;policy_types&lt;/b&gt; query parameter.
@@ -141,7 +157,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Custom_policy
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class EmptyPathSegmentRequestBuilderGetQueryParameters 
         {
-            /// <summary>This query parameter specifies the type of custom policies to be returned.&lt;br&gt;&lt;br&gt;Multiple policy types may be requested in a single call by providing a comma-delimited set of all policy types to be returned.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Omitting this query parameter from a request will also return policies of all policy types.&lt;/span&gt;&lt;br&gt; See the &lt;a href=&quot;/api-docs/sell/account/types/api:CustomPolicyTypeEnum&quot; target=&quot;_blank &quot;&gt;CustomPolicyTypeEnum&lt;/a&gt; type for a list of supported values.</summary>
+            /// <summary>This query parameter specifies the type of custom policies to be returned.&lt;br&gt;&lt;br&gt;Multiple policy types may be requested in a single call by providing a comma-delimited set of all policy types to be returned.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Omitting this query parameter from a request will also return policies of all policy types.&lt;/span&gt;&lt;br&gt; See the &lt;a href=&quot;/develop/api/sell/account_api_v1#sell-account_api_v1-custom_policy-createcustompolicy.custompolicytypeenum&quot; target=&quot;_blank &quot;&gt;CustomPolicyTypeEnum&lt;/a&gt; type for a list of supported values.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("policy_types")]

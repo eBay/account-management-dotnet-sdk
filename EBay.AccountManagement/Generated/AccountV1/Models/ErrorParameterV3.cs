@@ -19,32 +19,48 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace EBay.AccountManagement.Generated.Finances.Models
+namespace EBay.AccountManagement.Generated.AccountV1.Models
 {
     /// <summary>
-    /// The total number of orders included in the summary.
+    /// A complex type that indicates a parameter that caused an error and the value of the parameter which caused the error.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class OrderEarningsSummary_orderCount : IAdditionalDataHolder, IParsable
+    public partial class ErrorParameterV3 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Name of the parameter that caused the error.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
+        public string Name { get; set; }
+#endif
+        /// <summary>The value of the parameter that caused the error.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Value { get; set; }
+#nullable restore
+#else
+        public string Value { get; set; }
+#endif
         /// <summary>
-        /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.Finances.Models.OrderEarningsSummary_orderCount"/> and sets the default values.
+        /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.AccountV1.Models.ErrorParameterV3"/> and sets the default values.
         /// </summary>
-        public OrderEarningsSummary_orderCount()
+        public ErrorParameterV3()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::EBay.AccountManagement.Generated.Finances.Models.OrderEarningsSummary_orderCount"/></returns>
+        /// <returns>A <see cref="global::EBay.AccountManagement.Generated.AccountV1.Models.ErrorParameterV3"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::EBay.AccountManagement.Generated.Finances.Models.OrderEarningsSummary_orderCount CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::EBay.AccountManagement.Generated.AccountV1.Models.ErrorParameterV3 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::EBay.AccountManagement.Generated.Finances.Models.OrderEarningsSummary_orderCount();
+            return new global::EBay.AccountManagement.Generated.AccountV1.Models.ErrorParameterV3();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,6 +70,8 @@ namespace EBay.AccountManagement.Generated.Finances.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "value", n => { Value = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -63,6 +81,8 @@ namespace EBay.AccountManagement.Generated.Finances.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

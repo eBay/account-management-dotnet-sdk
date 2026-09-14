@@ -50,9 +50,11 @@ namespace EBay.AccountManagement.Generated.AccountV2.Combined_shipping_rules.Cre
         /// <summary>
         /// This method defines promotional shipping rules such as discounts or free-shipping thresholds, configurable by marketplace for the seller.
         /// </summary>
-        /// <param name="body">This type represents the request schema for creating promotional shipping rules with combined payment durations.</param>
+        /// <param name="body">This type is used to define and configure the promotional combined shipping rule and/or change the combined payment duration.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV2.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV2.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task PostAsync(global::EBay.AccountManagement.Generated.AccountV2.Models.CreatePromotionalShippingRuleRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -64,13 +66,18 @@ namespace EBay.AccountManagement.Generated.AccountV2.Combined_shipping_rules.Cre
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.AccountManagement.Generated.AccountV2.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.AccountManagement.Generated.AccountV2.Models.Error.CreateFromDiscriminatorValue },
+            };
+            await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This method defines promotional shipping rules such as discounts or free-shipping thresholds, configurable by marketplace for the seller.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">This type represents the request schema for creating promotional shipping rules with combined payment durations.</param>
+        /// <param name="body">This type is used to define and configure the promotional combined shipping rule and/or change the combined payment duration.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -84,6 +91,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Combined_shipping_rules.Cre
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }

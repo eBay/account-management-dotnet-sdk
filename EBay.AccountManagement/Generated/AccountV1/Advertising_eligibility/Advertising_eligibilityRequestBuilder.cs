@@ -53,6 +53,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Advertising_eligibility
         /// <returns>A <see cref="global::EBay.AccountManagement.Generated.AccountV1.Models.SellerEligibilityMultiProgramResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.AccountManagement.Generated.AccountV1.Models.SellerEligibilityMultiProgramResponse?> GetAsync(Action<RequestConfiguration<global::EBay.AccountManagement.Generated.AccountV1.Advertising_eligibility.Advertising_eligibilityRequestBuilder.Advertising_eligibilityRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -63,7 +65,12 @@ namespace EBay.AccountManagement.Generated.AccountV1.Advertising_eligibility
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Models.SellerEligibilityMultiProgramResponse>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Models.SellerEligibilityMultiProgramResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Models.SellerEligibilityMultiProgramResponse>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Models.SellerEligibilityMultiProgramResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This method allows developers to check the seller eligibility status for eBay advertising programs.
@@ -99,7 +106,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Advertising_eligibility
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class Advertising_eligibilityRequestBuilderGetQueryParameters 
         {
-            /// <summary>A comma-separated list of eBay advertising programs for which eligibility status will be returned.&lt;br&gt;&lt;br&gt; See the &lt;a href=&quot;/api-docs/sell/account/types/plser:AdvertisingProgramEnum&quot; target=&quot;_blank&quot;&gt; AdvertisingProgramEnum&lt;/a&gt; type for a list of supported values.&lt;br&gt;&lt;br&gt;If no programs are specified, the results will be returned for all programs.</summary>
+            /// <summary>A comma-separated list of eBay advertising programs for which eligibility status will be returned.&lt;br&gt;&lt;br&gt; See the &lt;a href=&quot;/develop/api/sell/account_api_v1#sell-account_api_v1-advertising_eligibility-getadvertisingeligibility.advertisingprogramenum&quot; target=&quot;_blank&quot;&gt;AdvertisingProgramEnum&lt;/a&gt; type for a list of supported values.&lt;br&gt;&lt;br&gt;If no programs are specified, the results will be returned for all programs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("program_types")]

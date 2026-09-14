@@ -29,14 +29,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This field sets/indicates if the seller offers replacement items to the buyer in the case of an international return. The buyer must be willing to accept a replacement item; otherwise, the seller will need to issue a refund for a return. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:ReturnMethodEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ReturnMethod { get; set; }
-#nullable restore
-#else
-        public string ReturnMethod { get; set; }
-#endif
+        /// <summary>This enumerated type lists the return options (other than &apos;money back&apos;) that a seller may offer to the buyer for a return request. | - **EXCHANGE**: &lt;strong&gt;Do not use/No longer supported.&lt;/strong&gt; - **REPLACEMENT**: This value indicates that the seller offers a replacement (identical) item as an alternative to &apos;money back&apos; when the buyer is returning an item.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnMethodEnum? ReturnMethod { get; set; }
         /// <summary>A type used to specify a period of time using a specified time-measurement unit. Payment, return, and fulfillment business policies all use this type to specify time windows.&lt;br&gt;&lt;br&gt;Whenever a container that uses this type is used in a request, both of these fields are required. Similarly, whenever a container that uses this type is returned in a response, both of these fields are always returned.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -47,14 +41,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #endif
         /// <summary>If set to &lt;code&gt;true&lt;/code&gt;, the seller accepts international returns. If set to &lt;code&gt;false&lt;/code&gt;, the seller does not accept international returns.  &lt;br&gt;&lt;br&gt;This field is conditionally required if the seller chooses to have a separate international return policy.</summary>
         public bool? ReturnsAccepted { get; set; }
-        /// <summary>This field indicates who is responsible for paying for the shipping charges for returned items. The field can be set to either &lt;code&gt;BUYER&lt;/code&gt; or &lt;code&gt;SELLER&lt;/code&gt;.  &lt;br&gt;&lt;br&gt;Depending on the return policy and specifics of the return, either the buyer or the seller can be responsible for the return shipping costs. Note that the seller is always responsible for return shipping costs for &apos;significantly not as described&apos; (SNAD) issues.  &lt;br&gt;&lt;br&gt;This field is conditionally required if the &lt;b&gt;internationalOverride.returnsAccepted&lt;/b&gt; field is set to &lt;code&gt;true&lt;/code&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:ReturnShippingCostPayerEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ReturnShippingCostPayer { get; set; }
-#nullable restore
-#else
-        public string ReturnShippingCostPayer { get; set; }
-#endif
+        /// <summary>This enumerated type defines who is responsible for the return shipping cost. Note that the seller is always responsible for the return shipping cost of SNAD-related returns. | - **BUYER**: Return shipping cost paid by BUYER. - **SELLER**: Return shipping cost paid by SELLER.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnShippingCostPayerEnum? ReturnShippingCostPayer { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.AccountV1.Models.InternationalReturnOverrideType"/> and sets the default values.
         /// </summary>
@@ -80,9 +68,9 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "returnMethod", n => { ReturnMethod = n.GetStringValue(); } },
+                { "returnMethod", n => { ReturnMethod = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnMethodEnum>(); } },
                 { "returnPeriod", n => { ReturnPeriod = n.GetObjectValue<global::EBay.AccountManagement.Generated.AccountV1.Models.TimeDuration>(global::EBay.AccountManagement.Generated.AccountV1.Models.TimeDuration.CreateFromDiscriminatorValue); } },
-                { "returnShippingCostPayer", n => { ReturnShippingCostPayer = n.GetStringValue(); } },
+                { "returnShippingCostPayer", n => { ReturnShippingCostPayer = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnShippingCostPayerEnum>(); } },
                 { "returnsAccepted", n => { ReturnsAccepted = n.GetBoolValue(); } },
             };
         }
@@ -93,10 +81,10 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("returnMethod", ReturnMethod);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnMethodEnum>("returnMethod", ReturnMethod);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.AccountV1.Models.TimeDuration>("returnPeriod", ReturnPeriod);
             writer.WriteBoolValue("returnsAccepted", ReturnsAccepted);
-            writer.WriteStringValue("returnShippingCostPayer", ReturnShippingCostPayer);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.ReturnShippingCostPayerEnum>("returnShippingCostPayer", ReturnShippingCostPayer);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

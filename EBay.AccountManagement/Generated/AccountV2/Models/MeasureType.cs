@@ -29,14 +29,8 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This field defines the unit of measure (e.g., kilograms, pounds) associated with the value field. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:WeightUnitOfMeasureEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Unit { get; set; }
-#nullable restore
-#else
-        public string Unit { get; set; }
-#endif
+        /// <summary>This field defines the unit of measure (e.g., kilograms, pounds) associated with the value field.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV2.Models.WeightUnitOfMeasureEnum? Unit { get; set; }
         /// <summary>This field defines the numeric value representing the measurement, weight, in the specified unit.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -70,7 +64,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "unit", n => { Unit = n.GetStringValue(); } },
+                { "unit", n => { Unit = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.WeightUnitOfMeasureEnum>(); } },
                 { "value", n => { Value = n.GetStringValue(); } },
             };
         }
@@ -81,7 +75,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("unit", Unit);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.WeightUnitOfMeasureEnum>("unit", Unit);
             writer.WriteStringValue("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }

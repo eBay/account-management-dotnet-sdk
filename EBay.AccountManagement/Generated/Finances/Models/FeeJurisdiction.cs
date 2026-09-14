@@ -37,14 +37,8 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public string RegionName { get; set; }
 #endif
-        /// <summary>This enumeration value indicates the type of region that the fee jurisdiction represents, such as a country or a state. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/pay:RegionTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? RegionType { get; set; }
-#nullable restore
-#else
-        public string RegionType { get; set; }
-#endif
+        /// <summary>This enumeration value indicates the type of region that the fee jurisdiction represents, such as a country or a state.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.RegionTypeEnum? RegionType { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.Finances.Models.FeeJurisdiction"/> and sets the default values.
         /// </summary>
@@ -71,7 +65,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "regionName", n => { RegionName = n.GetStringValue(); } },
-                { "regionType", n => { RegionType = n.GetStringValue(); } },
+                { "regionType", n => { RegionType = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.RegionTypeEnum>(); } },
             };
         }
         /// <summary>
@@ -82,7 +76,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("regionName", RegionName);
-            writer.WriteStringValue("regionType", RegionType);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.RegionTypeEnum>("regionType", RegionType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

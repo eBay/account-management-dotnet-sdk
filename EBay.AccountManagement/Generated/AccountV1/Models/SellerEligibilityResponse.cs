@@ -29,30 +29,12 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The eBay advertising program for which a seller may be eligible. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/plser:AdvertisingProgramEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ProgramType { get; set; }
-#nullable restore
-#else
-        public string ProgramType { get; set; }
-#endif
-        /// <summary>The reason why a seller is ineligible for the specified eBay advertising program.&lt;br /&gt;&lt;br /&gt;This field is only returned if the seller is ineligible for the eBay advertising program. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/plser:SellerIneligibleReasonEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Reason { get; set; }
-#nullable restore
-#else
-        public string Reason { get; set; }
-#endif
-        /// <summary>The seller eligibility status for the specified eBay advertising program. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/cmlib:SellerEligibilityEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Status { get; set; }
-#nullable restore
-#else
-        public string Status { get; set; }
-#endif
+        /// <summary>An enumerated type that defines the eBay advertising program for which a seller may be eligible. | - **PROMOTED_LISTINGS_STANDARD**: This value indicates that the eBay advertising program is Promoted Listings general campaign strategy (formerly Promoted Listings Standard (PLS)). - **PROMOTED_LISTINGS_ADVANCED**: This value indicates that the eBay advertising program is Promoted listings priority campaign strategy (formerly Promoted Listings Advanced (PLA)). - **OFFSITE_ADS**: This value indicates that the eBay advertising program is Promoted Listings Promoted Offsite (formerly Offsite Ads).</summary>
+        public global::EBay.AccountManagement.Generated.AccountV1.Models.AdvertisingProgramEnum? ProgramType { get; set; }
+        /// <summary>This enumerated type defines the reason why a seller is ineligible for an eBay advertising program. | - **NOT_ENOUGH_ACTIVITY**: This value indicates that the seller is ineligible for the eBay advertising program due to lack of activity.&lt;br&gt;&lt;br&gt;New accounts take a few weeks to become eligible for eBay Promoted Listings. If the seller account is in good standing (Above Standard or Top Rated), the account should become eligible within a few weeks. - **NOT_IN_GOOD_STANDING**: This value indicates that the seller is ineligible for the eBay advertising program because their account is not currently in good standing.&lt;br&gt;&lt;br&gt;Below Standard sellers cannot use eBay advertising programs to create new campaigns or edit their existing campaigns. Existing campaigns will be paused by the system. - **RESTRICTED**: This value indicates that the seller is currently restricted from using the corresponding eBay advertising program.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV1.Models.SellerIneligibleReasonEnum? Reason { get; set; }
+        /// <summary>This enumerated type defines the seller eligibility status for a specified eBay advertising program. | - **ELIGIBLE**: This value indicates that the seller is eligible for the specified eBay advertising program. - **INELIGIBLE**: This value indicates that the seller is ineligible for the specified eBay advertising program.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV1.Models.SellerEligibilityEnum? Status { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.AccountV1.Models.SellerEligibilityResponse"/> and sets the default values.
         /// </summary>
@@ -78,9 +60,9 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "programType", n => { ProgramType = n.GetStringValue(); } },
-                { "reason", n => { Reason = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetStringValue(); } },
+                { "programType", n => { ProgramType = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.AdvertisingProgramEnum>(); } },
+                { "reason", n => { Reason = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.SellerIneligibleReasonEnum>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.SellerEligibilityEnum>(); } },
             };
         }
         /// <summary>
@@ -90,9 +72,9 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("programType", ProgramType);
-            writer.WriteStringValue("reason", Reason);
-            writer.WriteStringValue("status", Status);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.AdvertisingProgramEnum>("programType", ProgramType);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.SellerIneligibleReasonEnum>("reason", Reason);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.SellerEligibilityEnum>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

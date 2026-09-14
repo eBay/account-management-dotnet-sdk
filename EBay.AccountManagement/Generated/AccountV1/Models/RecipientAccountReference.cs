@@ -37,14 +37,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #else
         public string ReferenceId { get; set; }
 #endif
-        /// <summary>&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note&lt;/b&gt;: DO NOT USE THIS FIELD. eBay now controls all electronic payment methods available for a marketplace, and a seller never has to specify any electronic payment methods.&lt;/span&gt; For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:RecipientAccountReferenceTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ReferenceType { get; set; }
-#nullable restore
-#else
-        public string ReferenceType { get; set; }
-#endif
+        /// <summary>&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note&lt;/b&gt;: This type is no longer applicable. eBay now controls all electronic payment methods available for a marketplace, and a seller never has to specify any electronic payment methods.&lt;/span&gt; | - **PAYPAL_EMAIL**: This is the PayPal email address of the seller.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV1.Models.RecipientAccountReferenceTypeEnum? ReferenceType { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.AccountV1.Models.RecipientAccountReference"/> and sets the default values.
         /// </summary>
@@ -71,7 +65,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "referenceId", n => { ReferenceId = n.GetStringValue(); } },
-                { "referenceType", n => { ReferenceType = n.GetStringValue(); } },
+                { "referenceType", n => { ReferenceType = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.RecipientAccountReferenceTypeEnum>(); } },
             };
         }
         /// <summary>
@@ -82,7 +76,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("referenceId", ReferenceId);
-            writer.WriteStringValue("referenceType", ReferenceType);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.RecipientAccountReferenceTypeEnum>("referenceType", ReferenceType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

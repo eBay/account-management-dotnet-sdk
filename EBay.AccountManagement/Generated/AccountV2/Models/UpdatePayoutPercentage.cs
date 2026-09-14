@@ -29,7 +29,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The unique reference identifier for a payout instrument. This value is returned in the &lt;a href=&quot;/api-docs/sell/account/v2/resources/payout_settings/methods/getPayoutSettings&quot; target=&quot;_blank &quot;&gt;getPayoutSettings&lt;/a&gt; response and is needed to change split-payout percentages through an &lt;b&gt;updatePayoutPercentage&lt;/b&gt; request.</summary>
+        /// <summary>The unique reference identifier for a payout instrument. This value is returned in the &lt;a href=&quot;/develop/api/sell/account_api_v2#sell-account_api_v2-payout_settings-getpayoutsettings&quot; target=&quot;_blank&quot;&gt;getPayoutSettings&lt;/a&gt; response and is needed to change split-payout percentages through an &lt;b&gt;updatePayoutPercentage&lt;/b&gt; request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? InstrumentId { get; set; }

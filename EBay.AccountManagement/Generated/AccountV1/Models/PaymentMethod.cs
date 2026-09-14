@@ -32,19 +32,13 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
         /// <summary>&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note&lt;/b&gt;: This array is no longer applicable and should not be used. eBay now controls all electronic payment methods available for a marketplace, and a seller never has to specify any electronic payment methods, including any credit card brands accepted. &lt;/span&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Brands { get; set; }
+        public List<global::EBay.AccountManagement.Generated.AccountV1.Models.PaymentInstrumentBrandEnum?>? Brands { get; set; }
 #nullable restore
 #else
-        public List<string> Brands { get; set; }
+        public List<global::EBay.AccountManagement.Generated.AccountV1.Models.PaymentInstrumentBrandEnum?> Brands { get; set; }
 #endif
-        /// <summary>This array is only applicable for listings supporting offline payment methods. See the &lt;b&gt;PaymentMethodTypeEnum&lt;/b&gt; type for supported offline payment method enum values. If offline payments are enabled for the policy, provide at least one offline payment method.&lt;/p&gt; For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:PaymentMethodTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? PaymentMethodType { get; set; }
-#nullable restore
-#else
-        public string PaymentMethodType { get; set; }
-#endif
+        /// <summary>An enumeration type that defines the supported payment methods.&lt;br&gt;&lt;br&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note&lt;/b&gt;: eBay manages all electronic payment methods that are available to buyers, so sellers only need to specify one or more offline payment methods for listings that support or require payment that occurs off of the eBay platform. All electronic payment method enum values are no longer applicable, and are marked as such. &lt;/span&gt; | - **CASH_IN_PERSON**: This enumeration value indicates that the payment method will be cash, and the transaction will occur in-person. - **CASH_ON_DELIVERY**: This enumeration value indicates that the payment method will be cash, and the transaction will occur after the item is delivered to the buyer. - **CASH_ON_PICKUP**: This enumeration value indicates that the payment method will be cash, and the transaction will occur when the buyer picks up the item. - **CASHIER_CHECK**: This enumeration value indicates that the payment method will be a Cashier Check. - **CREDIT_CARD**: This payment method is no longer valid. - **ESCROW**: This enumeration value indicates that escrow was used as the payment method to pay for the order. This form of payment is used for high-value orders. - **INTEGRATED_MERCHANT_CREDIT_CARD**: This payment method is no longer valid. - **LOAN_CHECK**: This payment method is no longer valid. - **MONEY_ORDER**: This enumeration value indicates that the payment method will be by a Money Order. - **PAISA_PAY**: This payment method is no longer valid. - **PAISA_PAY_ESCROW**: This payment method is no longer valid. - **PAISA_PAY_ESCROW_EMI**: This payment method is no longer valid. - **PAYPAL**: This payment method is no longer valid. - **PERSONAL_CHECK**: This enumeration value indicates that the payment method will be a Personal check. - **OTHER**: This enumeration value indicates that the seller is offering an offline payment method not otherwise covered.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV1.Models.PaymentMethodTypeEnum? PaymentMethodType { get; set; }
         /// <summary>&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note&lt;/b&gt;: This type is no longer applicable. eBay now controls all electronic payment methods available for a marketplace, and a seller never has to specify any electronic payment methods.&lt;/span&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -78,8 +72,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "brands", n => { Brands = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "paymentMethodType", n => { PaymentMethodType = n.GetStringValue(); } },
+                { "brands", n => { Brands = n.GetCollectionOfEnumValues<global::EBay.AccountManagement.Generated.AccountV1.Models.PaymentInstrumentBrandEnum>()?.AsList(); } },
+                { "paymentMethodType", n => { PaymentMethodType = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.PaymentMethodTypeEnum>(); } },
                 { "recipientAccountReference", n => { RecipientAccountReference = n.GetObjectValue<global::EBay.AccountManagement.Generated.AccountV1.Models.RecipientAccountReference>(global::EBay.AccountManagement.Generated.AccountV1.Models.RecipientAccountReference.CreateFromDiscriminatorValue); } },
             };
         }
@@ -90,8 +84,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfPrimitiveValues<string>("brands", Brands);
-            writer.WriteStringValue("paymentMethodType", PaymentMethodType);
+            writer.WriteCollectionOfEnumValues<global::EBay.AccountManagement.Generated.AccountV1.Models.PaymentInstrumentBrandEnum>("brands", Brands);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.PaymentMethodTypeEnum>("paymentMethodType", PaymentMethodType);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.AccountV1.Models.RecipientAccountReference>("recipientAccountReference", RecipientAccountReference);
             writer.WriteAdditionalData(AdditionalData);
         }

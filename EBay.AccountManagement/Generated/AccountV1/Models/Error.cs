@@ -16,20 +16,21 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Abstractions;
 using System.Collections.Generic;
 using System.IO;
 using System;
 namespace EBay.AccountManagement.Generated.AccountV1.Models
 {
     /// <summary>
-    /// A container that defines the elements of error and warning messages.
+    /// This type defines the fields that can be returned in an error.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class Error : IAdditionalDataHolder, IParsable
+    public partial class Error : ApiException, IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The category type for this error or warning. It is a string that can have one of three values:&lt;ul&gt;&lt;li&gt;&lt;code&gt;Application&lt;/code&gt;: Indicates an exception or error occurred in the application code or at runtime. Examples include catching an exception in a service&apos;s business logic, system failures, or request errors from a dependency.&lt;/li&gt;&lt;li&gt;&lt;code&gt;Business&lt;/code&gt;: Used when your service or a dependent service refused to continue processing on the resource because of a business rule violation such as &quot;Seller does not ship item to Antarctica&quot; or &quot;Buyer ineligible to purchase an alcoholic item&quot;. Business errors are not syntactical input errors.&lt;/li&gt;&lt;li&gt;&lt;code&gt;Request&lt;/code&gt;: Used when there is anything wrong with the request, such as authentication, syntactical errors, rate limiting or missing headers, bad HTTP header values, and so on.&lt;/li&gt;&lt;/ul&gt;</summary>
+        /// <summary>Identifies the type of error.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Category { get; set; }
@@ -37,7 +38,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #else
         public string Category { get; set; }
 #endif
-        /// <summary>Name of the domain ,or primary system, of the service or application where the error occurred.</summary>
+        /// <summary>Name for the primary system where the error occurred. This is relevant for application errors.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Domain { get; set; }
@@ -45,9 +46,9 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #else
         public string Domain { get; set; }
 #endif
-        /// <summary>A positive integer that uniquely identifies the specific error condition that occurred. Your application can use error codes as identifiers in your customized error-handling algorithms.</summary>
+        /// <summary>A unique number to identify the error.</summary>
         public int? ErrorId { get; set; }
-        /// <summary>Identifies specific request elements associated with the error, if any. inputRefId&apos;s response is format specific. For JSON, use &lt;i&gt;JSONPath&lt;/i&gt; notation.</summary>
+        /// <summary>An array of request elements most closely associated to the error.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? InputRefIds { get; set; }
@@ -55,7 +56,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #else
         public List<string> InputRefIds { get; set; }
 #endif
-        /// <summary>A more detailed explanation of the error than given in the &lt;code&gt;message&lt;/code&gt; error field.</summary>
+        /// <summary>A more detailed explanation of the error.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LongMessage { get; set; }
@@ -63,15 +64,17 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #else
         public string LongMessage { get; set; }
 #endif
-        /// <summary>Information on how to correct the problem, in the end user&apos;s terms and language where applicable. Its value is at most 50 characters long. If applicable, the value is localized in the end user&apos;s requested locale.</summary>
+        /// <summary>The primary error message.</summary>
+        public override string Message { get => MessageEscaped ?? string.Empty; }
+        /// <summary>Information on how to correct the problem, in the end user&apos;s terms and language where applicable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Message { get; set; }
+        public string? MessageEscaped { get; set; }
 #nullable restore
 #else
-        public string Message { get; set; }
+        public string MessageEscaped { get; set; }
 #endif
-        /// <summary>Identifies specific response elements associated with the error, if any. Path format is the same as &lt;code&gt;inputRefId&lt;/code&gt;.</summary>
+        /// <summary>An array of request elements most closely associated to the error.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? OutputRefIds { get; set; }
@@ -79,7 +82,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #else
         public List<string> OutputRefIds { get; set; }
 #endif
-        /// <summary>This optional list of name/value pairs that contain context-specific &lt;code&gt;ErrorParameter&lt;/code&gt; objects, with each item in the list being a parameter (or input field name) that caused an error condition. Each &lt;code&gt;ErrorParameter&lt;/code&gt; object consists of two fields, a &lt;code&gt;name&lt;/code&gt; and a &lt;code&gt;value&lt;/code&gt;.</summary>
+        /// <summary>An array of name/value pairs that describe details the error condition. These are useful when multiple errors are returned.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::EBay.AccountManagement.Generated.AccountV1.Models.ErrorParameter>? Parameters { get; set; }
@@ -87,7 +90,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #else
         public List<global::EBay.AccountManagement.Generated.AccountV1.Models.ErrorParameter> Parameters { get; set; }
 #endif
-        /// <summary>If present, indicates the subsystem in which the error occurred.</summary>
+        /// <summary>Further helps indicate which subsystem the error is coming from. System subcategories include: Initialization, Serialization, Security, Monitoring, Rate Limiting, etc.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Subdomain { get; set; }
@@ -125,7 +128,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
                 { "errorId", n => { ErrorId = n.GetIntValue(); } },
                 { "inputRefIds", n => { InputRefIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "longMessage", n => { LongMessage = n.GetStringValue(); } },
-                { "message", n => { Message = n.GetStringValue(); } },
+                { "message", n => { MessageEscaped = n.GetStringValue(); } },
                 { "outputRefIds", n => { OutputRefIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "parameters", n => { Parameters = n.GetCollectionOfObjectValues<global::EBay.AccountManagement.Generated.AccountV1.Models.ErrorParameter>(global::EBay.AccountManagement.Generated.AccountV1.Models.ErrorParameter.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "subdomain", n => { Subdomain = n.GetStringValue(); } },
@@ -143,7 +146,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
             writer.WriteIntValue("errorId", ErrorId);
             writer.WriteCollectionOfPrimitiveValues<string>("inputRefIds", InputRefIds);
             writer.WriteStringValue("longMessage", LongMessage);
-            writer.WriteStringValue("message", Message);
+            writer.WriteStringValue("message", MessageEscaped);
             writer.WriteCollectionOfPrimitiveValues<string>("outputRefIds", OutputRefIds);
             writer.WriteCollectionOfObjectValues<global::EBay.AccountManagement.Generated.AccountV1.Models.ErrorParameter>("parameters", Parameters);
             writer.WriteStringValue("subdomain", Subdomain);

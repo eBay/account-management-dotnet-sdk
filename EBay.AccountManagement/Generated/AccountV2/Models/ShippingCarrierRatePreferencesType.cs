@@ -29,22 +29,10 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This enum is included if the seller wishes to add or modify the FedEx shipping carrier rate. &lt;/br&gt;&lt;b&gt;Note&lt;/b&gt;: This preference is only applicable to the eBay US marketplace. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:FedexRateOptionEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? FedexRateOption { get; set; }
-#nullable restore
-#else
-        public string FedexRateOption { get; set; }
-#endif
-        /// <summary>This enum is included if the seller wishes to add or modify the UPS shipping carrier rate. &lt;/br&gt;&lt;b&gt;Note&lt;/b&gt;: This preference is only applicable to the eBay US marketplace. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:UPSRateOptionEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? UpsRateOption { get; set; }
-#nullable restore
-#else
-        public string UpsRateOption { get; set; }
-#endif
+        /// <summary>This enum is included if the seller wishes to add or modify the FedEx shipping carrier rate. &lt;/br&gt;&lt;b&gt;Note&lt;/b&gt;: This preference is only applicable to the eBay US marketplace.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV2.Models.FedexRateOptionEnum? FedexRateOption { get; set; }
+        /// <summary>This enum is included if the seller wishes to add or modify the UPS shipping carrier rate. &lt;/br&gt;&lt;b&gt;Note&lt;/b&gt;: This preference is only applicable to the eBay US marketplace.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV2.Models.UPSRateOptionEnum? UpsRateOption { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.AccountV2.Models.ShippingCarrierRatePreferencesType"/> and sets the default values.
         /// </summary>
@@ -70,8 +58,8 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "fedexRateOption", n => { FedexRateOption = n.GetStringValue(); } },
-                { "upsRateOption", n => { UpsRateOption = n.GetStringValue(); } },
+                { "fedexRateOption", n => { FedexRateOption = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.FedexRateOptionEnum>(); } },
+                { "upsRateOption", n => { UpsRateOption = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.UPSRateOptionEnum>(); } },
             };
         }
         /// <summary>
@@ -81,8 +69,8 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("fedexRateOption", FedexRateOption);
-            writer.WriteStringValue("upsRateOption", UpsRateOption);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.FedexRateOptionEnum>("fedexRateOption", FedexRateOption);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.UPSRateOptionEnum>("upsRateOption", UpsRateOption);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

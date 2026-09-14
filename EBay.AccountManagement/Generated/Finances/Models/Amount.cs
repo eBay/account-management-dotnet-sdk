@@ -29,14 +29,8 @@ namespace EBay.AccountManagement.Generated.Finances.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The three-letter &lt;a href=&quot;https://www.iso.org/iso-4217-currency-codes.html &quot; target=&quot;_blank&quot;&gt;ISO 4217&lt;/a&gt; code representing the currency of the amount in the &lt;b&gt; convertedFromValue&lt;/b&gt; field. This value is the pre-conversion currency.&lt;br&gt;&lt;br&gt;This field is only returned if/when currency conversion was applied by eBay. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/ba:CurrencyCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ConvertedFromCurrency { get; set; }
-#nullable restore
-#else
-        public string ConvertedFromCurrency { get; set; }
-#endif
+        /// <summary>The three-letter &lt;a href=&quot;https://www.iso.org/iso-4217-currency-codes.html &quot; target=&quot;_blank&quot;&gt;ISO 4217&lt;/a&gt; code representing the currency of the amount in the &lt;b&gt; convertedFromValue&lt;/b&gt; field. This value is the pre-conversion currency.&lt;br&gt;&lt;br&gt;This field is only returned if/when currency conversion was applied by eBay.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.CurrencyCodeEnum? ConvertedFromCurrency { get; set; }
         /// <summary>The monetary amount before any conversion is performed, in the currency specified by the &lt;b&gt; convertedFromCurrency&lt;/b&gt; field. This value is the pre-conversion amount. The &lt;b&gt; value&lt;/b&gt; field contains the converted amount of this value, in the currency specified by the &lt;b&gt; currency&lt;/b&gt; field.&lt;br&gt;&lt;br&gt;This field is only returned if/when currency conversion was applied by eBay.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -45,15 +39,9 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public string ConvertedFromValue { get; set; }
 #endif
-        /// <summary>&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; This field is only applicable for Mainland China sellers with an available CNY Bank payment instrument. This response can &lt;b&gt;only&lt;/b&gt; have a value of &lt;code&gt;CNY&lt;/code&gt;.&lt;/span&gt;The three-letter &lt;a href=&quot;https://www.iso.org/iso-4217-currency-codes.html &quot; target=&quot;_blank&quot;&gt;ISO 4217&lt;/a&gt; code representing the currency of the amount in the &lt;b&gt;convertedToValue&lt;/b&gt; field. &lt;br/&gt;&lt;br/&gt;This field is only returned for payouts to bank accounts when currency conversion was applied by eBay. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/ba:CurrencyCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ConvertedToCurrency { get; set; }
-#nullable restore
-#else
-        public string ConvertedToCurrency { get; set; }
-#endif
-        /// <summary>&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; This field is only applicable for Mainland China sellers with an available CNY Bank payment instrument. This response &lt;b&gt;only&lt;/b&gt; returns value in CNY.&lt;/span&gt;The monetary value after any conversion is performed, in the currency specified by the &lt;b&gt;convertedToCurrency&lt;/b&gt; field. This value is the converted amount. &lt;br/&gt;&lt;br/&gt;The field is only returned for payouts to bank accounts when currency conversion was applied by eBay.</summary>
+        /// <summary>&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; This field is only applicable for Mainland China sellers with an available CNY Bank payment instrument. This response can &lt;b&gt;only&lt;/b&gt; have a value of &lt;code&gt;CNY&lt;/code&gt;.&lt;/span&gt;&lt;br&gt;The three-letter &lt;a href=&quot;https://www.iso.org/iso-4217-currency-codes.html &quot; target=&quot;_blank&quot;&gt;ISO 4217&lt;/a&gt; code representing the currency of the amount in the &lt;b&gt;convertedToValue&lt;/b&gt; field. &lt;br/&gt;&lt;br/&gt;This field is only returned for payouts to bank accounts when currency conversion was applied by eBay.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.CurrencyCodeEnum? ConvertedToCurrency { get; set; }
+        /// <summary>&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; This field is only applicable for Mainland China sellers with an available CNY Bank payment instrument. This response &lt;b&gt;only&lt;/b&gt; returns value in CNY.&lt;/span&gt;&lt;br&gt;The monetary value after any conversion is performed, in the currency specified by the &lt;b&gt;convertedToCurrency&lt;/b&gt; field. This value is the converted amount. &lt;br/&gt;&lt;br/&gt;The field is only returned for payouts to bank accounts when currency conversion was applied by eBay.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ConvertedToValue { get; set; }
@@ -61,14 +49,8 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public string ConvertedToValue { get; set; }
 #endif
-        /// <summary>A three-letter ISO 4217 code that indicates the currency of the amount in the &lt;b&gt;value&lt;/b&gt; field. This field is always returned with any container using &lt;b&gt;Amount&lt;/b&gt; type. &lt;br&gt;&lt;br&gt;&lt;b&gt;Default&lt;/b&gt;: The currency of the authenticated user&apos;s country. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/ba:CurrencyCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Currency { get; set; }
-#nullable restore
-#else
-        public string Currency { get; set; }
-#endif
+        /// <summary>A three-letter ISO 4217 code that indicates the currency of the amount in the &lt;b&gt;value&lt;/b&gt; field. This field is always returned with any container using &lt;b&gt;Amount&lt;/b&gt; type. &lt;br&gt;&lt;br&gt;&lt;b&gt;Default&lt;/b&gt;: The currency of the authenticated user&apos;s country.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.CurrencyCodeEnum? Currency { get; set; }
         /// <summary>The exchange rate used for the monetary conversion. This field shows the exchange rate used to convert the dollar value in the &lt;b&gt;value&lt;/b&gt; field from the dollar value in the &lt;b&gt;convertedFromValue&lt;/b&gt; field.&lt;br&gt;&lt;br&gt; For sellers in mainland China, this field shows the exchange rate to convert the dollar value in the &lt;b&gt;value&lt;/b&gt; field to the CNY value in the &lt;b&gt;convertedToValue&lt;/b&gt; field.&lt;br&gt;&lt;br&gt;This field is only returned when eBay does a currency version, and a currency conversion is generally needed if the buyer is viewing, or has purchased an item on an international site. &lt;br&gt;&lt;br&gt;This field is only returned if/when currency conversion was applied by eBay.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -110,11 +92,11 @@ namespace EBay.AccountManagement.Generated.Finances.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "convertedFromCurrency", n => { ConvertedFromCurrency = n.GetStringValue(); } },
+                { "convertedFromCurrency", n => { ConvertedFromCurrency = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.CurrencyCodeEnum>(); } },
                 { "convertedFromValue", n => { ConvertedFromValue = n.GetStringValue(); } },
-                { "convertedToCurrency", n => { ConvertedToCurrency = n.GetStringValue(); } },
+                { "convertedToCurrency", n => { ConvertedToCurrency = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.CurrencyCodeEnum>(); } },
                 { "convertedToValue", n => { ConvertedToValue = n.GetStringValue(); } },
-                { "currency", n => { Currency = n.GetStringValue(); } },
+                { "currency", n => { Currency = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.CurrencyCodeEnum>(); } },
                 { "exchangeRate", n => { ExchangeRate = n.GetStringValue(); } },
                 { "value", n => { Value = n.GetStringValue(); } },
             };
@@ -126,11 +108,11 @@ namespace EBay.AccountManagement.Generated.Finances.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("convertedFromCurrency", ConvertedFromCurrency);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.CurrencyCodeEnum>("convertedFromCurrency", ConvertedFromCurrency);
             writer.WriteStringValue("convertedFromValue", ConvertedFromValue);
-            writer.WriteStringValue("convertedToCurrency", ConvertedToCurrency);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.CurrencyCodeEnum>("convertedToCurrency", ConvertedToCurrency);
             writer.WriteStringValue("convertedToValue", ConvertedToValue);
-            writer.WriteStringValue("currency", Currency);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.CurrencyCodeEnum>("currency", Currency);
             writer.WriteStringValue("exchangeRate", ExchangeRate);
             writer.WriteStringValue("value", Value);
             writer.WriteAdditionalData(AdditionalData);

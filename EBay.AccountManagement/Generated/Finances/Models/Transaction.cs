@@ -29,7 +29,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>This container shows the dollar value and currency type of the monetary transaction. This field is always returned even when eBay has yet to initiate a payout for the order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? Amount { get; set; }
@@ -37,15 +37,9 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount Amount { get; set; }
 #endif
-        /// <summary>The enumeration value returned in this field indicates if the monetary transaction amount is a (&lt;code&gt;CREDIT&lt;/code&gt;) or a (&lt;code&gt;DEBIT&lt;/code&gt;) to the seller&apos;s account. Typically, the &lt;code&gt;SALE&lt;/code&gt; and &lt;code&gt;CREDIT&lt;/code&gt; transaction types are credits to the seller&apos;s account, and the &lt;code&gt;REFUND&lt;/code&gt;, &lt;code&gt;DISPUTE&lt;/code&gt;, &lt;code&gt;SHIPPING_LABEL&lt;/code&gt;, and &lt;code&gt;TRANSFER&lt;/code&gt; transaction types are debits to the seller&apos;s account. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/pay:BookingEntryEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? BookingEntry { get; set; }
-#nullable restore
-#else
-        public string BookingEntry { get; set; }
-#endif
-        /// <summary>This type is used to express details about the buyer associated with an order. At this time, the only field in this type is the eBay user ID of the buyer, but more fields may get added at a later date.</summary>
+        /// <summary>The enumeration value returned in this field indicates if the monetary transaction amount is a (&lt;code&gt;CREDIT&lt;/code&gt;) or a (&lt;code&gt;DEBIT&lt;/code&gt;) to the seller&apos;s account.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum? BookingEntry { get; set; }
+        /// <summary>This is the unique eBay user ID for the buyer who purchased the order. This field is not returned for &lt;code&gt;TRANSFER&lt;/code&gt; monetary transaction types.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Buyer? Buyer { get; set; }
@@ -53,7 +47,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Buyer Buyer { get; set; }
 #endif
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>This is the amount of sales tax that has been collected by eBay for an order.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; Sales tax applies only to &lt;code&gt;SALE&lt;/code&gt; and &lt;code&gt;REFUND&lt;/code&gt; transactions (&lt;b&gt;transactionType&lt;/b&gt;).&lt;/span&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? EBayCollectedTaxAmount { get; set; }
@@ -61,7 +55,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount EBayCollectedTaxAmount { get; set; }
 #endif
-        /// <summary>This type defines the jurisdiction information associated with a fee, identifying the geographic or regulatory region under which the fee is applied.</summary>
+        /// <summary>This container stores information about region-specific fees that are charged to sellers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.FeeJurisdiction? FeeJurisdiction { get; set; }
@@ -69,14 +63,8 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.FeeJurisdiction FeeJurisdiction { get; set; }
 #endif
-        /// <summary>The enumeration value returned in this field indicates the type of fee that was deducted from the seller payout. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/api:FeeTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? FeeType { get; set; }
-#nullable restore
-#else
-        public string FeeType { get; set; }
-#endif
+        /// <summary>The enumeration value returned in this field indicates the type of fee that was deducted from the seller payout.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.FeeTypeEnum? FeeType { get; set; }
         /// <summary>The unique identifier of the eBay order associated with the monetary transaction.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -85,7 +73,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public string OrderId { get; set; }
 #endif
-        /// <summary>This array either shows the order line item transactional fees related to a &lt;code&gt;SALE&lt;/code&gt; transaction and deducted from the payout associated with that order, or it shows the transactional fee credits going back to the seller in the case of a &lt;code&gt;REFUND&lt;/code&gt; transaction.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; In certain circumstances, transactional fees like &lt;code&gt;FINAL_VALUE_FEE&lt;/code&gt; and &lt;code&gt;FINAL_VALUE_FEE_FIXED_PER_ORDER&lt;/code&gt; are not deducted from a seller payout, but instead they are billed to the seller&apos;s account as &quot;non-sale charges&quot;. When this happens, the &lt;code&gt;SALE&lt;/code&gt; transaction entity will not have these fees under the &lt;b&gt;orderLineItems&lt;/b&gt; array, but they will appear as separate &lt;code&gt;NON_SALE_CHARGE&lt;/code&gt; transactions. When this happens, and you want to see those transactional fees for the order, one thing you can do is make another call to &lt;b&gt;getTransactions&lt;/b&gt; and filter against the &lt;b&gt;orderId&lt;/b&gt;. In the response, you will see the &lt;code&gt;SALE&lt;/code&gt; transaction and the &lt;code&gt;NON_SALE_CHARGE&lt;/code&gt; transactions applied against the order. See &lt;a href=&quot;/api-docs/sell/finances/resources/transaction/methods/getTransactions#s0-1-28-4-7-5-6-Gettransactionalfeesforanorder-5&quot; &gt;Sample 6: Get transactional fees for an order&lt;/a&gt; and &lt;a href=&quot;/api-docs/sell/finances/resources/transaction/methods/getTransactions#s0-1-28-4-7-5-6-Getnon-salechargesforanorder-9&quot;&gt;Sample 10: Get non-sale charges for an order&lt;/a&gt; for examples.</summary>
+        /// <summary>This array either shows the order line item transactional fees related to a &lt;code&gt;SALE&lt;/code&gt; transaction and deducted from the payout associated with that order, or it shows the transactional fee credits going back to the seller in the case of a &lt;code&gt;REFUND&lt;/code&gt; transaction.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::EBay.AccountManagement.Generated.Finances.Models.OrderLineItem>? OrderLineItems { get; set; }
@@ -101,7 +89,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public string PaymentsEntity { get; set; }
 #endif
-        /// <summary>This type provide payout details for a split-payout case. This type is only applicable for split payouts.</summary>
+        /// <summary>This container provides the payout details for a split-payout case. This container is only returned for split-payout use cases.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.PayoutDetails? PayoutDetails { get; set; }
@@ -109,7 +97,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.PayoutDetails PayoutDetails { get; set; }
 #endif
-        /// <summary>The unique identifier of the seller payout associated with the monetary transaction. This identifier is generated once eBay begins processing the payout for the corresponding order. This field will not be returned if eBay has not yet begun processing the payout for an order.&lt;br&gt;&lt;br&gt;This value can be used by the &lt;b&gt;filter&lt;/b&gt; query parameter to get monetary transactions associated with the true(actual) payout associated with the &lt;b&gt;PayoutId&lt;/b&gt;.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; In case of a split payout, always pick the first true(actual) payout id.&lt;/span&gt; </summary>
+        /// <summary>The unique identifier of the seller payout associated with the monetary transaction.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PayoutId { get; set; }
@@ -141,7 +129,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public List<global::EBay.AccountManagement.Generated.Finances.Models.Tax> Taxes { get; set; }
 #endif
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>This amount is the total amount of selling fees paid for order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? TotalFeeAmount { get; set; }
@@ -149,7 +137,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount TotalFeeAmount { get; set; }
 #endif
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>This amount is the total amount for the order before selling fees are deducted from the seller payout associated with the order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? TotalFeeBasisAmount { get; set; }
@@ -165,7 +153,15 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public string TransactionDate { get; set; }
 #endif
-        /// <summary>This field, when combined with the &lt;a href=&quot;#response.transactions.transactionType&quot; &gt;transactionType&lt;/a&gt; field, provide a unique identifier of the monetary transaction. A monetary transaction can be a sales order, an order refund to the buyer, a credit to the seller&apos;s account, a debit to the seller for the purchase of a shipping label, or a transaction where eBay recouped money from the seller if the seller lost a buyer-initiated payment dispute.</summary>
+        /// <summary>Sales tax collected by eBay, applicable only for SALE and REFUND.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::EBay.AccountManagement.Generated.Finances.Models.Amount? TransactionEbayCollectedTaxAmount { get; set; }
+#nullable restore
+#else
+        public global::EBay.AccountManagement.Generated.Finances.Models.Amount TransactionEbayCollectedTaxAmount { get; set; }
+#endif
+        /// <summary>This field, when combined with the &lt;a href=&quot;#response.transactions.transactionType&quot; &gt;transactionType&lt;/a&gt; field, provide a unique identifier of the monetary transaction.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TransactionId { get; set; }
@@ -173,7 +169,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public string TransactionId { get; set; }
 #endif
-        /// <summary>This field applies to shipping label transactions, sales transactions where payout is on hold, and non-sale charge fees. The following are examples of how the field is used for each transaction type:&lt;ul&gt;&lt;li&gt;&lt;b&gt;Shipping label purchase&lt;/b&gt;: the &lt;b&gt;transactionMemo&lt;/b&gt; field gives details about a purchase, a refund, or a price adjustment to the cost of the shipping label.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Sales transactions with funds on hold&lt;/b&gt;: the &lt;b&gt;transactionMemo&lt;/b&gt; field provides information on the reason for the hold or when the hold will be released (e.g., &quot;Funds on hold. Estimated release on Jun 1&quot;).&lt;/li&gt;&lt;li&gt;&lt;b&gt;Non-sale charge fees&lt;/b&gt;: the &lt;b&gt;transactionMemo&lt;/b&gt; field will provide the type of fee that was charged, such as Promoted Offsite Fee.&lt;/li&gt;&lt;/ul&gt;This field is only returned if applicable/available.</summary>
+        /// <summary>This field applies to shipping label transactions, sales transactions where payout is on hold, and non-sale charge fees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TransactionMemo { get; set; }
@@ -181,22 +177,10 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public string TransactionMemo { get; set; }
 #endif
-        /// <summary>This enumeration value indicates the current status of the seller payout associated with the monetary transaction. See the &lt;code&gt;TransactionStatusEnum&lt;/code&gt; type for more information on the different states. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/pay:TransactionStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? TransactionStatus { get; set; }
-#nullable restore
-#else
-        public string TransactionStatus { get; set; }
-#endif
-        /// <summary>This enumeration value indicates the type of monetary transaction. Examples of monetary transactions include a buyer&apos;s payment for an order, a refund to the buyer for a returned item or cancelled order, or a credit issued by eBay to the seller&apos;s account. For a complete list of monetary transaction types within the &lt;strong&gt;Finances API&lt;/strong&gt;, see the &lt;a href=&quot;/api-docs/sell/finances/types/pay:TransactionTypeEnum&quot;&gt;TransactionTypeEnum&lt;/a&gt; type. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/pay:TransactionTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? TransactionType { get; set; }
-#nullable restore
-#else
-        public string TransactionType { get; set; }
-#endif
+        /// <summary>This enumeration value indicates the current status of the seller payout associated with the monetary transaction.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.TransactionStatusEnum? TransactionStatus { get; set; }
+        /// <summary>This enumeration value indicates the type of monetary transaction.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.TransactionTypeEnum? TransactionType { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.Finances.Models.Transaction"/> and sets the default values.
         /// </summary>
@@ -223,11 +207,11 @@ namespace EBay.AccountManagement.Generated.Finances.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "amount", n => { Amount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
-                { "bookingEntry", n => { BookingEntry = n.GetStringValue(); } },
+                { "bookingEntry", n => { BookingEntry = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>(); } },
                 { "buyer", n => { Buyer = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Buyer>(global::EBay.AccountManagement.Generated.Finances.Models.Buyer.CreateFromDiscriminatorValue); } },
                 { "eBayCollectedTaxAmount", n => { EBayCollectedTaxAmount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
                 { "feeJurisdiction", n => { FeeJurisdiction = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.FeeJurisdiction>(global::EBay.AccountManagement.Generated.Finances.Models.FeeJurisdiction.CreateFromDiscriminatorValue); } },
-                { "feeType", n => { FeeType = n.GetStringValue(); } },
+                { "feeType", n => { FeeType = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.FeeTypeEnum>(); } },
                 { "orderId", n => { OrderId = n.GetStringValue(); } },
                 { "orderLineItems", n => { OrderLineItems = n.GetCollectionOfObjectValues<global::EBay.AccountManagement.Generated.Finances.Models.OrderLineItem>(global::EBay.AccountManagement.Generated.Finances.Models.OrderLineItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "paymentsEntity", n => { PaymentsEntity = n.GetStringValue(); } },
@@ -239,10 +223,11 @@ namespace EBay.AccountManagement.Generated.Finances.Models
                 { "totalFeeAmount", n => { TotalFeeAmount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
                 { "totalFeeBasisAmount", n => { TotalFeeBasisAmount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
                 { "transactionDate", n => { TransactionDate = n.GetStringValue(); } },
+                { "ebayCollectedTaxAmount", n => { TransactionEbayCollectedTaxAmount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
                 { "transactionId", n => { TransactionId = n.GetStringValue(); } },
                 { "transactionMemo", n => { TransactionMemo = n.GetStringValue(); } },
-                { "transactionStatus", n => { TransactionStatus = n.GetStringValue(); } },
-                { "transactionType", n => { TransactionType = n.GetStringValue(); } },
+                { "transactionStatus", n => { TransactionStatus = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.TransactionStatusEnum>(); } },
+                { "transactionType", n => { TransactionType = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.TransactionTypeEnum>(); } },
             };
         }
         /// <summary>
@@ -253,11 +238,11 @@ namespace EBay.AccountManagement.Generated.Finances.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("amount", Amount);
-            writer.WriteStringValue("bookingEntry", BookingEntry);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.BookingEntryEnum>("bookingEntry", BookingEntry);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Buyer>("buyer", Buyer);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("eBayCollectedTaxAmount", EBayCollectedTaxAmount);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.FeeJurisdiction>("feeJurisdiction", FeeJurisdiction);
-            writer.WriteStringValue("feeType", FeeType);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.FeeTypeEnum>("feeType", FeeType);
             writer.WriteStringValue("orderId", OrderId);
             writer.WriteCollectionOfObjectValues<global::EBay.AccountManagement.Generated.Finances.Models.OrderLineItem>("orderLineItems", OrderLineItems);
             writer.WriteStringValue("paymentsEntity", PaymentsEntity);
@@ -269,10 +254,11 @@ namespace EBay.AccountManagement.Generated.Finances.Models
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("totalFeeAmount", TotalFeeAmount);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("totalFeeBasisAmount", TotalFeeBasisAmount);
             writer.WriteStringValue("transactionDate", TransactionDate);
+            writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("ebayCollectedTaxAmount", TransactionEbayCollectedTaxAmount);
             writer.WriteStringValue("transactionId", TransactionId);
             writer.WriteStringValue("transactionMemo", TransactionMemo);
-            writer.WriteStringValue("transactionStatus", TransactionStatus);
-            writer.WriteStringValue("transactionType", TransactionType);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.TransactionStatusEnum>("transactionStatus", TransactionStatus);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.TransactionTypeEnum>("transactionType", TransactionType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

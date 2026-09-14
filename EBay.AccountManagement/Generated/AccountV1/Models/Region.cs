@@ -37,14 +37,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #else
         public string RegionName { get; set; }
 #endif
-        /// <summary>Reserved for future use. &lt;!--The region&apos;s type, which can be one of the following: &apos;COUNTRY&apos;, &apos;COUNTRY_REGION&apos;, &apos;STATE_OR_PROVINCE&apos;, &apos;WORLD_REGION&apos;, or &apos;WORLDWIDE&apos;.--&gt; For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/ba:RegionTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? RegionType { get; set; }
-#nullable restore
-#else
-        public string RegionType { get; set; }
-#endif
+        /// <summary>This enumerated type defines shipping region types.&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt; &lt;strong&gt;Note:&lt;/strong&gt; These enumeration values are not currently being used by fulfillment policy methods, but may be used in the future.&lt;/span&gt; | - **COUNTRY**: A single country. - **COUNTRY_REGION**: A domestic region or special location within a country. In the US, these domestic region/special location include &apos;Alaska/Hawaii&apos; and &apos;PO Box&apos;. - **STATE_OR_PROVINCE**: A state or province, such as California (CA) or New York (NY) in the US, or British Columbia (BC) or Ontario (ON) in Canada. - **WORLD_REGION**: A world region, such as Europe, the Middle East, or Southeast Asia. - **WORLDWIDE**: The entire world as we know it.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV1.Models.RegionTypeEnum? RegionType { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Region"/> and sets the default values.
         /// </summary>
@@ -71,7 +65,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "regionName", n => { RegionName = n.GetStringValue(); } },
-                { "regionType", n => { RegionType = n.GetStringValue(); } },
+                { "regionType", n => { RegionType = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.RegionTypeEnum>(); } },
             };
         }
         /// <summary>
@@ -82,7 +76,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("regionName", RegionName);
-            writer.WriteStringValue("regionType", RegionType);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.RegionTypeEnum>("regionType", RegionType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

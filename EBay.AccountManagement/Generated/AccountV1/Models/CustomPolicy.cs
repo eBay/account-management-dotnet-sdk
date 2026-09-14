@@ -61,14 +61,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>Specifies the type of Custom Policy being returned. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:CustomPolicyTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? PolicyType { get; set; }
-#nullable restore
-#else
-        public string PolicyType { get; set; }
-#endif
+        /// <summary>An enumeration type that defines the supported types of Custom Policies. | - **PRODUCT_COMPLIANCE**: This enumeration value indicates that the custom policy is a product compliance policy. - **TAKE_BACK**: This enumeration value indicates that the custom policy is a product takeback policy.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV1.Models.CustomPolicyTypeEnum? PolicyType { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.AccountV1.Models.CustomPolicy"/> and sets the default values.
         /// </summary>
@@ -98,7 +92,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "label", n => { Label = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "policyType", n => { PolicyType = n.GetStringValue(); } },
+                { "policyType", n => { PolicyType = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.CustomPolicyTypeEnum>(); } },
             };
         }
         /// <summary>
@@ -112,7 +106,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("label", Label);
             writer.WriteStringValue("name", Name);
-            writer.WriteStringValue("policyType", PolicyType);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.CustomPolicyTypeEnum>("policyType", PolicyType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

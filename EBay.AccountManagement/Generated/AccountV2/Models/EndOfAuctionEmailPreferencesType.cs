@@ -33,14 +33,8 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
         public bool? EmailCustomized { get; set; }
         /// <summary>This boolean field indicates whether or not the seller is using a customized logo in the emails that are sent to winning bidders.</summary>
         public bool? LogoCustomized { get; set; }
-        /// <summary>This enum indicates the type of logo that is used in the email that is sent to winning bidders. See EndOfAuctionLogoTypeEnum type for descriptions of the different logo types. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:EndOfAuctionLogoTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? LogoType { get; set; }
-#nullable restore
-#else
-        public string LogoType { get; set; }
-#endif
+        /// <summary>This enum indicates the type of logo that is used in the email that is sent to winning bidders. See EndOfAuctionLogoTypeEnum type for descriptions of the different logo types.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV2.Models.EndOfAuctionLogoTypeEnum? LogoType { get; set; }
         /// <summary>This field shows the URL path to a seller’s custom logo image that is being used in the email sent to winning bidders. This field is only returned if the seller is using a customized logo in emails.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -86,7 +80,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
             {
                 { "emailCustomized", n => { EmailCustomized = n.GetBoolValue(); } },
                 { "logoCustomized", n => { LogoCustomized = n.GetBoolValue(); } },
-                { "logoType", n => { LogoType = n.GetStringValue(); } },
+                { "logoType", n => { LogoType = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.EndOfAuctionLogoTypeEnum>(); } },
                 { "logoUrl", n => { LogoUrl = n.GetStringValue(); } },
                 { "templateText", n => { TemplateText = n.GetStringValue(); } },
                 { "textCustomized", n => { TextCustomized = n.GetBoolValue(); } },
@@ -101,7 +95,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("emailCustomized", EmailCustomized);
             writer.WriteBoolValue("logoCustomized", LogoCustomized);
-            writer.WriteStringValue("logoType", LogoType);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.EndOfAuctionLogoTypeEnum>("logoType", LogoType);
             writer.WriteStringValue("logoUrl", LogoUrl);
             writer.WriteStringValue("templateText", TemplateText);
             writer.WriteBoolValue("textCustomized", TextCustomized);

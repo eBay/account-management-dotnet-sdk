@@ -31,14 +31,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This field has been deprecated and is no longer used.&lt;ul&gt;&lt;li&gt;Do not include this field in any &lt;b&gt;create&lt;/b&gt; or &lt;b&gt;update&lt;/b&gt; method.&lt;/li&gt;&lt;li&gt;This field may be returned within the payload of a &lt;b&gt;get&lt;/b&gt; method, but it can be ignored.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;</summary>
         public bool? Default { get; set; }
-        /// <summary>The category type to which the policy applies (motor vehicles or non-motor vehicles). &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;code&gt;MOTORS_VEHICLES&lt;/code&gt; category type is not valid for return policies. eBay flows do not support the return of motor vehicles.&lt;/span&gt; For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:CategoryTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Name { get; set; }
-#nullable restore
-#else
-        public string Name { get; set; }
-#endif
+        /// <summary>An enum type that describes the category type (motor vehicles or non-motor vehicles). | - **MOTORS_VEHICLES**: This values indicates that the business policy applies to motor vehicle listings. - **ALL_EXCLUDING_MOTORS_VEHICLES**: This values indicates that the business policy applies to all listings besides motor vehicle listings.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV1.Models.CategoryTypeEnum? Name { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.AccountV1.Models.CategoryType"/> and sets the default values.
         /// </summary>
@@ -65,7 +59,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "default", n => { Default = n.GetBoolValue(); } },
-                { "name", n => { Name = n.GetStringValue(); } },
+                { "name", n => { Name = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.CategoryTypeEnum>(); } },
             };
         }
         /// <summary>
@@ -76,7 +70,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("default", Default);
-            writer.WriteStringValue("name", Name);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.CategoryTypeEnum>("name", Name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

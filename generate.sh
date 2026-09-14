@@ -16,6 +16,9 @@
 
 set -euo pipefail
 
+echo "Pinning Kiota to 1.35.0..."
+dotnet tool update microsoft.openapi.kiota --local --version 1.35.0 --allow-downgrade
+
 echo "Restoring tools..."
 dotnet tool restore
 
@@ -24,7 +27,7 @@ rm -rf ./EBay.AccountManagement/Generated
 
 dotnet kiota generate \
   -l csharp \
-  -d specs/openapi/account-v1.yaml \
+  -d specs/openapi/account-v1.json \
   -c AccountV1ApiClient \
   -n EBay.AccountManagement.Generated.AccountV1 \
   -o EBay.AccountManagement/Generated/AccountV1 \
@@ -32,7 +35,7 @@ dotnet kiota generate \
 
 dotnet kiota generate \
   -l csharp \
-  -d specs/openapi/account-v2.yaml \
+  -d specs/openapi/account-v2.json \
   -c AccountV2ApiClient \
   -n EBay.AccountManagement.Generated.AccountV2 \
   -o EBay.AccountManagement/Generated/AccountV2 \
@@ -40,7 +43,7 @@ dotnet kiota generate \
 
 dotnet kiota generate \
   -l csharp \
-  -d specs/openapi/finances.yaml \
+  -d specs/openapi/finances.json \
   -c FinancesApiClient \
   -n EBay.AccountManagement.Generated.Finances \
   -o EBay.AccountManagement/Generated/Finances \

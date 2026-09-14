@@ -44,7 +44,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Fulfillment_policy
             get => new global::EBay.AccountManagement.Generated.AccountV1.Fulfillment_policy.Get_by_policy_name.Get_by_policy_nameRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the EBay.AccountManagement.Generated.AccountV1.fulfillment_policy.item collection</summary>
-        /// <param name="position">This path parameter specifies the ID of the fulfillment policy you want to retrieve.&lt;br&gt;&lt;br&gt; This ID can be retrieved for a fulfillment policy by using the &lt;a href=&quot;/api-docs/sell/account/resources/fulfillment_policy/methods/getFulfillmentPolicies&quot; target=&quot;_blank &quot;&gt;getFulfillmentPolicies&lt;/a&gt; method.</param>
+        /// <param name="position">This path parameter specifies the ID of the fulfillment policy you want to retrieve.&lt;br&gt;&lt;br&gt; This ID can be retrieved for a fulfillment policy by using the &lt;a href=&quot;/develop/api/sell/account_api_v1#sell-account_api_v1-fulfillment_policy-getfulfillmentpolicies&quot; target=&quot;_blank &quot;&gt;getFulfillmentPolicies&lt;/a&gt; method.</param>
         /// <returns>A <see cref="global::EBay.AccountManagement.Generated.AccountV1.Fulfillment_policy.Item.WithFulfillmentPolicyItemRequestBuilder"/></returns>
         public global::EBay.AccountManagement.Generated.AccountV1.Fulfillment_policy.Item.WithFulfillmentPolicyItemRequestBuilder this[string position]
         {
@@ -77,6 +77,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Fulfillment_policy
         /// <returns>A <see cref="global::EBay.AccountManagement.Generated.AccountV1.Models.FulfillmentPolicyResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.AccountManagement.Generated.AccountV1.Models.FulfillmentPolicyResponse?> GetAsync(Action<RequestConfiguration<global::EBay.AccountManagement.Generated.AccountV1.Fulfillment_policy.Fulfillment_policyRequestBuilder.Fulfillment_policyRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -87,7 +89,12 @@ namespace EBay.AccountManagement.Generated.AccountV1.Fulfillment_policy
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Models.FulfillmentPolicyResponse>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Models.FulfillmentPolicyResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Models.FulfillmentPolicyResponse>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Models.FulfillmentPolicyResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This method retrieves all the fulfillment policies configured for the marketplace you specify using the &lt;code&gt;marketplace_id&lt;/code&gt; query parameter.
@@ -123,7 +130,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Fulfillment_policy
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class Fulfillment_policyRequestBuilderGetQueryParameters 
         {
-            /// <summary>This query parameter specifies the eBay marketplace of the policies you want to retrieve. For implementation help, refer to eBay API documentation at https://developer.ebay.com/api-docs/sell/account/types/ba:MarketplaceIdEnum</summary>
+            /// <summary>This query parameter specifies the eBay marketplace of the policies you want to retrieve. For implementation help, refer to eBay API documentation at https://developer.ebay.com/develop/api/sell/account_api_v1#sell-account_api_v1-fulfillment_policy-getfulfillmentpolicies.marketplaceidenum</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("marketplace_id")]

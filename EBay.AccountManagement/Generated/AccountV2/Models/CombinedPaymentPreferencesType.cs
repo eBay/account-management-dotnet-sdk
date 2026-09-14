@@ -29,14 +29,8 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This enum type defines the available options for handling combined payments when a seller allows multiple line items from the same buyer to be paid for with a single payment. See &lt;code&gt;CombinedPaymentOptionEnum&lt;/code&gt; for a description of each value. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:CombinedPaymentOptionEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? CombinedPaymentOption { get; set; }
-#nullable restore
-#else
-        public string CombinedPaymentOption { get; set; }
-#endif
+        /// <summary>This enum type defines the available options for handling combined payments when a seller allows multiple line items from the same buyer to be paid for with a single payment. See &lt;code&gt;CombinedPaymentOptionEnum&lt;/code&gt; for a description of each value.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedPaymentOptionEnum? CombinedPaymentOption { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedPaymentPreferencesType"/> and sets the default values.
         /// </summary>
@@ -62,7 +56,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "combinedPaymentOption", n => { CombinedPaymentOption = n.GetStringValue(); } },
+                { "combinedPaymentOption", n => { CombinedPaymentOption = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedPaymentOptionEnum>(); } },
             };
         }
         /// <summary>
@@ -72,7 +66,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("combinedPaymentOption", CombinedPaymentOption);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedPaymentOptionEnum>("combinedPaymentOption", CombinedPaymentOption);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

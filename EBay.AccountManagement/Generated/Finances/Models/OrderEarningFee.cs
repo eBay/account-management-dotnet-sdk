@@ -29,7 +29,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.</summary>
+        /// <summary>The monetary amount of the expense.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount? Amount { get; set; }
@@ -37,14 +37,8 @@ namespace EBay.AccountManagement.Generated.Finances.Models
 #else
         public global::EBay.AccountManagement.Generated.Finances.Models.Amount Amount { get; set; }
 #endif
-        /// <summary>The classification of the fee applied to the order. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/finances/types/api:FeeTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? FeeType { get; set; }
-#nullable restore
-#else
-        public string FeeType { get; set; }
-#endif
+        /// <summary>The classification of the fee applied to the order.</summary>
+        public global::EBay.AccountManagement.Generated.Finances.Models.FeeTypeEnum? FeeType { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.Finances.Models.OrderEarningFee"/> and sets the default values.
         /// </summary>
@@ -71,7 +65,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "amount", n => { Amount = n.GetObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>(global::EBay.AccountManagement.Generated.Finances.Models.Amount.CreateFromDiscriminatorValue); } },
-                { "feeType", n => { FeeType = n.GetStringValue(); } },
+                { "feeType", n => { FeeType = n.GetEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.FeeTypeEnum>(); } },
             };
         }
         /// <summary>
@@ -82,7 +76,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.Finances.Models.Amount>("amount", Amount);
-            writer.WriteStringValue("feeType", FeeType);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.Finances.Models.FeeTypeEnum>("feeType", FeeType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

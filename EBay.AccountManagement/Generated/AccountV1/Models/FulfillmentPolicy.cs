@@ -67,14 +67,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #endif
         /// <summary>If returned as &lt;code&gt;true&lt;/code&gt;, local pickup is available for this policy.</summary>
         public bool? LocalPickup { get; set; }
-        /// <summary>The ID of the eBay marketplace to which this fulfillment policy applies. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/ba:MarketplaceIdEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? MarketplaceId { get; set; }
-#nullable restore
-#else
-        public string MarketplaceId { get; set; }
-#endif
+        /// <summary>This enumerated type contains a list of the standard codes that represent each of the eBay marketplaces. | - **EBAY_AT**: eBay Austria (ebay.at) - **EBAY_AU**: eBay Australia (ebay.com/au) - **EBAY_BE**: eBay Belgium (ebay.com/sch/Belgium) - **EBAY_CA**: eBay Canada (English) (ebay.ca) - **EBAY_CH**: eBay Switzerland (ebay.ch) - **EBAY_CN**: eBay China (ebay.com/sch/China) - **EBAY_CZ**: eBay Czech Republic (ebay.com/sch/Czech-Republic) - **EBAY_DE**: eBay Germany (ebay.de) - **EBAY_DK**: eBay Denmark (ebay.com/sch/Denmark) - **EBAY_ES**: eBay Spain (ebay.es) - **EBAY_FI**: eBay Finland (ebay.com/sch/Finland) - **EBAY_FR**: eBay France (ebay.fr) - **EBAY_GB**: eBay UK (ebay.co.uk) - **EBAY_GR**: eBay Greece (ebay.com/sch/Greece) - **EBAY_HK**: eBay Hong Kong (ebay.com.hk) - **EBAY_HU**: eBay Hungary (ebay.com/sch/Hungary) - **EBAY_ID**: eBay Indonesia (id.ebay.com) - **EBAY_IE**: eBay Ireland (ebay.ie) - **EBAY_IL**: eBay Israel (ebay.com/sch/Israel) - **EBAY_IN**: eBay India (ebay.in)&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; eBay India is no longer a functioning eBay marketplace.&lt;/span&gt; - **EBAY_IT**: eBay Italy (ebay.it) - **EBAY_JP**: eBay Japan (ebay.co.jp) - **EBAY_MY**: eBay Malaysia (ebay.com/my) - **EBAY_NL**: eBay Netherlands (ebay.nl) - **EBAY_NO**: eBay Norway (ebay.com/sch/Norway) - **EBAY_NZ**: eBay New Zealand (ebay.com/sch/New-Zealand) - **EBAY_PE**: eBay Peru (ebay.com/sch/Peru) - **EBAY_PH**: eBay Philippines (ebay.ph) - **EBAY_PL**: eBay Poland (ebay.pl) - **EBAY_PR**: eBay Puerto Rico (ebay.com/sch/Puerto-Rico) - **EBAY_PT**: eBay Portugal (ebay.com/sch/Portugal) - **EBAY_RU**: eBay Russia (ebay.com/sch/Russia) - **EBAY_SE**: eBay Sweden (ebay.com/sch/Sweden) - **EBAY_SG**: eBay Singapore (ebay.com/sg) - **EBAY_TH**: eBay Thailand (export.ebay.co.th) - **EBAY_TW**: eBay Taiwan (ebay.com/tw) - **EBAY_US**: eBay US (ebay.com) - **EBAY_VN**: eBay Vietnam (ebay.vn) - **EBAY_ZA**: eBay South Africa (ebay.com/sch/South-Africa) - **EBAY_HALF_US**: This enumeration value is no longer applicable as the Half.com site no longer exists. - **EBAY_MOTORS_US**: eBay Motors US (ebay.com/motors)</summary>
+        public global::EBay.AccountManagement.Generated.AccountV1.Models.MarketplaceIdEnum? MarketplaceId { get; set; }
         /// <summary>A seller-defined name for this fulfillment policy. Names must be unique for policies assigned to the same marketplace. &lt;br&gt;&lt;br&gt;&lt;b&gt;Max length&lt;/b&gt;: 64</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -133,7 +127,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
                 { "globalShipping", n => { GlobalShipping = n.GetBoolValue(); } },
                 { "handlingTime", n => { HandlingTime = n.GetObjectValue<global::EBay.AccountManagement.Generated.AccountV1.Models.TimeDuration>(global::EBay.AccountManagement.Generated.AccountV1.Models.TimeDuration.CreateFromDiscriminatorValue); } },
                 { "localPickup", n => { LocalPickup = n.GetBoolValue(); } },
-                { "marketplaceId", n => { MarketplaceId = n.GetStringValue(); } },
+                { "marketplaceId", n => { MarketplaceId = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.MarketplaceIdEnum>(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "pickupDropOff", n => { PickupDropOff = n.GetBoolValue(); } },
                 { "shipToLocations", n => { ShipToLocations = n.GetObjectValue<global::EBay.AccountManagement.Generated.AccountV1.Models.RegionSet>(global::EBay.AccountManagement.Generated.AccountV1.Models.RegionSet.CreateFromDiscriminatorValue); } },
@@ -154,7 +148,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
             writer.WriteBoolValue("globalShipping", GlobalShipping);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.AccountV1.Models.TimeDuration>("handlingTime", HandlingTime);
             writer.WriteBoolValue("localPickup", LocalPickup);
-            writer.WriteStringValue("marketplaceId", MarketplaceId);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.MarketplaceIdEnum>("marketplaceId", MarketplaceId);
             writer.WriteStringValue("name", Name);
             writer.WriteBoolValue("pickupDropOff", PickupDropOff);
             writer.WriteCollectionOfObjectValues<global::EBay.AccountManagement.Generated.AccountV1.Models.ShippingOption>("shippingOptions", ShippingOptions);

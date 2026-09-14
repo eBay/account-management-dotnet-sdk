@@ -37,14 +37,8 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
 #else
         public List<global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedShippingRule> CombinedShippingRules { get; set; }
 #endif
-        /// <summary>This container defines the type of discount rule applied (e.g., percentage-based, fixed-rate). For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:CombinedShippingRuleTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? CombinedShippingRuleType { get; set; }
-#nullable restore
-#else
-        public string CombinedShippingRuleType { get; set; }
-#endif
+        /// <summary>This container defines the type of discount rule applied (e.g., percentage-based, fixed-rate).</summary>
+        public global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedShippingRuleTypeEnum? CombinedShippingRuleType { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.AccountV2.Models.FlatShippingRuleType"/> and sets the default values.
         /// </summary>
@@ -70,7 +64,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "combinedShippingRuleType", n => { CombinedShippingRuleType = n.GetStringValue(); } },
+                { "combinedShippingRuleType", n => { CombinedShippingRuleType = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedShippingRuleTypeEnum>(); } },
                 { "combinedShippingRules", n => { CombinedShippingRules = n.GetCollectionOfObjectValues<global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedShippingRule>(global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedShippingRule.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -82,7 +76,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedShippingRule>("combinedShippingRules", CombinedShippingRules);
-            writer.WriteStringValue("combinedShippingRuleType", CombinedShippingRuleType);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedShippingRuleTypeEnum>("combinedShippingRuleType", CombinedShippingRuleType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

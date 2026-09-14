@@ -29,15 +29,9 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This container specifies the time window during which multiple unpaid orders can be combined into a single payment or invoice, represented by using one of the values in CombinedPaymentPeriodEnum type. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/account/types/api:CombinedPaymentPeriodEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? CombinedDuration { get; set; }
-#nullable restore
-#else
-        public string CombinedDuration { get; set; }
-#endif
-        /// <summary>This type is used to represent a promotional shipping rule set up by the seller on an eBay marketplace.</summary>
+        /// <summary>This container specifies the time window during which multiple unpaid orders can be combined into a single payment or invoice, represented by using one of the values in &lt;a href=&quot;/develop/api/sell/account_api_v2#sell-account_api_v2-combined_shipping_rules-getcombinedshippingrules.getcombinedshippingrulesresponse.combinedduration&quot; target=&quot;_blank&quot;&gt;CombinedPaymentPeriodEnum&lt;/a&gt;.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedPaymentPeriodEnum? CombinedDuration { get; set; }
+        /// <summary>This container defines the promotional combined-shipping rule that offers discounts or free shipping based on order value, item count, or other qualifying conditions.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV2.Models.PromotionalShippingRuleType? PromotionalShippingRule { get; set; }
@@ -70,7 +64,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "combinedDuration", n => { CombinedDuration = n.GetStringValue(); } },
+                { "combinedDuration", n => { CombinedDuration = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedPaymentPeriodEnum>(); } },
                 { "promotionalShippingRule", n => { PromotionalShippingRule = n.GetObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.PromotionalShippingRuleType>(global::EBay.AccountManagement.Generated.AccountV2.Models.PromotionalShippingRuleType.CreateFromDiscriminatorValue); } },
             };
         }
@@ -81,7 +75,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("combinedDuration", CombinedDuration);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV2.Models.CombinedPaymentPeriodEnum>("combinedDuration", CombinedDuration);
             writer.WriteObjectValue<global::EBay.AccountManagement.Generated.AccountV2.Models.PromotionalShippingRuleType>("promotionalShippingRule", PromotionalShippingRule);
             writer.WriteAdditionalData(AdditionalData);
         }

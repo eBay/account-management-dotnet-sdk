@@ -30,7 +30,7 @@ namespace EBay.AccountManagement.Generated.AccountV2.Rate_table
     public partial class Rate_tableRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the EBay.AccountManagement.Generated.AccountV2.rate_table.item collection</summary>
-        /// <param name="position">This path parameter is the unique identifier for the shipping rate table to retrieve.&lt;br/&gt;&lt;br/&gt; Use the &lt;a href=&quot;/api-docs/sell/account/resources/rate_table/methods/getRateTables&quot; target=&quot;_blank&quot;&gt;getRateTables&lt;/a&gt; method of the &lt;a href=&quot;/api-docs/sell/account/static/overview.html &quot; target=&quot;_blank&quot;&gt;Account API v1&lt;/a&gt; to retrieve rate table IDs.</param>
+        /// <param name="position">This path parameter is the unique identifier for the shipping rate table to retrieve.&lt;br/&gt;&lt;br/&gt; Use the &lt;a href=&quot;/develop/api/sell/account_api#sell-account_api-rate_table-getratetables&quot; target=&quot;_blank&quot;&gt;getRateTables&lt;/a&gt; method of the &lt;a href=&quot;/develop/api/sell/account_api&quot; target=&quot;_blank&quot;&gt;Account API v1&lt;/a&gt; to retrieve rate table IDs.</param>
         /// <returns>A <see cref="global::EBay.AccountManagement.Generated.AccountV2.Rate_table.Item.WithRate_table_ItemRequestBuilder"/></returns>
         public global::EBay.AccountManagement.Generated.AccountV2.Rate_table.Item.WithRate_table_ItemRequestBuilder this[string position]
         {

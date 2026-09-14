@@ -37,6 +37,7 @@ public sealed class FinancesClient
     /// <summary>
     /// This method returns detailed order-level financial data for each order associated with a seller account. The returned order-level financial data includes order earnings, gross amount, expenses, and refunds. Order earnings includes earnings after deducting expenses and refunds from the gross amount.
     /// <b>Note: </b>Expenses include fees, shipping labels, and donations. Refunds include gross refunds, gross claims, and gross payment disputes.
+    /// <b>Note: </b>Only charges and credits tied to the order are shown, and they appear in near real time for orders created within the selected order creation time window.
     /// The financial data for orders will be returned as filtered based on the order's creation date.
     /// <b>Note: </b>Only charges and credits tied to the order are shown, and they appear in near real time for orders created within the selected order creation time window.
     /// Pagination is supported through the <c>limit</c> and <c>offset</c> parameters. These parameters can be used to control the number of records returned in a single response and to retrieve subsequent pages of results when the result set spans multiple pages.
@@ -51,10 +52,10 @@ public sealed class FinancesClient
     /// </summary>
     public Task<OrderEarnings?> GetOrderEarningsAsync(
         string xEBAYCMARKETPLACEID,
-        string? filter = null,
-        string? limit = null,
-        string? offset = null,
-        string? sort = null,
+        string[]? filter = null,
+        int? limit = null,
+        int? offset = null,
+        string[]? sort = null,
         string? accessToken = null,
         RequestOptions? requestOptions = null,
         CancellationToken ct = default)
@@ -126,7 +127,7 @@ public sealed class FinancesClient
     /// </summary>
     public Task<OrderEarningsSummary?> GetOrderEarningsSummaryAsync(
         string xEBAYCMARKETPLACEID,
-        string? filter = null,
+        string[]? filter = null,
         string? accessToken = null,
         RequestOptions? requestOptions = null,
         CancellationToken ct = default)
@@ -180,10 +181,10 @@ public sealed class FinancesClient
     /// </summary>
     public Task<Payouts?> GetPayoutsAsync(
         string xEBAYCMARKETPLACEID,
-        string? filter = null,
-        string? limit = null,
-        string? offset = null,
-        string? sort = null,
+        string[]? filter = null,
+        int? limit = null,
+        int? offset = null,
+        string[]? sort = null,
         string? accessToken = null,
         RequestOptions? requestOptions = null,
         CancellationToken ct = default)
@@ -218,11 +219,11 @@ public sealed class FinancesClient
     /// This method is used to retrieve cumulative values for payouts in a particular state, or all states. The metadata in the response includes total payouts, the total number of monetary transactions (sales, refunds, credits) associated with those payouts, and the total dollar value of all payouts.
     /// If the <b>filter</b> query parameter is used to filter by payout status, only one payout status value may be used. If the <b>filter</b> query parameter is not used to filter by a specific payout status, cumulative values for payouts in all states are returned.
     /// The user can also use the <b>filter</b> query parameter to specify a date range, and then only payouts that were processed within that date range are considered.
-    /// <b>Note:</b> getPayoutSummary will only return data on payouts that occurred less than five years in the past.
+    /// <b>Note:</b> <b>getPayoutSummary</b> will only return data on payouts that occurred less than five years in the past.
     /// </summary>
     public Task<PayoutSummaryResponse?> GetPayoutSummaryAsync(
         string xEBAYCMARKETPLACEID,
-        string? filter = null,
+        string[]? filter = null,
         string? accessToken = null,
         RequestOptions? requestOptions = null,
         CancellationToken ct = default)
@@ -264,22 +265,22 @@ public sealed class FinancesClient
     /// Important! </b>"&gt;<b>Important!</b> Due to EU &amp; UK Payments regulatory requirements, an additional security verification via Digital Signatures is required for certain API calls that are made on behalf of EU/UK sellers, including all <b>Finances API</b> methods. Please refer to <see href="/develop/guides/digital-signatures-for-apis">Digital Signatures for APIs</see> to learn more on the impacted APIs and the process to create signatures to be included in the HTTP payload.
     /// <b>Note:</b> The <b>Finances API</b> does not support <see href="https://www.ebay.com/sellercenter/ebay-for-business/multi-user-account-access">Team Access</see>. Financial information, such as payouts or transactions, is only returned for the user that makes the call. You cannot use any of the methods in this API to return financial information for another user.
     /// The <b>getTransactions</b> method allows a seller to retrieve information about one or more of their monetary transactions.
-    /// <b>Note:</b> For a complete list of transaction types, refer to <see href="/api-docs/sell/finances/types/pay:TransactionTypeEnum">TransactionTypeEnum</see>.
+    /// <b>Note:</b> For a complete list of transaction types, refer to <see href="/develop/api/sell/finances_api#sell-finances_api-transaction-gettransactions.transactiontypeenum">TransactionTypeEnum</see>.
     /// Numerous input filters are available which can be used individually or combined to refine the data that are returned. For example:
     /// - <c>SALE</c> transactions for August 15, 2022;
     /// - <c>RETURN</c> transactions for the month of January, 2021;
     /// - Transactions currently in a <c>transactionStatus</c> equal to <c>FUNDS_ON_HOLD</c>.
-    /// Refer to the <see href="#uri.filter">filter</see> field for additional information about each filter and its use.
+    /// Refer to the <see href="/develop/api/sell/finances_api#sell-finances_api-transaction-gettransactions-param-filter">filter</see> field for additional information about each filter and its use.
     /// Pagination and sort query parameters are also provided that allow users to further control how monetary transactions are displayed in the response.
     /// If no monetary transactions match the input criteria, an http status code of <i>204 No Content</i> is returned with no response payload.
     /// <b>Note:</b> Only monetary transactions that have occurred within the last five years can be retrieved.
     /// </summary>
     public Task<Transactions?> GetTransactionsAsync(
         string xEBAYCMARKETPLACEID,
-        string? filter = null,
-        string? limit = null,
-        string? offset = null,
-        string? sort = null,
+        string[]? filter = null,
+        int? limit = null,
+        int? offset = null,
+        string[]? sort = null,
         string? accessToken = null,
         RequestOptions? requestOptions = null,
         CancellationToken ct = default)
@@ -312,14 +313,14 @@ public sealed class FinancesClient
     /// Important! </b>"&gt;<b>Important!</b> Due to EU &amp; UK Payments regulatory requirements, an additional security verification via Digital Signatures is required for certain API calls that are made on behalf of EU/UK sellers, including all <b>Finances API</b> methods. Please refer to <see href="/develop/guides/digital-signatures-for-apis">Digital Signatures for APIs</see> to learn more on the impacted APIs and the process to create signatures to be included in the HTTP payload.
     /// <b>Note:</b> The <b>Finances API</b> does not support <see href="https://www.ebay.com/sellercenter/ebay-for-business/multi-user-account-access">Team Access</see>. Financial information, such as payouts or transactions, is only returned for the user that makes the call. You cannot use any of the methods in this API to return financial information for another user.
     /// The <b>getTransactionSummary</b> method retrieves cumulative information for monetary transactions. If applicable, the number of payments with a <c>transactionStatus</c> equal to <c>FUNDS_ON_HOLD</c> and the total monetary amount of these on-hold payments are also returned.
-    /// <b>Note:</b> For a complete list of transaction types, refer to <see href="/api-docs/sell/finances/types/pay:TransactionTypeEnum">TransactionTypeEnum</see>.
-    /// Refer to the <see href="#uri.filter">filter</see> field for additional information about each filter and its use.
-    /// <b>Note:</b> Unless a <c>transactionType</c> filter is used to retrieve a specific type of transaction (e.g., <c>SALE</c>, <c>REFUND</c>, etc.,) the <see href="#response.creditCount">creditCount</see> and <see href="#response.creditAmount">creditAmount</see> response fields both include <i>order sales</i> and <i>seller credits</i> information. That is, the <b>count</b> and <b>value</b> fields do not distinguish between these two types monetary transactions.
-    /// <b>Note:</b> getTransactionSummary will only return data on transactions that occurred less than five years in the past.
+    /// <b>Note:</b> For a complete list of transaction types, refer to <see href="/develop/api/sell/finances_api#sell-finances_api-transaction-gettransactions.transactiontypeenum">TransactionTypeEnum</see>.
+    /// Refer to the <b>filter</b> field for additional information about each filter and its use.
+    /// <b>Note:</b> Unless a <c>transactionType</c> filter is used to retrieve a specific type of transaction (e.g., <c>SALE</c>, <c>REFUND</c>, etc.,) the <see href="/develop/api/sell/finances_api#sell-finances_api-transaction-gettransactionsummary.transactionsummaryresponse.creditcount">creditCount</see> and <see href="/develop/api/sell/finances_api#sell-finances_api-transaction-gettransactionsummary.transactionsummaryresponse.creditamount">creditAmount</see> response fields both include <i>order sales</i> and <i>seller credits</i> information. That is, the <b>count</b> and <b>value</b> fields do not distinguish between these two types monetary transactions.
+    /// <b>Note:</b> <b>getTransactionSummary</b> will only return data on transactions that occurred less than five years in the past.
     /// </summary>
     public Task<TransactionSummaryResponse?> GetTransactionSummaryAsync(
         string xEBAYCMARKETPLACEID,
-        string? filter = null,
+        string[] filter,
         string? accessToken = null,
         RequestOptions? requestOptions = null,
         CancellationToken ct = default)
@@ -328,10 +329,7 @@ public sealed class FinancesClient
             accessToken,
             () => _kiota.Transaction_summary.GetAsync(cfg =>
         {
-            if (filter is not null)
-            {
-                cfg.QueryParameters.Filter = filter;
-            }
+            cfg.QueryParameters.Filter = filter;
             cfg.Headers.TryAdd("X-EBAY-C-MARKETPLACE-ID", xEBAYCMARKETPLACEID);
             RestInvocation.ApplyHeaders(cfg.Headers, _config, requestOptions);
         }, ct));

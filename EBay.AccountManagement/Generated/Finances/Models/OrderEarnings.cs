@@ -38,7 +38,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
         public string Href { get; set; }
 #endif
         /// <summary>The maximum number of order earnings records returned in a single page of results.</summary>
-        public int? Limit { get; set; }
+        public long? Limit { get; set; }
         /// <summary>The URI for the next page of results. This field is only returned if there is a next page of results to retrieve.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -48,7 +48,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
         public string Next { get; set; }
 #endif
         /// <summary>The number of order earnings records skipped before returning the current page of results.</summary>
-        public int? Offset { get; set; }
+        public long? Offset { get; set; }
         /// <summary>The list of order earnings records returned in the current page of results. This array will be returned as empty if no orders match the request criteria.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -66,7 +66,7 @@ namespace EBay.AccountManagement.Generated.Finances.Models
         public string Prev { get; set; }
 #endif
         /// <summary>The total number of order earnings records that match the request criteria.</summary>
-        public int? Total { get; set; }
+        public long? Total { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.Finances.Models.OrderEarnings"/> and sets the default values.
         /// </summary>
@@ -93,12 +93,12 @@ namespace EBay.AccountManagement.Generated.Finances.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "href", n => { Href = n.GetStringValue(); } },
-                { "limit", n => { Limit = n.GetIntValue(); } },
+                { "limit", n => { Limit = n.GetLongValue(); } },
                 { "next", n => { Next = n.GetStringValue(); } },
-                { "offset", n => { Offset = n.GetIntValue(); } },
+                { "offset", n => { Offset = n.GetLongValue(); } },
                 { "orders", n => { Orders = n.GetCollectionOfObjectValues<global::EBay.AccountManagement.Generated.Finances.Models.OrderEarning>(global::EBay.AccountManagement.Generated.Finances.Models.OrderEarning.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "prev", n => { Prev = n.GetStringValue(); } },
-                { "total", n => { Total = n.GetIntValue(); } },
+                { "total", n => { Total = n.GetLongValue(); } },
             };
         }
         /// <summary>
@@ -109,12 +109,12 @@ namespace EBay.AccountManagement.Generated.Finances.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("href", Href);
-            writer.WriteIntValue("limit", Limit);
+            writer.WriteLongValue("limit", Limit);
             writer.WriteStringValue("next", Next);
-            writer.WriteIntValue("offset", Offset);
+            writer.WriteLongValue("offset", Offset);
             writer.WriteCollectionOfObjectValues<global::EBay.AccountManagement.Generated.Finances.Models.OrderEarning>("orders", Orders);
             writer.WriteStringValue("prev", Prev);
-            writer.WriteIntValue("total", Total);
+            writer.WriteLongValue("total", Total);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
