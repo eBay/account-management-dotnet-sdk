@@ -16,19 +16,12 @@
 
 set -euo pipefail
 
-echo "========================================="
-echo "Account Management SDK - Regeneration"
-echo "========================================="
-
-# Restore dotnet tools
-echo "Restoring .NET tools..."
+echo "Restoring tools..."
 dotnet tool restore
 
-# Regenerate Kiota clients
-echo ""
-echo "Regenerating REST clients with Kiota..."
+echo "Regenerating REST clients via Kiota..."
+rm -rf ./EBay.AccountManagement/Generated
 
-echo "  - AccountV1 client..."
 dotnet kiota generate \
   -l csharp \
   -d specs/openapi/account-v1.yaml \
@@ -37,7 +30,6 @@ dotnet kiota generate \
   -o EBay.AccountManagement/Generated/AccountV1 \
   --ebc --co
 
-echo "  - AccountV2 client..."
 dotnet kiota generate \
   -l csharp \
   -d specs/openapi/account-v2.yaml \
@@ -46,7 +38,6 @@ dotnet kiota generate \
   -o EBay.AccountManagement/Generated/AccountV2 \
   --ebc --co
 
-echo "  - Finances client..."
 dotnet kiota generate \
   -l csharp \
   -d specs/openapi/finances.yaml \
@@ -58,12 +49,7 @@ dotnet kiota generate \
 echo "Adding license headers to generated files..."
 ./add-license-headers.sh ./EBay.AccountManagement/Generated
 
-# Build the project (also triggers StrawberryShake Roslyn source generator for GraphQL)
-echo ""
-echo "Building the SDK..."
+echo "Building (triggers StrawberryShake GraphQL codegen)..."
 DOTNET_ROLL_FORWARD=LatestMajor dotnet build EBay.AccountManagement/EBay.AccountManagement.csproj
 
-echo ""
-echo "========================================="
-echo "Done! SDK regenerated successfully."
-echo "========================================="
+echo "Done."

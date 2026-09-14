@@ -12,9 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
+using EBay.AccountManagement;
 using EBay.AccountManagement.Clients.GraphQL;
-using EBay.AccountManagement.Clients.Rest;
 using EBay.AccountManagement.Configuration;
 using EBay.AccountManagement.Generated.GraphQL;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,47 +29,45 @@ public static class ServiceCollectionExtensions
         services.AddSingleton(config);
         services.AddSingleton<ITokenContext, AsyncLocalTokenContext>();
 
-        // StrawberryShake: register generated client
         services.AddAccountManagementGraphQLClient();
-
-        // Wire auth into the named HTTP client that StrawberryShake uses
         services.AddTransient<BearerTokenHandler>();
-        services.AddTransient(_ => new GraphQLHttpHandler(config));
         services
-            .AddHttpClient("AccountManagementGraphQLClient", client =>
+            .AddHttpClient(AccountManagementClient.GraphQLClientName, client =>
                 client.BaseAddress = new Uri(config.GraphQLBaseUrl))
             .ConfigureHttpClient(c => c.Timeout = config.HttpTimeout)
             .AddHttpMessageHandler<BearerTokenHandler>()
             .AddHttpMessageHandler(_ => new GraphQLHttpHandler(config));
-
-        // Named REST client: DiagnosticLoggingHandler wired in so DI policies are honoured
-        services
-            .AddHttpClient(nameof(AccountManagementClient))
-            .ConfigureHttpClient(c => c.Timeout = config.HttpTimeout)
-            .AddHttpMessageHandler(sp =>
-                new DiagnosticLoggingHandler(sp.GetRequiredService<AccountManagementConfiguration>()));
-
-        // Dynamic escape hatch
         services.AddScoped<DynamicGraphQLClient>(sp =>
             new DynamicGraphQLClient(
-                sp.GetRequiredService<IHttpClientFactory>().CreateClient(),
+                sp.GetRequiredService<IHttpClientFactory>().CreateClient(AccountManagementClient.GraphQLClientName),
                 sp.GetRequiredService<AccountManagementConfiguration>(),
                 sp.GetRequiredService<ITokenContext>()));
 
-        // Register facade
+        foreach (var endpoint in AccountManagementClient.RestEndpointNames)
+        {
+            var id = endpoint.ApiId;
+            services.AddHttpClient(endpoint.HttpClientName, (sp, c) =>
+                    c.BaseAddress = new Uri(sp.GetRequiredService<AccountManagementConfiguration>().RestBaseUrl(id)))
+                .ConfigureHttpClient((sp, c) =>
+                    c.Timeout = sp.GetRequiredService<AccountManagementConfiguration>().HttpTimeout)
+                .AddHttpMessageHandler(sp =>
+                    new DiagnosticLoggingHandler(sp.GetRequiredService<AccountManagementConfiguration>()));
+        }
+
         services.AddScoped<AccountManagementClient>(sp =>
-            new AccountManagementClient(
+        {
+            var factory = sp.GetRequiredService<IHttpClientFactory>();
+            return new AccountManagementClient(
                 sp.GetRequiredService<AccountManagementConfiguration>(),
-                sp.GetRequiredService<IHttpClientFactory>().CreateClient(nameof(AccountManagementClient)),
+                factory,
                 sp.GetRequiredService<IAccountManagementGraphQLClient>(),
-                sp.GetRequiredService<ITokenContext>()));
+                sp.GetRequiredService<ITokenContext>());
+        });
 
-        // Register sub-clients for direct injection
         services.AddScoped(sp => sp.GetRequiredService<AccountManagementClient>().AccountV1);
         services.AddScoped(sp => sp.GetRequiredService<AccountManagementClient>().AccountV2);
         services.AddScoped(sp => sp.GetRequiredService<AccountManagementClient>().Finances);
         services.AddScoped(sp => sp.GetRequiredService<AccountManagementClient>().GraphQL);
-
         return services;
     }
 }

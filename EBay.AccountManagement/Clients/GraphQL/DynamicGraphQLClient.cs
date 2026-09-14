@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 using EBay.AccountManagement.Configuration;
 using EBay.AccountManagement.Exceptions;
 using System.Net;
@@ -37,7 +36,11 @@ internal sealed class DynamicGraphQLClient
     };
 
     internal DynamicGraphQLClient(HttpClient http, AccountManagementConfiguration config, ITokenContext tokenContext)
-        => (_http, _config, _tokenContext) = (http, config, tokenContext);
+    {
+        _http = http;
+        _config = config;
+        _tokenContext = tokenContext;
+    }
 
     /// <summary>
     /// Executes an arbitrary GraphQL query string against the API.
