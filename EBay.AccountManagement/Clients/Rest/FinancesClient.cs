@@ -13,6 +13,7 @@
 // limitations under the License.
 
 
+using System.Globalization;
 using System.Net;
 using System.Text.Json;
 using EBay.AccountManagement.Configuration;
@@ -70,7 +71,7 @@ public sealed class FinancesClient
                     if (!string.IsNullOrEmpty(filter))
                         cfg.QueryParameters.Filter = filter;
                     if (limit.HasValue)
-                        cfg.QueryParameters.Limit = limit.Value.ToString();
+                        cfg.QueryParameters.Limit = limit.Value.ToString(CultureInfo.InvariantCulture);
                     if (!string.IsNullOrEmpty(offset))
                         cfg.QueryParameters.Offset = offset;
                     ApplyHeaders(cfg.Headers, requestOptions);
@@ -124,7 +125,7 @@ public sealed class FinancesClient
                     if (!string.IsNullOrEmpty(filter))
                         cfg.QueryParameters.Filter = filter;
                     if (limit.HasValue)
-                        cfg.QueryParameters.Limit = limit.Value.ToString();
+                        cfg.QueryParameters.Limit = limit.Value.ToString(CultureInfo.InvariantCulture);
                     if (!string.IsNullOrEmpty(offset))
                         cfg.QueryParameters.Offset = offset;
                     ApplyHeaders(cfg.Headers, requestOptions);
@@ -199,7 +200,7 @@ public sealed class FinancesClient
                     if (!string.IsNullOrEmpty(filter))
                         cfg.QueryParameters.Filter = filter;
                     if (limit.HasValue)
-                        cfg.QueryParameters.Limit = limit.Value.ToString();
+                        cfg.QueryParameters.Limit = limit.Value.ToString(CultureInfo.InvariantCulture);
                     if (!string.IsNullOrEmpty(offset))
                         cfg.QueryParameters.Offset = offset;
                     if (!string.IsNullOrEmpty(sort))
@@ -233,7 +234,7 @@ public sealed class FinancesClient
                     if (!string.IsNullOrEmpty(filter))
                         cfg.QueryParameters.Filter = filter;
                     if (limit.HasValue)
-                        cfg.QueryParameters.Limit = limit.Value.ToString();
+                        cfg.QueryParameters.Limit = limit.Value.ToString(CultureInfo.InvariantCulture);
                     if (!string.IsNullOrEmpty(offset))
                         cfg.QueryParameters.Offset = offset;
                     if (!string.IsNullOrEmpty(sort))

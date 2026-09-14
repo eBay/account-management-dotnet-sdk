@@ -13,6 +13,7 @@
 // limitations under the License.
 
 
+using System.Globalization;
 using System.Net;
 using System.Text.Json;
 using EBay.AccountManagement.Configuration;
@@ -694,7 +695,7 @@ public sealed class AccountV1Client
                     if (!string.IsNullOrEmpty(continuationToken))
                         cfg.QueryParameters.ContinuationToken = continuationToken;
                     if (limit.HasValue)
-                        cfg.QueryParameters.Limit = limit.Value.ToString();
+                        cfg.QueryParameters.Limit = limit.Value.ToString(CultureInfo.InvariantCulture);
                     ApplyHeaders(cfg.Headers, requestOptions);
                 }, cancellationToken: cancellationToken);
                 return r != null ? JsonSerializer.Serialize(r) : null;
