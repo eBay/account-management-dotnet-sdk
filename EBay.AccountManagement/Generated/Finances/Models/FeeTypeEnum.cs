@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 using System;
 namespace EBay.AccountManagement.Generated.Finances.Models
 {
-    /// <summary>The enumeration value returned in this field indicates the type of fee that was deducted from the seller payout.</summary>
+    /// <summary>The enumeration value returned here indicates the type of fee that was deducted from the seller payout.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum FeeTypeEnum
     {
