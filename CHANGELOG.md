@@ -1,62 +1,58 @@
 # ChangeLog
 
-## 2.0.0 (09/14/2026)
+## 0.2.0 (09/14/2026)
 
-**Breaking changes**
-- The following operations changed signature on `AccountV2Client`:
-  - `SetUserPreferencesAsync`: `(string, UntypedNode, string?, RequestOptions?, CancellationToken)` → `(string, SetUserPreferencesRequest, string?, RequestOptions?, CancellationToken)`
-- The following operations changed signature on `FinancesClient`:
-  - `GetOrderEarningsAsync`: `(string, string?, string?, string?, string?, string?, RequestOptions?, CancellationToken)` → `(string, string[]?, int?, int?, string[]?, string?, RequestOptions?, CancellationToken)`
-  - `GetOrderEarningsSummaryAsync`: `(string, string?, string?, RequestOptions?, CancellationToken)` → `(string, string[]?, string?, RequestOptions?, CancellationToken)`
-  - `GetPayoutsAsync`: `(string, string?, string?, string?, string?, string?, RequestOptions?, CancellationToken)` → `(string, string[]?, int?, int?, string[]?, string?, RequestOptions?, CancellationToken)`
-  - `GetPayoutSummaryAsync`: `(string, string?, string?, RequestOptions?, CancellationToken)` → `(string, string[]?, string?, RequestOptions?, CancellationToken)`
-  - `GetTransactionsAsync`: `(string, string?, string?, string?, string?, string?, RequestOptions?, CancellationToken)` → `(string, string[]?, int?, int?, string[]?, string?, RequestOptions?, CancellationToken)`
-  - `GetTransactionSummaryAsync`: `(string, string?, string?, RequestOptions?, CancellationToken)` → `(string, string[], string?, RequestOptions?, CancellationToken)`
+### Breaking changes
 
-## 1.0.0 (09/14/2026)
+#### Renamed operations
 
-**Breaking changes**
-- The following operations were removed from `AccountV1Client`:
-  - `GetKycAsync(string?, RequestOptions?, CancellationToken)`
-  - `GetSalesTaxForJurisdictionAsync(string, string, string?, RequestOptions?, CancellationToken)`
-  - `GetSubscriptionsAsync(string?, int?, string?, RequestOptions?, CancellationToken)`
-- The following operations were removed from `AccountV2Client`:
-  - `UpdateRateTableShippingCostAsync(string, RateTableUpdate, string?, RequestOptions?, CancellationToken)`
-  - `UpdateUserPreferencesAsync(UntypedNode, string?, RequestOptions?, CancellationToken)`
-- The following operations were removed from `FinancesClient`:
-  - `GetBillingActivityAsync(string?, int?, string?, string?, string?, RequestOptions?, CancellationToken)`
-  - `GetOrderEarningAsync(string, string?, RequestOptions?, CancellationToken)`
-- The following operations changed signature on `AccountV1Client`:
-  - `GetAdvertisingEligibilityAsync`: `(string?, string?, RequestOptions?, CancellationToken)` → `(string, string?, string?, RequestOptions?, CancellationToken)`
-  - `GetSalesTaxAsync`: `(string, string?, RequestOptions?, CancellationToken)` → `(string, string, string?, RequestOptions?, CancellationToken)`
-- The following operations changed signature on `AccountV2Client`:
-  - `CreateCalculatedShippingRulesAsync`: `(CreateCalculatedShippingRulesRequest, string?, RequestOptions?, CancellationToken)` → `(string, CreateCalculatedShippingRulesRequest, string?, RequestOptions?, CancellationToken)`
-  - `CreateFlatShippingRulesAsync`: `(CreateFlatShippingRulesRequest, string?, RequestOptions?, CancellationToken)` → `(string, CreateFlatShippingRulesRequest, string?, RequestOptions?, CancellationToken)`
-  - `CreatePromotionalShippingRuleAsync`: `(CreatePromotionalShippingRuleRequest, string?, RequestOptions?, CancellationToken)` → `(string, CreatePromotionalShippingRuleRequest, string?, RequestOptions?, CancellationToken)`
-  - `GetCombinedShippingRulesAsync`: `(string?, RequestOptions?, CancellationToken)` → `(string, string?, RequestOptions?, CancellationToken)`
-  - `GetUserPreferencesAsync`: `(string?, RequestOptions?, CancellationToken)` → `(string, string?, string?, RequestOptions?, CancellationToken)`
-  - `UpdateCalculatedShippingRulesAsync`: `(UpdateCalculatedShippingRulesRequest, string?, RequestOptions?, CancellationToken)` → `(string, UpdateCalculatedShippingRulesRequest, string?, RequestOptions?, CancellationToken)`
-  - `UpdateCombinedPaymentsAsync`: `(UpdateCombinedPaymentsRequest, string?, RequestOptions?, CancellationToken)` → `(string, UpdateCombinedPaymentsRequest, string?, RequestOptions?, CancellationToken)`
-  - `UpdateFlatShippingRulesAsync`: `(UpdateFlatShippingRulesRequest, string?, RequestOptions?, CancellationToken)` → `(string, UpdateFlatShippingRulesRequest, string?, RequestOptions?, CancellationToken)`
-  - `UpdatePromotionalShippingRuleAsync`: `(UpdatePromotionalShippingRuleRequest, string?, RequestOptions?, CancellationToken)` → `(string, UpdatePromotionalShippingRuleRequest, string?, RequestOptions?, CancellationToken)`
-- The following operations changed signature on `FinancesClient`:
-  - `GetOrderEarningsAsync`: `(string?, int?, string?, string?, string?, RequestOptions?, CancellationToken)` → `(string, string?, string?, string?, string?, string?, RequestOptions?, CancellationToken)`
-  - `GetOrderEarningsSummaryAsync`: `(string?, string?, RequestOptions?, CancellationToken)` → `(string, string?, string?, RequestOptions?, CancellationToken)`
-  - `GetPayoutAsync`: `(string, string?, RequestOptions?, CancellationToken)` → `(string, string, string?, RequestOptions?, CancellationToken)`
-  - `GetPayoutsAsync`: `(string?, int?, string?, string?, RequestOptions?, CancellationToken)` → `(string, string?, string?, string?, string?, string?, RequestOptions?, CancellationToken)`
-  - `GetPayoutSummaryAsync`: `(string?, string?, RequestOptions?, CancellationToken)` → `(string, string?, string?, RequestOptions?, CancellationToken)`
-  - `GetSellerFundsSummaryAsync`: `(string?, RequestOptions?, CancellationToken)` → `(string, string?, RequestOptions?, CancellationToken)`
-  - `GetTransactionsAsync`: `(string?, int?, string?, string?, RequestOptions?, CancellationToken)` → `(string, string?, string?, string?, string?, string?, RequestOptions?, CancellationToken)`
-  - `GetTransactionSummaryAsync`: `(string?, string?, RequestOptions?, CancellationToken)` → `(string, string?, string?, RequestOptions?, CancellationToken)`
-  - `GetTransferAsync`: `(string, string?, RequestOptions?, CancellationToken)` → `(string, string, string?, RequestOptions?, CancellationToken)`
+| Client | Previous | Current |
+| --- | --- | --- |
+| `AccountV1Client` | `GetKycAsync` | `GetKYCAsync` |
+| `AccountV1Client` | `GetSalesTaxAsync` | `GetSalesTaxesAsync` |
+| `AccountV1Client` | `GetSalesTaxForJurisdictionAsync` | `GetSalesTaxAsync` |
+| `AccountV1Client` | `GetSubscriptionsAsync` | `GetSubscriptionAsync` |
+| `AccountV2Client` | `UpdateRateTableShippingCostAsync` | `UpdateShippingCostAsync` |
+| `AccountV2Client` | `UpdateUserPreferencesAsync` | `SetUserPreferencesAsync` |
+| `FinancesClient` | `GetBillingActivityAsync` | `GetBillingActivitiesAsync` |
+| `FinancesClient` | `GetOrderEarningAsync` | `GetOrderEarningsByIdAsync` |
 
-- The following operations were added to `AccountV1Client`:
-  - `GetKYCAsync(string?, RequestOptions?, CancellationToken)`
-  - `GetSalesTaxesAsync(string, string?, RequestOptions?, CancellationToken)`
-  - `GetSubscriptionAsync(string?, string?, string?, RequestOptions?, CancellationToken)`
-- The following operations were added to `AccountV2Client`:
-  - `SetUserPreferencesAsync(string, UntypedNode, string?, RequestOptions?, CancellationToken)`
-  - `UpdateShippingCostAsync(string, RateTableUpdate, string?, RequestOptions?, CancellationToken)`
-- The following operations were added to `FinancesClient`:
-  - `GetBillingActivitiesAsync(string?, string?, string?, string?, string?, string?, RequestOptions?, CancellationToken)`
-  - `GetOrderEarningsByIdAsync(string, string, string?, RequestOptions?, CancellationToken)`
+#### Changed signatures
+
+`AccountV1Client`:
+
+| Operation | Previous parameters | Current parameters |
+| --- | --- | --- |
+| `GetAdvertisingEligibilityAsync` | `(string? programTypes, string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string xEBAYCMARKETPLACEID, string? programTypes, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `GetSubscriptionAsync` | `(string? continuationToken, int? limit, string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string? limit, string? continuationToken, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+
+`AccountV2Client`:
+
+| Operation | Previous parameters | Current parameters |
+| --- | --- | --- |
+| `CreateCalculatedShippingRulesAsync` | `(CreateCalculatedShippingRulesRequest body, string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string xEBAYCMARKETPLACEID, CreateCalculatedShippingRulesRequest body, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `CreateFlatShippingRulesAsync` | `(CreateFlatShippingRulesRequest body, string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string xEBAYCMARKETPLACEID, CreateFlatShippingRulesRequest body, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `CreatePromotionalShippingRuleAsync` | `(CreatePromotionalShippingRuleRequest body, string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string xEBAYCMARKETPLACEID, CreatePromotionalShippingRuleRequest body, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `GetCombinedShippingRulesAsync` | `(string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string xEBAYCMARKETPLACEID, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `GetUserPreferencesAsync` | `(string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string xEBAYCMARKETPLACEID, string? fieldgroups, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `SetUserPreferencesAsync` | `(UntypedNode body, string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string xEBAYCMARKETPLACEID, SetUserPreferencesRequest body, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `UpdateCalculatedShippingRulesAsync` | `(UpdateCalculatedShippingRulesRequest body, string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string xEBAYCMARKETPLACEID, UpdateCalculatedShippingRulesRequest body, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `UpdateCombinedPaymentsAsync` | `(UpdateCombinedPaymentsRequest body, string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string xEBAYCMARKETPLACEID, UpdateCombinedPaymentsRequest body, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `UpdateFlatShippingRulesAsync` | `(UpdateFlatShippingRulesRequest body, string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string xEBAYCMARKETPLACEID, UpdateFlatShippingRulesRequest body, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `UpdatePromotionalShippingRuleAsync` | `(UpdatePromotionalShippingRuleRequest body, string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string xEBAYCMARKETPLACEID, UpdatePromotionalShippingRuleRequest body, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+
+`FinancesClient`:
+
+| Operation | Previous parameters | Current parameters |
+| --- | --- | --- |
+| `GetBillingActivitiesAsync` | `(string? filter, int? limit, string? offset, string? sort, string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string? acceptLanguage, string? filter, string? limit, string? offset, string? sort, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `GetOrderEarningsByIdAsync` | `(string orderId, string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string xEBAYCMARKETPLACEID, string orderId, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `GetOrderEarningsAsync` | `(string? filter, int? limit, string? offset, string? sort, string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string xEBAYCMARKETPLACEID, string[]? filter, int? limit, int? offset, string[]? sort, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `GetOrderEarningsSummaryAsync` | `(string? filter, string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string xEBAYCMARKETPLACEID, string[]? filter, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `GetPayoutAsync` | `(string payoutId, string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string xEBAYCMARKETPLACEID, string payoutId, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `GetPayoutsAsync` | `(string? filter, int? limit, string? offset, string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string xEBAYCMARKETPLACEID, string[]? filter, int? limit, int? offset, string[]? sort, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `GetPayoutSummaryAsync` | `(string? filter, string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string xEBAYCMARKETPLACEID, string[]? filter, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `GetSellerFundsSummaryAsync` | `(string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string xEBAYCMARKETPLACEID, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `GetTransactionsAsync` | `(string? filter, int? limit, string? offset, string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string xEBAYCMARKETPLACEID, string[]? filter, int? limit, int? offset, string[]? sort, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `GetTransactionSummaryAsync` | `(string? filter, string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string xEBAYCMARKETPLACEID, string[] filter, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `GetTransferAsync` | `(string transferId, string? accessToken, RequestOptions? requestOptions, CancellationToken cancellationToken)` | `(string xEBAYCMARKETPLACEID, string transferId, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
