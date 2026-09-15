@@ -1,3 +1,4 @@
+Warning: KiotaBuilder Unable to check for updates
 Warning: KiotaBuilder OpenAPI warning: #/ - Multiple servers entries were found in the OpenAPI description. Only the first one will be used. The root URL can be set manually with the request adapter.
 Error: KiotaBuilder OpenAPI error: #/paths/~1payout~1{payout_id} - The path signature '/payout/{}' MUST be unique.
 Error: KiotaBuilder OpenAPI error: #/paths/~1transfer~1{transfer_id} - The path signature '/transfer/{}' MUST be unique.
