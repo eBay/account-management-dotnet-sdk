@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 using System;
 namespace EBay.AccountManagement.Generated.AccountV1.Models
 {
-    /// <summary>The ID of the eBay marketplace to which the payment program applies.</summary>
+    /// <summary>The marketplace with which the subscription is associated.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum MarketplaceIdEnum
     {
