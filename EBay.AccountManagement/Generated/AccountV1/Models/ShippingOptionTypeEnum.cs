@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 using System;
 namespace EBay.AccountManagement.Generated.AccountV1.Models
 {
-    /// <summary>This enumerated type defines whether the corresponding shipping service options are domestic or international shipping service options. a region that is either domestic (within the country from where the item is listed or shipped) or international (a country outside the country from where the item is listed or shipped). | - **DOMESTIC**: This value indicates that the corresponding shipping service options are domestic shipping service options. - **INTERNATIONAL**: This value indicates that the corresponding shipping service options are international shipping service options.</summary>
+    /// <summary>This enumeration value returned here indicates whether the shipping rate table is a domestic or international shipping rate table.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum ShippingOptionTypeEnum
     {

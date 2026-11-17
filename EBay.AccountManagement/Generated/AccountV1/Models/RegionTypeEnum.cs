@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 using System;
 namespace EBay.AccountManagement.Generated.AccountV1.Models
 {
-    /// <summary>This enumerated type defines shipping region types.&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt; &lt;strong&gt;Note:&lt;/strong&gt; These enumeration values are not currently being used by fulfillment policy methods, but may be used in the future.&lt;/span&gt; | - **COUNTRY**: A single country. - **COUNTRY_REGION**: A domestic region or special location within a country. In the US, these domestic region/special location include &apos;Alaska/Hawaii&apos; and &apos;PO Box&apos;. - **STATE_OR_PROVINCE**: A state or province, such as California (CA) or New York (NY) in the US, or British Columbia (BC) or Ontario (ON) in Canada. - **WORLD_REGION**: A world region, such as Europe, the Middle East, or Southeast Asia. - **WORLDWIDE**: The entire world as we know it.</summary>
+    /// <summary>Reserved for future use. &lt;!--The region&apos;s type, which can be one of the following: &apos;COUNTRY&apos;, &apos;COUNTRY_REGION&apos;, &apos;STATE_OR_PROVINCE&apos;, &apos;WORLD_REGION&apos;, or &apos;WORLDWIDE&apos;.--&gt;</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum RegionTypeEnum
     {

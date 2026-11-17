@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 using System;
 namespace EBay.AccountManagement.Generated.AccountV1.Models
 {
-    /// <summary>This enumerated type defines the seller eligibility status for a specified eBay advertising program. | - **ELIGIBLE**: This value indicates that the seller is eligible for the specified eBay advertising program. - **INELIGIBLE**: This value indicates that the seller is ineligible for the specified eBay advertising program.</summary>
+    /// <summary>The seller eligibility status for the specified eBay advertising program.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum SellerEligibilityEnum
     {

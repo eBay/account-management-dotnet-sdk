@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 using System;
 namespace EBay.AccountManagement.Generated.AccountV1.Models
 {
-    /// <summary>This enumerated type lists the return options (other than &apos;money back&apos;) that a seller may offer to the buyer for a return request. | - **EXCHANGE**: &lt;strong&gt;Do not use/No longer supported.&lt;/strong&gt; - **REPLACEMENT**: This value indicates that the seller offers a replacement (identical) item as an alternative to &apos;money back&apos; when the buyer is returning an item.</summary>
+    /// <summary>This field sets/indicates if the seller offers replacement items to the buyer in the case of an international return. The buyer must be willing to accept a replacement item; otherwise, the seller will need to issue a refund for a return.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum ReturnMethodEnum
     {

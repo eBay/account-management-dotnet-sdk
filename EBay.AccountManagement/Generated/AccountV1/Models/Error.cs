@@ -30,14 +30,8 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Identifies the type of error.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Category { get; set; }
-#nullable restore
-#else
-        public string Category { get; set; }
-#endif
+        /// <summary>Identifies the category of error.</summary>
+        public global::EBay.AccountManagement.Generated.AccountV1.Models.ErrorCategoryEnum? Category { get; set; }
         /// <summary>Name for the primary system where the error occurred. This is relevant for application errors.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -123,7 +117,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "category", n => { Category = n.GetStringValue(); } },
+                { "category", n => { Category = n.GetEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.ErrorCategoryEnum>(); } },
                 { "domain", n => { Domain = n.GetStringValue(); } },
                 { "errorId", n => { ErrorId = n.GetIntValue(); } },
                 { "inputRefIds", n => { InputRefIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
@@ -141,7 +135,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("category", Category);
+            writer.WriteEnumValue<global::EBay.AccountManagement.Generated.AccountV1.Models.ErrorCategoryEnum>("category", Category);
             writer.WriteStringValue("domain", Domain);
             writer.WriteIntValue("errorId", ErrorId);
             writer.WriteCollectionOfPrimitiveValues<string>("inputRefIds", InputRefIds);

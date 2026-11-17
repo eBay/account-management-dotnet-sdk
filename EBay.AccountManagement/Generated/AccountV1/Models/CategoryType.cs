@@ -31,7 +31,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This field has been deprecated and is no longer used.&lt;ul&gt;&lt;li&gt;Do not include this field in any &lt;b&gt;create&lt;/b&gt; or &lt;b&gt;update&lt;/b&gt; method.&lt;/li&gt;&lt;li&gt;This field may be returned within the payload of a &lt;b&gt;get&lt;/b&gt; method, but it can be ignored.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;</summary>
         public bool? Default { get; set; }
-        /// <summary>An enum type that describes the category type (motor vehicles or non-motor vehicles). | - **MOTORS_VEHICLES**: This values indicates that the business policy applies to motor vehicle listings. - **ALL_EXCLUDING_MOTORS_VEHICLES**: This values indicates that the business policy applies to all listings besides motor vehicle listings.</summary>
+        /// <summary>The category type to which the policy applies (motor vehicles or non-motor vehicles). &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;code&gt;MOTORS_VEHICLES&lt;/code&gt; category type is not valid for return policies. eBay flows do not support the return of motor vehicles.&lt;/span&gt;</summary>
         public global::EBay.AccountManagement.Generated.AccountV1.Models.CategoryTypeEnum? Name { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.AccountV1.Models.CategoryType"/> and sets the default values.

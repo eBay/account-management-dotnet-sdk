@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 using System;
 namespace EBay.AccountManagement.Generated.AccountV1.Models
 {
-    /// <summary>This enumerated type defines the supported refund types for buyer returns. | - **MERCHANDISE_CREDIT**: &lt;strong&gt;Do not use/No longer supported.&lt;/strong&gt; - **MONEY_BACK**: This enumeration value indicates that the buyer will get their money back (refund) for a returned item.</summary>
+    /// <summary>This field indicates the refund method offered by the seller. Its value will be &lt;code&gt;MONEY_BACK&lt;/code&gt; unless the seller is enabled for &lt;b&gt;Click and Collect&lt;/b&gt;, and then it might be &lt;code&gt;MERCHANDISE_CREDIT&lt;/code&gt;. Getting their money back for returned items is always an option for buyers, regardless of what the seller sets in this field.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum RefundMethodEnum
     {

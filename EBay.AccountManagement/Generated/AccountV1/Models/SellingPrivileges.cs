@@ -31,7 +31,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>If this field is returned as &lt;code&gt;true&lt;/code&gt;, the seller&apos;s registration is completed. If this field is returned as &lt;code&gt;false&lt;/code&gt;, the registration process is not complete.</summary>
         public bool? SellerRegistrationCompleted { get; set; }
-        /// <summary>Type used by the &lt;b&gt;sellingLimit&lt;/b&gt; container, a container that lists the monthly cap for the quantity of items sold and total sales amount allowed for the seller&apos;s account.</summary>
+        /// <summary>This container lists the monthly cap for the quantity of items sold and total sales amount allowed for the seller&apos;s account. This container may not be returned if a seller does not have a monthly cap for total quantity sold and total sales amount. &lt;p&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;span style=&quot;color:#004680&quot;&gt;&lt;strong&gt;Note: &lt;/strong&gt;The selling limit value returned in &lt;b&gt;getPrivileges&lt;/b&gt; may vary slightly from the value displayed in Seller Hub. The value in Seller Hub is an abbreviated figure, where rounding is applied.&lt;/span&gt;&lt;/p&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV1.Models.SellingLimit? SellingLimit { get; set; }

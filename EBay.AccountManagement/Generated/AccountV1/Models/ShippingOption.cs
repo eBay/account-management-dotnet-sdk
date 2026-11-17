@@ -29,9 +29,9 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This enumerated type defines the shipping cost models. | - **CALCULATED**: This value indicates that calculated shipping is used by the seller. With calculated shipping, the shipping cost varies according to the shipping location and the size and weight of the package. - **FLAT_RATE**: This value indicates that flat-rate shipping is used by the seller. With flat-rate shipping, the shipping cost will be the same for all buyers, or buyers within a specified region if the seller uses shipping rate tables. - **NOT_SPECIFIED**: This value indicates that the shipping cost type has not been specified.</summary>
+        /// <summary>This field defines whether the shipping cost model is &lt;code&gt;FLAT_RATE&lt;/code&gt; (the same rate for all buyers, or buyers within a region if shipping rate tables are used) or &lt;code&gt;CALCULATED&lt;/code&gt; (the shipping rate varies by the ship-to location and size and weight of the package). &lt;br&gt;&lt;br&gt;This field is conditionally required if any shipping service options are specified (domestic and/or international).</summary>
         public global::EBay.AccountManagement.Generated.AccountV1.Models.ShippingCostTypeEnum? CostType { get; set; }
-        /// <summary>A complex type that describes the value of a monetary amount as represented by a global currency. When passing in an amount in a request payload, both &lt;b&gt;currency&lt;/b&gt; and &lt;b&gt;value&lt;/b&gt; fields are required, and both fields are also always returned for an amount in a response field.</summary>
+        /// <summary>This field has been deprecated. &lt;br&gt;&lt;br&gt;Shipping insurance is offered only via a shipping carrier&apos;s shipping services and is no longer available via eBay shipping policies.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV1.Models.Amount? InsuranceFee { get; set; }
@@ -41,9 +41,9 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #endif
         /// <summary>This field has been deprecated. &lt;br&gt;&lt;br&gt;Shipping insurance is offered only via a shipping carrier&apos;s shipping services and is no longer available via eBay shipping policies.</summary>
         public bool? InsuranceOffered { get; set; }
-        /// <summary>This enumerated type defines whether the corresponding shipping service options are domestic or international shipping service options. a region that is either domestic (within the country from where the item is listed or shipped) or international (a country outside the country from where the item is listed or shipped). | - **DOMESTIC**: This value indicates that the corresponding shipping service options are domestic shipping service options. - **INTERNATIONAL**: This value indicates that the corresponding shipping service options are international shipping service options.</summary>
+        /// <summary>This field is used to indicate if the corresponding shipping service options (under &lt;b&gt;shippingServices&lt;/b&gt; array) are domestic or international shipping service options. This field is conditionally required if any shipping service options are specified (domestic and/or international).</summary>
         public global::EBay.AccountManagement.Generated.AccountV1.Models.ShippingOptionTypeEnum? OptionType { get; set; }
-        /// <summary>A complex type that describes the value of a monetary amount as represented by a global currency. When passing in an amount in a request payload, both &lt;b&gt;currency&lt;/b&gt; and &lt;b&gt;value&lt;/b&gt; fields are required, and both fields are also always returned for an amount in a response field.</summary>
+        /// <summary>This container is used if the seller adds handling charges to domestic and/or international shipments. &lt;br&gt;&lt;br&gt;Sellers can not specify any domestic handling charges if they offered &apos;free shipping&apos; in the policy.&lt;br&gt;&lt;br&gt;This container will only be returned if set for the policy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.AccountManagement.Generated.AccountV1.Models.Amount? PackageHandlingCost { get; set; }

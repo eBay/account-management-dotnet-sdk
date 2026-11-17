@@ -8,13 +8,6 @@
         "kiota"
       ],
       "rollForward": false
-    },
-    "strawberryshake.tools": {
-      "version": "14.3.1",
-      "commands": [
-        "dotnet-graphql"
-      ],
-      "rollForward": false
     }
   }
 }

@@ -54,6 +54,9 @@ namespace EBay.AccountManagement.Generated.AccountV1.Advertising_eligibility
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 403 status code</exception>
+        /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 429 status code</exception>
         /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -68,6 +71,9 @@ namespace EBay.AccountManagement.Generated.AccountV1.Advertising_eligibility
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "400", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "401", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
+                { "429", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
                 { "500", global::EBay.AccountManagement.Generated.AccountV1.Models.Error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::EBay.AccountManagement.Generated.AccountV1.Models.SellerEligibilityMultiProgramResponse>(requestInfo, global::EBay.AccountManagement.Generated.AccountV1.Models.SellerEligibilityMultiProgramResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
