@@ -77,7 +77,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Custom_policy.Item
         /// <summary>
         /// This method updates an existing custom policy specified by the &lt;b&gt;custom_policy_id&lt;/b&gt; path parameter. Since this method overwrites the policy&apos;s &lt;b&gt;name&lt;/b&gt;, &lt;b&gt;label&lt;/b&gt;, and &lt;b&gt;description&lt;/b&gt; fields, always include the complete and current text of all three policy fields in the request payload, even if they are not being updated.&lt;br/&gt; &lt;br/&gt;For example, the value for the &lt;b&gt;label&lt;/b&gt; field is to be updated, but the &lt;b&gt;name&lt;/b&gt; and &lt;b&gt;description&lt;/b&gt; values will remain unchanged. The existing &lt;b&gt;name&lt;/b&gt; and &lt;b&gt;description&lt;/b&gt; values, as they are defined in the current policy, must also be passed in. &lt;br/&gt;&lt;br/&gt;A successful policy update call returns an HTTP status code of &lt;b&gt;204 No Content&lt;/b&gt;.
         /// </summary>
-        /// <param name="body">This type is used to request a list of custom policies.</param>
+        /// <param name="body">Request to update a current custom policy.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 400 status code</exception>
@@ -127,7 +127,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Custom_policy.Item
         /// This method updates an existing custom policy specified by the &lt;b&gt;custom_policy_id&lt;/b&gt; path parameter. Since this method overwrites the policy&apos;s &lt;b&gt;name&lt;/b&gt;, &lt;b&gt;label&lt;/b&gt;, and &lt;b&gt;description&lt;/b&gt; fields, always include the complete and current text of all three policy fields in the request payload, even if they are not being updated.&lt;br/&gt; &lt;br/&gt;For example, the value for the &lt;b&gt;label&lt;/b&gt; field is to be updated, but the &lt;b&gt;name&lt;/b&gt; and &lt;b&gt;description&lt;/b&gt; values will remain unchanged. The existing &lt;b&gt;name&lt;/b&gt; and &lt;b&gt;description&lt;/b&gt; values, as they are defined in the current policy, must also be passed in. &lt;br/&gt;&lt;br/&gt;A successful policy update call returns an HTTP status code of &lt;b&gt;204 No Content&lt;/b&gt;.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">This type is used to request a list of custom policies.</param>
+        /// <param name="body">Request to update a current custom policy.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

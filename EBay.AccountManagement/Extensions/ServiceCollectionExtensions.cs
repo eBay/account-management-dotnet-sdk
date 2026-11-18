@@ -13,61 +13,24 @@
 // limitations under the License.
 
 using EBay.AccountManagement;
-using EBay.AccountManagement.Clients.GraphQL;
 using EBay.AccountManagement.Configuration;
-using EBay.AccountManagement.Generated.GraphQL;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EBay.AccountManagement.Extensions;
 
 public static class ServiceCollectionExtensions
 {
+    /// <summary>
+    /// Registers <paramref name="config"/> and a singleton <see cref="AccountManagementClient"/>. The client
+    /// owns its HTTP connections and is disposed with the container. Reach the individual APIs through
+    /// its properties.
+    /// </summary>
     public static IServiceCollection AddAccountManagementSdk(
         this IServiceCollection services,
         AccountManagementConfiguration config)
     {
         services.AddSingleton(config);
-        services.AddSingleton<ITokenContext, AsyncLocalTokenContext>();
-
-        services.AddAccountManagementGraphQLClient();
-        services.AddTransient<BearerTokenHandler>();
-        services
-            .AddHttpClient(AccountManagementClient.GraphQLClientName, client =>
-                client.BaseAddress = new Uri(config.GraphQLBaseUrl))
-            .ConfigureHttpClient(c => c.Timeout = config.HttpTimeout)
-            .AddHttpMessageHandler<BearerTokenHandler>()
-            .AddHttpMessageHandler(_ => new GraphQLHttpHandler(config));
-        services.AddScoped<DynamicGraphQLClient>(sp =>
-            new DynamicGraphQLClient(
-                sp.GetRequiredService<IHttpClientFactory>().CreateClient(AccountManagementClient.GraphQLClientName),
-                sp.GetRequiredService<AccountManagementConfiguration>(),
-                sp.GetRequiredService<ITokenContext>()));
-
-        foreach (var endpoint in AccountManagementClient.RestEndpointNames)
-        {
-            var id = endpoint.ApiId;
-            services.AddHttpClient(endpoint.HttpClientName, (sp, c) =>
-                    c.BaseAddress = new Uri(sp.GetRequiredService<AccountManagementConfiguration>().RestBaseUrl(id)))
-                .ConfigureHttpClient((sp, c) =>
-                    c.Timeout = sp.GetRequiredService<AccountManagementConfiguration>().HttpTimeout)
-                .AddHttpMessageHandler(sp =>
-                    new DiagnosticLoggingHandler(sp.GetRequiredService<AccountManagementConfiguration>()));
-        }
-
-        services.AddScoped<AccountManagementClient>(sp =>
-        {
-            var factory = sp.GetRequiredService<IHttpClientFactory>();
-            return new AccountManagementClient(
-                sp.GetRequiredService<AccountManagementConfiguration>(),
-                factory,
-                sp.GetRequiredService<IAccountManagementGraphQLClient>(),
-                sp.GetRequiredService<ITokenContext>());
-        });
-
-        services.AddScoped(sp => sp.GetRequiredService<AccountManagementClient>().AccountV1);
-        services.AddScoped(sp => sp.GetRequiredService<AccountManagementClient>().AccountV2);
-        services.AddScoped(sp => sp.GetRequiredService<AccountManagementClient>().Finances);
-        services.AddScoped(sp => sp.GetRequiredService<AccountManagementClient>().GraphQL);
+        services.AddSingleton(_ => new AccountManagementClient(config));
         return services;
     }
 }

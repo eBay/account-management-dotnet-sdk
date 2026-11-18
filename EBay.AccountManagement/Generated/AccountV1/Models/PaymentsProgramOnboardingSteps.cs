@@ -37,7 +37,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>This enumeration value indicates the status of the present onboarding step. | - **NOT_STARTED**: This enumeration value indicates that the present step has not started. - **IN_PROGRESS**: This enumeration value indicates that the present step has started but has not completed. - **COMPLETED**: This enumeration value indicates that the present step has completed.</summary>
+        /// <summary>This enumeration value indicates the status of the associated step. &lt;p&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Only one step can be &lt;code&gt;IN_PROGRESS&lt;/code&gt; at a time.&lt;/span&gt;&lt;/p&gt;</summary>
         public global::EBay.AccountManagement.Generated.AccountV1.Models.PaymentsProgramOnboardingStepStatus? Status { get; set; }
         /// <summary>This URL provides access to the &lt;code&gt;IN_PROGRESS&lt;/code&gt; step.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

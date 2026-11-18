@@ -53,7 +53,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>An enumeration type that defines the supported types of Custom Policies. | - **PRODUCT_COMPLIANCE**: This enumeration value indicates that the custom policy is a product compliance policy. - **TAKE_BACK**: This enumeration value indicates that the custom policy is a product takeback policy.</summary>
+        /// <summary>Specifies the type of Custom Policy being returned.</summary>
         public global::EBay.AccountManagement.Generated.AccountV1.Models.CustomPolicyTypeEnum? PolicyType { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.AccountManagement.Generated.AccountV1.Models.CompactCustomPolicyResponse"/> and sets the default values.

@@ -113,7 +113,7 @@ public sealed class AccountV1Client
     /// <summary>
     /// This method creates a new fulfillment policy for an eBay marketplace where the policy encapsulates seller's terms for fulfilling item purchases. Fulfillment policies include the shipment options that the seller offers to buyers.
     /// A successful request returns the <b>getFulfillmentPolicy</b> URI to the new policy in the <b>Location</b> response header and the ID for the new policy is returned in the response payload.
-    /// <b>Tip:</b> For details on creating and using the business policies supported by the Account API, see <see href="/api-docs/sell/static/seller-accounts/business-policies.html">eBay business policies</see>.
+    /// <b>Tip:</b> For details on creating and using the business policies supported by the Account API, see <see href="https://developer.ebay.com/api-docs/sell/static/seller-accounts/business-policies.html">eBay business policies</see>.
     /// </summary>
     public Task<SetFulfillmentPolicyResponse?> CreateFulfillmentPolicyAsync(
         FulfillmentPolicyRequest body,
@@ -233,7 +233,7 @@ public sealed class AccountV1Client
     /// <summary>
     /// This method creates a new payment policy where the policy encapsulates seller's terms for order payments.
     /// A successful request returns the <b>getPaymentPolicy</b> URI to the new policy in the <b>Location</b> response header and the ID for the new policy is returned in the response payload.
-    /// <b>Tip:</b> For details on creating and using the business policies supported by the Account API, see <see href="/api-docs/sell/static/seller-accounts/business-policies.html">eBay business policies</see>.
+    /// <b>Tip:</b> For details on creating and using the business policies supported by the Account API, see <see href="https://developer.ebay.com/api-docs/sell/static/seller-accounts/business-policies.html">eBay business policies</see>.
     /// </summary>
     public Task<SetPaymentPolicyResponse?> CreatePaymentPolicyAsync(
         PaymentPolicyRequest body,
@@ -383,8 +383,8 @@ public sealed class AccountV1Client
         }, ct));
 
     /// <summary>
-    /// This method opts the seller in to an eBay seller program. Refer to the <see href="/develop/api/sell/account_api_v1#sell-account_api_v1-program-optintoprogram.programtypeenum">ProgramTypeEnum</see> for information about available eBay seller programs.
-    /// <b>Note:</b> It can take up to 24-hours for eBay to process your request to opt-in to a Seller Program. Use the <see href="/develop/api/sell/account_api_v1#sell-account_api_v1-program-getoptedinprograms">getOptedInPrograms</see> call to check the status of your request after the processing period has passed.
+    /// This method opts the seller in to an eBay seller program. Refer to the <see href="https://developer.ebay.com/develop/api/sell/account_api_v1#sell-account_api_v1-program-optintoprogram.programtypeenum">ProgramTypeEnum</see> for information about available eBay seller programs.
+    /// <b>Note:</b> It can take up to 24-hours for eBay to process your request to opt-in to a Seller Program. Use the <see href="https://developer.ebay.com/develop/api/sell/account_api_v1#sell-account_api_v1-program-getoptedinprograms">getOptedInPrograms</see> call to check the status of your request after the processing period has passed.
     /// </summary>
     public Task OptInToProgramAsync(
         Program body,
@@ -459,7 +459,7 @@ public sealed class AccountV1Client
     /// This method creates a new return policy where the policy encapsulates seller's terms for returning items.
     /// Each policy targets a specific marketplace, and you can create multiple policies for each marketplace. Return policies are not applicable to motor-vehicle listings.
     /// A successful request returns the <b>getReturnPolicy</b> URI to the new policy in the <b>Location</b> response header and the ID for the new policy is returned in the response payload.
-    /// <b>Tip:</b> For details on creating and using the business policies supported by the Account API, see <see href="/api-docs/sell/static/seller-accounts/business-policies.html">eBay business policies</see>.
+    /// <b>Tip:</b> For details on creating and using the business policies supported by the Account API, see <see href="https://developer.ebay.com/api-docs/sell/static/seller-accounts/business-policies.html">eBay business policies</see>.
     /// </summary>
     public Task<SetReturnPolicyResponse?> CreateReturnPolicyAsync(
         ReturnPolicyRequest body,
@@ -551,9 +551,9 @@ public sealed class AccountV1Client
     /// - <c>jurisdictionId</c>
     /// - <c>salesTaxPercentage</c>
     /// - <c>shippingAndHandlingTaxed</c>
-    /// Valid jurisdiction IDs are retrieved using <b><see href="/develop/api/sell/metadata_api#sell-metadata_api-country-getsalestaxjurisdictions">getSalesTaxJurisdictions</see></b> in the Metadata API.
-    /// For details about using this call, refer to <see href="/api-docs/sell/static/seller-accounts/tax-tables.html">Establishing sales-tax tables</see>.
-    /// Important! </b>"&gt;<b>Important!</b> In the US, eBay now calculates, collects, and remits sales tax to the proper taxing authorities in all 50 states and Washington, DC. Sellers can no longer specify sales-tax rates for these jurisdictions using a tax table.
+    /// Valid jurisdiction IDs are retrieved using <b><see href="https://developer.ebay.com/develop/api/sell/metadata_api#sell-metadata_api-country-getsalestaxjurisdictions">getSalesTaxJurisdictions</see></b> in the Metadata API.
+    /// For details about using this call, refer to <see href="https://developer.ebay.com/api-docs/sell/static/seller-accounts/tax-tables.html">Establishing sales-tax tables</see>.
+    /// Important! "&gt;<b>Important!</b> In the US, eBay now calculates, collects, and remits sales tax to the proper taxing authorities in all 50 states and Washington, DC. Sellers can no longer specify sales-tax rates for these jurisdictions using a tax table.
     /// However, sellers may continue to use a sales-tax table to set rates for the following US territories:
     /// - American Samoa (AS)
     /// - Guam (GU)
@@ -578,7 +578,7 @@ public sealed class AccountV1Client
     /// <summary>
     /// This call retrieves the current sales-tax table entry for a specific tax jurisdiction. Specify the jurisdiction to retrieve using the <b>countryCode</b> and <b>jurisdictionId</b> path parameters. All four response fields will be returned if a sales-tax entry exists for the tax jurisdiction. Otherwise, the response will be returned as empty.
     /// <b>Note:</b> Sales-tax tables are only available for the US (EBAY_US) and Canada (EBAY_CA) marketplaces.
-    /// Important! </b>"&gt;<b>Important!</b> In the US, eBay now calculates, collects, and remits sales tax to the proper taxing authorities in all 50 states and Washington, DC. Sellers can no longer specify sales-tax rates for these jurisdictions using a tax table.
+    /// Important! "&gt;<b>Important!</b> In the US, eBay now calculates, collects, and remits sales tax to the proper taxing authorities in all 50 states and Washington, DC. Sellers can no longer specify sales-tax rates for these jurisdictions using a tax table.
     /// However, sellers may continue to use a sales-tax table to set rates for the following US territories:
     /// - American Samoa (AS)
     /// - Guam (GU)
@@ -606,9 +606,9 @@ public sealed class AccountV1Client
     /// A tax table entry for a jurisdiction is comprised of two fields: one for the jurisdiction's sales-tax rate and another that's a boolean value indicating whether or not shipping and handling are taxed in the jurisdiction.
     /// You can set up <i>sales-tax tables</i> for countries that support different <i>tax jurisdictions</i>.
     /// <b>Note:</b> Sales-tax tables are only available for the US (EBAY_US) and Canada (EBAY_CA) marketplaces.
-    /// Retrieve valid jurisdiction IDs using <b><see href="/develop/api/sell/metadata_api#sell-metadata_api-country-getsalestaxjurisdictions">getSalesTaxJurisdictions</see></b> in the Metadata API.
-    /// For details about using this call, refer to <see href="/api-docs/sell/static/seller-accounts/tax-tables.html">Establishing sales-tax tables</see>.
-    /// Important! </b>"&gt;<b>Important!</b> In the US, eBay now calculates, collects, and remits sales tax to the proper taxing authorities in all 50 states and Washington, DC. Sellers can no longer specify sales-tax rates for these jurisdictions using a tax table.
+    /// Retrieve valid jurisdiction IDs using <b><see href="https://developer.ebay.com/develop/api/sell/metadata_api#sell-metadata_api-country-getsalestaxjurisdictions">getSalesTaxJurisdictions</see></b> in the Metadata API.
+    /// For details about using this call, refer to <see href="https://developer.ebay.com/api-docs/sell/static/seller-accounts/tax-tables.html">Establishing sales-tax tables</see>.
+    /// Important! "&gt;<b>Important!</b> In the US, eBay now calculates, collects, and remits sales tax to the proper taxing authorities in all 50 states and Washington, DC. Sellers can no longer specify sales-tax rates for these jurisdictions using a tax table.
     /// However, sellers may continue to use a sales-tax table to set rates for the following US territories:
     /// - American Samoa (AS)
     /// - Guam (GU)
@@ -653,7 +653,7 @@ public sealed class AccountV1Client
     /// <summary>
     /// Use this call to retrieve all sales tax table entries that the seller has defined for a specific country. All four response fields will be returned for each tax jurisdiction that matches the search criteria. If no sales tax rates are defined for the specified, a <c>204 No Content</c> status code is returned with no response payload.
     /// <b>Note:</b> Sales-tax tables are only available for the US (EBAY_US) and Canada (EBAY_CA) marketplaces.
-    /// Important! </b>"&gt;<b>Important!</b> In the US, eBay now calculates, collects, and remits sales tax to the proper taxing authorities in all 50 states and Washington, DC. Sellers can no longer specify sales-tax rates for these jurisdictions using a tax table.
+    /// Important! "&gt;<b>Important!</b> In the US, eBay now calculates, collects, and remits sales tax to the proper taxing authorities in all 50 states and Washington, DC. Sellers can no longer specify sales-tax rates for these jurisdictions using a tax table.
     /// However, sellers may continue to use a sales-tax table to set rates for the following US territories:
     /// - American Samoa (AS)
     /// - Guam (GU)

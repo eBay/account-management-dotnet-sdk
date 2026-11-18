@@ -51,7 +51,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Program.Opt_out
         /// This method opts the seller out of a seller program in which they are currently opted in to. A seller can retrieve a list of the seller programs they are opted-in to using the &lt;b&gt;getOptedInPrograms&lt;/b&gt; method.
         /// </summary>
         /// <returns>A <see cref="global::EBay.AccountManagement.Generated.AccountV1.Program.Opt_out.Opt_outPostResponse"/></returns>
-        /// <param name="body">The seller program to opt in to when part of an &lt;b&gt;optInToProgram&lt;/b&gt; request, or out of when part of an  &lt;b&gt;optOutOfProgram&lt;/b&gt; request.</param>
+        /// <param name="body">Program being opted-out of.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::EBay.AccountManagement.Generated.AccountV1.Models.Error">When receiving a 400 status code</exception>
@@ -82,7 +82,7 @@ namespace EBay.AccountManagement.Generated.AccountV1.Program.Opt_out
         /// This method opts the seller out of a seller program in which they are currently opted in to. A seller can retrieve a list of the seller programs they are opted-in to using the &lt;b&gt;getOptedInPrograms&lt;/b&gt; method.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The seller program to opt in to when part of an &lt;b&gt;optInToProgram&lt;/b&gt; request, or out of when part of an  &lt;b&gt;optOutOfProgram&lt;/b&gt; request.</param>
+        /// <param name="body">Program being opted-out of.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

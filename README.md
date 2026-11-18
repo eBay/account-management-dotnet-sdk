@@ -4,6 +4,7 @@ A production-ready .NET SDK for eBay Account Management APIs, combining REST and
 
 ## Features
 
+- **Target frameworks**: .NET Framework 4.7.2, .NET 8, .NET 9 and .NET 10
 - **REST API Support**: Account V1, Account V2, and Finances APIs generated with Microsoft Kiota
 - **GraphQL Support**: Typed operations for auction/bidding queries plus a dynamic escape hatch
 - **OAuth Authentication**: Token refresh handler interface for seamless authentication
@@ -176,38 +177,23 @@ var transactions = await client.Finances.GetTransactionsAsync(accessToken: userT
 
 ### 3. Dependency Injection (ASP.NET Core)
 
+`AddAccountManagementSdk` registers the configuration and one shared `AccountManagementClient` (a singleton that owns its HTTP connections and is disposed with the container). Inject the client and use its properties for the individual APIs:
+
 ```csharp
-using EBay.AccountManagement.Extensions;
+using EBay.AccountManagement;
 using EBay.AccountManagement.Configuration;
+using EBay.AccountManagement.Extensions;
 
-// In Program.cs or Startup.cs
-builder.Services.AddSingleton<ITokenRefreshHandler, MyTokenRefreshHandler>();
-
-builder.Services.AddAccountManagementSdk(config =>
+builder.Services.AddAccountManagementSdk(new AccountManagementConfiguration
 {
-    config.TokenRefreshHandler = sp.GetRequiredService<ITokenRefreshHandler>();
+    AccessToken = builder.Configuration["EBay:AccessToken"]
 });
 
-// Inject the SDK or sub-clients
-public class MyController : ControllerBase
-{
-    private readonly AccountManagementClient _sdk;
-    private readonly AccountV1Client _accountV1;
-
-    public MyController(AccountManagementClient sdk, AccountV1Client accountV1)
-    {
-        _sdk = sdk;
-        _accountV1 = accountV1;
-    }
-
-    [HttpGet("policies")]
-    public async Task<IActionResult> GetPolicies()
-    {
-        var policies = await _accountV1.GetFulfillmentPoliciesAsync("EBAY_US");
-        return Ok(policies);
-    }
-}
+app.MapGet("/example", async (AccountManagementClient sdk) =>
+    Results.Ok(await sdk.AccountV1.GetPrivilegesAsync()));
 ```
+
+To route requests through your own handler (proxy, client certificates, a test double), pass it to the constructor: `new AccountManagementClient(config, handler)`. The handler is shared by all APIs and is not disposed by the client.
 
 ## REST API Examples
 
@@ -301,6 +287,25 @@ dotnet kiota generate -l csharp -d specs/openapi/account-v1.yaml ...
 dotnet build EBay.AccountManagement/EBay.AccountManagement.csproj
 ```
 
+## Trusted hosts and sandbox
+
+The access token is only sent to trusted hosts: the eBay hosts in `AccountManagementConfiguration.DefaultAllowedHosts` (production and their `*.sandbox.ebay.com` counterparts) plus any you add to `AllowedHosts`. The sandbox needs no extra configuration:
+
+```csharp
+var config = new AccountManagementConfiguration
+{
+    AccessToken = "...",
+    AccountV1BaseUrl = "https://api.sandbox.ebay.com/sell/account/v1",
+};
+```
+
+Any other host, for example a proxy, has to be added explicitly; the client constructor throws `InvalidOperationException` otherwise:
+
+```csharp
+config.AccountV1BaseUrl = "https://ebay-proxy.example.com/sell/account/v1";
+config.AllowedHosts.Add("ebay-proxy.example.com");
+```
+
 ## Error Handling
 
 ```csharp
@@ -357,6 +362,7 @@ catch (HttpRequestException ex)
 ### Prerequisites
 
 - .NET 10 SDK, plus the .NET 8 and .NET 9 SDKs so every target framework can build
+- `net472` builds on any OS (reference assemblies come from NuGet); its tests run on Windows only
 - Kiota CLI tool (auto-installed via dotnet tools)
 
 ### Building
@@ -373,9 +379,9 @@ dotnet pack EBay.AccountManagement/EBay.AccountManagement.csproj
 
 ## Dependencies
 
-- **Microsoft.Kiota.Bundle**: REST client generation and runtime
-- **Microsoft.Extensions.DependencyInjection.Abstractions**: DI support
-- **Microsoft.Extensions.Http**: HttpClient factory integration
+- **Microsoft.Kiota.Bundle** (>= 1.22.0): REST runtime
+- **Microsoft.Extensions.DependencyInjection.Abstractions** (>= 6.0.0): `AddAccountManagementSdk` registration
+- **System.Text.Json** (>= 10.0.0, .NET Framework only): GraphQL request and response serialization
 
 ## License
 

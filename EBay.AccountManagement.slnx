@@ -1,3 +1,5 @@
 <Solution>
   <Project Path="EBay.AccountManagement/EBay.AccountManagement.csproj" />
+  <Project Path="tests/EBay.AccountManagement.CSharp73/EBay.AccountManagement.CSharp73.csproj" />
+  <Project Path="tests/EBay.AccountManagement.Tests/EBay.AccountManagement.Tests.csproj" />
 </Solution>
