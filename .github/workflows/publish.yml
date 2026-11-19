@@ -1,0 +1,84 @@
+name: Publish SDK
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    uses: ./.github/workflows/validate.yml
+
+  pack:
+    needs: validate
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.package.outputs.version }}
+      missing: ${{ steps.package.outputs.missing }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+        with:
+          dotnet-version: 10.0.x
+      - name: Pack all target frameworks
+        run: >-
+          dotnet pack EBay.AccountManagement/EBay.AccountManagement.csproj -c Release
+          -p:ContinuousIntegrationBuild=true -p:RepositoryCommit="$GITHUB_SHA" -o artifacts
+      - name: Inspect package and check NuGet
+        id: package
+        run: python3 scripts/nuget-release.py prepare artifacts
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: steps.package.outputs.missing == 'true'
+        with:
+          name: sdk-package
+          path: artifacts/*.nupkg
+          if-no-files-found: error
+          overwrite: true
+
+  publish:
+    needs: pack
+    if: needs.pack.outputs.missing == 'true'
+    environment: nuget
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: sdk-package
+          path: artifacts
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+        with:
+          dotnet-version: 10.0.x
+      - uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841
+        id: login
+        with:
+          user: ${{ vars.NUGET_USER }}
+      - name: Push SDK
+        env:
+          NUGET_API_KEY: ${{ steps.login.outputs.NUGET_API_KEY }}
+        run: >-
+          dotnet nuget push artifacts/*.nupkg --source https://api.nuget.org/v3/index.json
+          --api-key "$NUGET_API_KEY" --skip-duplicate --no-symbols
+
+  release:
+    needs: [pack, publish]
+    if: >-
+      ${{ !cancelled() && needs.pack.result == 'success' &&
+          (needs.publish.result == 'success' || needs.publish.result == 'skipped') }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          fetch-depth: 0
+      - name: Create GitHub Release for published source
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ needs.pack.outputs.version }}
+        run: bash scripts/github-release
