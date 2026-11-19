@@ -18,9 +18,9 @@ if [[ $(git rev-parse 'FETCH_HEAD^{commit}') != "$source_commit" ]]; then
 fi
 
 if ! gh release view "$tag" >/dev/null 2>&1; then
-  flags=()
+  flags=(--verify-tag --title "$tag" --notes-file "$notes")
   if [[ $VERSION == *-* ]]; then flags+=(--prerelease); fi
-  gh release create "$tag" --verify-tag --title "$tag" --notes-file "$notes" "${flags[@]}" ||
+  gh release create "$tag" "${flags[@]}" ||
     gh release view "$tag" >/dev/null
 fi
 if [[ $(gh release view "$tag" --json isDraft --jq .isDraft) != false ]]; then
