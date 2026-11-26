@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+source_commit=$(python3 scripts/nuget-release.py confirm "$VERSION")
+git merge-base --is-ancestor "$source_commit" origin/main
+tag="v$VERSION"
+notes="$RUNNER_TEMP/release-notes.md"
+git show "$source_commit:CHANGELOG.md" | python3 scripts/nuget-release.py notes "$VERSION" > "$notes"
+
+# Create the tag without overwriting it. A concurrent run may have created it first.
+if ! git ls-remote --exit-code --refs origin "refs/tags/$tag" >/dev/null; then
+  git push origin "$source_commit:refs/tags/$tag" || git ls-remote --exit-code --refs origin "refs/tags/$tag" >/dev/null
+fi
+git fetch origin "refs/tags/$tag"
+if [[ $(git rev-parse 'FETCH_HEAD^{commit}') != "$source_commit" ]]; then
+  echo "Tag $tag differs from published package commit $source_commit" >&2
+  exit 1
+fi
+
+if ! gh release view "$tag" >/dev/null 2>&1; then
+  flags=(--verify-tag --title "$tag" --notes-file "$notes")
+  if [[ $VERSION == *-* ]]; then flags+=(--prerelease); fi
+  gh release create "$tag" "${flags[@]}" ||
+    gh release view "$tag" >/dev/null
+fi
+if [[ $(gh release view "$tag" --json isDraft --jq .isDraft) != false ]]; then
+  echo "An existing release for $tag is still a draft; review it before publishing." >&2
+  exit 1
+fi
+echo "EBay.AccountManagement $VERSION published from $source_commit · [GitHub Release]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/tag/$tag)" >> "$GITHUB_STEP_SUMMARY"
